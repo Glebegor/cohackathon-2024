@@ -1,9 +1,14 @@
 import { DesignContext } from "@/context/design";
 import { EMediaQuery } from "@/enums/design";
-import { MapIcon, MessageCircleIcon, NotebookPenIcon, SettingsIcon, SparklesIcon, UserIcon } from "lucide-react";
+import { HomeIcon, MapIcon, MessageCircleIcon, NotebookPenIcon, SettingsIcon, SparklesIcon, UserIcon } from "lucide-react";
 import React, { useContext } from "react";
 
 const items = {
+    home: {
+        name: "Domů",
+        icon: <HomeIcon size={36} color="#000000" className="hover:stroke-red-600 hover:scale-110 duration-300"/>,
+        link: "/home"
+    },
     explore: {
         name: "Objevit",
         icon: <SparklesIcon size={36} color="#000000" className="hover:stroke-yellow-600 hover:scale-110 duration-300"/>,
@@ -50,7 +55,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
 
 const NavbarItem:React.FC<NavbarItemProps> = ({item}) => {
     return(
-        <a href={item.link} className={"size-14 flex justify-center items-center"}>
+        <a href={item.link} className={"size-8 flex justify-center items-center"}>
             {item.icon}
         </a>
     )
@@ -69,11 +74,11 @@ const MobileNavbar: React.FC<MobileNavbarProps> = () => {
 }
 
 const DesktopNavbar: React.FC<DesktopNavbarProps> = () => {
-    const desktopMainItems = [items.explore, items.diary, items.chats, items.map, items.profile];
+    const desktopMainItems = [items.home, items.explore, items.diary, items.chats, items.map, items.profile];
 
 
     return(
-        <div className="flex flex-col gap-14 h-screen w-20 border-r-2 border-r-zinc-600 bg-white/50 py-4">
+        <div className="flex flex-col gap-14 h-screen w-20 border-r-2 border-r-zinc-400/30 bg-white/50 py-4">
             <div className="flex-1 flex flex-col items-center gap-8 justify-center">
                 {desktopMainItems.map((item) => (
                     <NavbarItem {...{item}}/>
