@@ -3,15 +3,16 @@ import { Dashboard } from './pages/dashboard/dashboard'
 import Login from './pages/login/login'
 import { MainLayout } from './pages/layouts/main'
 import './index.css'
-import { MediaQueryContext } from './context/media'
-import { EMediaQuery } from './enums/media'
+import { EMediaQuery, ETheme } from './enums/design'
 import { useMediaQuery } from 'react-responsive'
+import { DesignContext } from './context/design'
 
 function App() {
   const media:EMediaQuery = (useMediaQuery({ query: '(min-width: 768px)' }) ? EMediaQuery.DESKTOP : EMediaQuery.MOBILE);
+  const theme:ETheme = ETheme.MODERN;
     
   return (
-    <MediaQueryContext.Provider value={{...{media}}}>
+    <DesignContext.Provider value={{...{media, theme}}}>
       <BrowserRouter>
         <Routes>
           <Route element={<MainLayout/>}>
@@ -25,7 +26,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-    </MediaQueryContext.Provider>
+    </DesignContext.Provider>
   )
 }
 

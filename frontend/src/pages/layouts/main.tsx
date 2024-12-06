@@ -1,6 +1,6 @@
 import { Navbar } from "@/components/navbar/navbar";
-import { MediaQueryContext } from "@/context/media";
-import { EMediaQuery } from "@/enums/media";
+import { DesignContext } from "@/context/design";
+import { EMediaQuery } from "@/enums/design";
 import { Gradient } from "animated-gradient"
 import React, { useContext } from "react";
 import { Outlet } from "react-router";
@@ -9,7 +9,10 @@ import { Outlet } from "react-router";
 export const MainLayout: React.FC<MainLayoutProps> = () => {
     return (
         <div className="relative">
-            <Gradient
+            <div style={{position: 'fixed', width: '100vw', height: '100vh', background: "#ffffff"}}>
+
+            </div>
+            {/*<Gradient
                 hexcolors={['4a328a', 'e54f95']}
                 variant="radial"
                 coords={[50, 50]} // Center position
@@ -24,7 +27,7 @@ export const MainLayout: React.FC<MainLayoutProps> = () => {
                     justifyContent: 'center',
                     zIndex: 0
                 }}
-            />
+            />*/}
             <div className="z-10 min-h-screen relative">
                 <ContentLayout>
                     <Navbar/>
@@ -38,11 +41,11 @@ export const MainLayout: React.FC<MainLayoutProps> = () => {
 }
 
 const ContentLayout:React.FC<ContentLayoutProps> = ({children}) => {
-    const mediaContext = useContext(MediaQueryContext);
+    const designContext = useContext(DesignContext);
 
     return(
         <>
-            {mediaContext.media === EMediaQuery.DESKTOP ? 
+            {designContext.media === EMediaQuery.DESKTOP ? 
             <div className="flex">
                 {children}
             </div> :

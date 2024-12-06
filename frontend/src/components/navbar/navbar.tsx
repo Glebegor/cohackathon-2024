@@ -1,5 +1,5 @@
-import { MediaQueryContext } from "@/context/media";
-import { EMediaQuery } from "@/enums/media";
+import { DesignContext } from "@/context/design";
+import { EMediaQuery } from "@/enums/design";
 import { MapIcon, MessageCircleIcon, NotebookPenIcon, SettingsIcon, SparklesIcon, UserIcon } from "lucide-react";
 import React, { useContext } from "react";
 
@@ -37,11 +37,11 @@ const items = {
 }
 
 export const Navbar: React.FC<NavbarProps> = () => {
-    const mediaContext = useContext(MediaQueryContext);
+    const designContext = useContext(DesignContext);
 
     return(
         <>
-            {mediaContext.media === EMediaQuery.DESKTOP ? 
+            {designContext.media === EMediaQuery.DESKTOP ? 
             <DesktopNavbar/> :
             <MobileNavbar/>}
         </>
