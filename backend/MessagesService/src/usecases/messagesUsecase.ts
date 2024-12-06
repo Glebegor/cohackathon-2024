@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb";
 import { IRepositoryMessages, newRepositoryMessages } from "../repositoryes/messagesRepository";
-import { createMessageRequest, getLast10MessagesRequest } from "../domain/common/requests";
+import { createMessageRequest, getChatsIdsRequest, getLast10MessagesRequest } from "../domain/common/requests";
 import { Message } from "../domain/common/message";
 
 
@@ -10,6 +10,7 @@ interface IUsecaseMessages {
 
     createMessage(input: createMessageRequest): Promise<string>;
     getLast10Messages(input: getLast10MessagesRequest): Promise<Message[]>;
+    getChatIds(input: getChatsIdsRequest): Promise<string[]>;
 }
 
 
@@ -23,6 +24,10 @@ function newUsecaseMessages(repo: IRepositoryMessages): IUsecaseMessages {
         getLast10Messages: async (input: getLast10MessagesRequest): Promise<Message[]> => {
             var messages: Promise<Message[]> = repo.getLast10Messages(input);
             return messages;
+        },
+        getChatIds: async (input: getChatsIdsRequest): Promise<string[]> => {
+            var chatIds: Promise<string[]> = repo.getChatsIds(input);
+            return chatIds;
         }
     };
     return usecase;
