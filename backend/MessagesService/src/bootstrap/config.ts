@@ -3,7 +3,8 @@ import { resolve } from 'path';
 import * as dotenv from 'dotenv';
 
 function getEnv(envType: string) {
-    const envPath = resolve(__dirname, `/.env`);
+    const envPath = resolve(__dirname, `../../.env`);
+
     dotenv.config({ path: envPath });
 }
 

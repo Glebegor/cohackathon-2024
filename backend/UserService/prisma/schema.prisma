@@ -14,11 +14,42 @@ datasource db {
 }
 
 model User {
+  id            Int          @id @default(autoincrement())
+  childhouse_id Int
+  childHouse    ChildHouse   @relation(fields: [childhouse_id], references: [id])
+  name          String
+  surname       String
+  email         String       @unique
+  password_hash String
+  last_login    DateTime
+  profile       UserProfile?
+  
+
+  @@map("users")
+}
+
+model UserProfile {
   id              Int      @id @default(autoincrement())
-  name            String
-  surname         String
-  email           String
-  password_hash   String
+  user_id         Int      @unique
+  user            User     @relation(fields: [user_id], references: [id])
+  description     String
+  interests       String[]
+  note            String
   profile_picture String
-  last_login      DateTime
+  back_story      String
+
+  @@map("user_profiles")
+}
+
+model ChildHouse {
+  id          Int    @id @default(autoincrement())
+  admin_id    Int?
+  name        String
+  description String
+  address     String
+  phone       String
+  email       String @unique
+  users       User[]
+
+  @@map("child_houses")
 }

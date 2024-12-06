@@ -1,5 +1,6 @@
-import { EMediaQuery } from "@/enums/media"
+import { EMediaQuery } from "@/enums/design"
 
 type MediaContextProps = {
-    media: EMediaQuery
+    media: EMediaQuery,
+    theme: ETheme
 }

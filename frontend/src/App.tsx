@@ -3,28 +3,27 @@ import { Dashboard } from './pages/dashboard/dashboard'
 import Login from './pages/login/login'
 import { MainLayout } from './pages/layouts/main'
 import './index.css'
-import { MediaQueryContext } from './context/media'
-import { EMediaQuery } from './enums/media'
+import { EMediaQuery, ETheme } from './enums/design'
 import { useMediaQuery } from 'react-responsive'
+import { DesignContext } from './context/design'
 import Messages from './pages/messages/Messages'
 import Home from './pages/home/home'
 
 function App() {
   const media:EMediaQuery = (useMediaQuery({ query: '(min-width: 768px)' }) ? EMediaQuery.DESKTOP : EMediaQuery.MOBILE);
+  const theme:ETheme = ETheme.MODERN;
     
   return (
-    <MediaQueryContext.Provider value={{...{media}}}>
+    <DesignContext.Provider value={{...{media, theme}}}>
       <BrowserRouter>
         <Routes>
           <Route element={<MainLayout/>}>
-            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="home" element={<Dashboard />} />
             <Route path="login" element={<Login />} />
-            <Route path="messages" element={<Messages />} />
-          </Route>
-          <Route path="/" element={<Home />} />
+        </Route>
         </Routes>
       </BrowserRouter>
-    </MediaQueryContext.Provider>
+    </DesignContext.Provider>
   )
 }
 
