@@ -4,7 +4,9 @@
   "description": "Application",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "ts-node src/index.ts",
+    "db-run": "make db-run",
+    "db-stop": "make db-stop"
   },
   "author": "",
   "license": "ISC",
