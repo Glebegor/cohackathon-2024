@@ -20,7 +20,9 @@ function App() {
           <Route element={<MainLayout/>}>
             <Route path="home" element={<Dashboard />} />
             <Route path="login" element={<Login />} />
+            <Route path="messages" element={<Messages />} />
         </Route>
+        <Route path="/" element={<Home />} />
         </Routes>
       </BrowserRouter>
     </DesignContext.Provider>
