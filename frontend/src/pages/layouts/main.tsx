@@ -28,7 +28,7 @@ export const MainLayout: React.FC<MainLayoutProps> = () => {
                     zIndex: 0
                 }}
             />*/}
-            <div className="z-10 min-h-screen relative">
+            <div className="z-10 min-h-screen relative w-screen">
                 <ContentLayout>
                     <Navbar/>
                     <div className="flex-1">
