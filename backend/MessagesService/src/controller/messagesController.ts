@@ -2,7 +2,7 @@ import { MongoClient } from "mongodb";
 import Config from "../domain/common/config";
 import {IUsecaseMessages, newUsecaseMessages } from "../usecases/messagesUsecase";
 import { IRepositoryMessages, newRepositoryMessages } from "../repositoryes/messagesRepository";
-import { createMessageRequest } from "../domain/common/requests";
+import { createMessageRequest, getChatsIdsRequest } from "../domain/common/requests";
 import { ErrorResponse, SuccessResponse } from "../domain/common/responses";
 import { Message } from "../domain/common/message";
 
@@ -63,10 +63,32 @@ class ControllerMessages {
             res.status(200).send(responseSuccess);
         }
     }
+    private async getChatsIds(req: any, res: any): Promise<void> {
+        var input: getChatsIdsRequest = req.body;
+        
+        var chatsIds: string[] = await this.usecase.getChatIds(input);
+
+        if (chatsIds.length == 0) {
+            var responseError: ErrorResponse = {
+                status: 400,
+                error: "No chats found"
+            }
+            res.status(400).send(responseError);
+        }
+        else {
+            var responseSuccess: SuccessResponse = {
+                status: 200,
+                message: "Chats found",
+                data: chatsIds
+            }
+            res.status(200).send(responseSuccess);
+        }
+    }
     
     public routes(router: any): void {
         router.post(this.routeString, this.createMessage);
         router.get(this.routeString, this.getLast10Messages);
+        router.get(this.routeString + "/getChatIds", this.getChatsIds);
     }
 }
 

@@ -1,11 +1,12 @@
 import { MongoClient } from "mongodb";
-import { createMessageRequest, getLast10MessagesRequest } from "../domain/common/requests";
+import { createMessageRequest, getChatsIdsRequest, getLast10MessagesRequest } from "../domain/common/requests";
 import { Message } from "../domain/common/message";
 
 interface IRepositoryMessages {
     databaseClient: MongoClient;
     createMessage(input: createMessageRequest): Promise<string>;
     getLast10Messages(input: getLast10MessagesRequest): Promise<Message[]>;
+    getChatsIds(input: getChatsIdsRequest): Promise<string[]>;
 }
 
 function newRepositoryMessages(databaseClient: MongoClient): IRepositoryMessages {
@@ -21,7 +22,7 @@ function newRepositoryMessages(databaseClient: MongoClient): IRepositoryMessages
                     message: input.message,
                     timestamp: new Date(),
                 });
-                return "Message created";
+                return "";
             } catch (err) {
                 console.error("Error creating message:", err);
                 throw new Error("Failed to create message");
@@ -29,10 +30,9 @@ function newRepositoryMessages(databaseClient: MongoClient): IRepositoryMessages
         },
 
         // Function that retrieves the last 10 messages between two users
-        getLast10Messages: async (input: getLast10MessagesRequest): Promise<Message[]> => {
+        getLast10Messages: async (data: getLast10MessagesRequest): Promise<Message[]> => {
             try {
-                // Set a default timestamp if not provided
-                const lastTimestamp = input.last_timestamp || new Date(0);
+                const lastTimestamp = data.last_timestamp ? data.last_timestamp : new Date(0);
 
                 const messages: Message[] = (
                     await databaseClient
@@ -40,10 +40,10 @@ function newRepositoryMessages(databaseClient: MongoClient): IRepositoryMessages
                         .collection("Messages")
                         .find({
                             $or: [
-                                { sender_id: input.sender_id, receiver_id: input.receiver_id },
-                                { sender_id: input.receiver_id, receiver_id: input.sender_id },
+                                { sender_id: data.sender_id, receiver_id: data.receiver_id },
+                                { sender_id: data.receiver_id, receiver_id: data.sender_id },
                             ],
-                            timestamp: { $gt: lastTimestamp },
+                            timestamp: { $gt: new Date(0)},
                         })
                         .sort({ timestamp: -1 }) // Ascending order
                         .limit(10) // First 10 messages
@@ -60,6 +60,32 @@ function newRepositoryMessages(databaseClient: MongoClient): IRepositoryMessages
             } catch (err) {
                 console.error("Error getting messages:", err);
                 throw new Error("Failed to get messages");
+            }
+        },
+
+        // Function that retrieves the chat IDs of a user
+        getChatsIds: async (data: getChatsIdsRequest): Promise<string[]> => {
+            try {
+                const chatIds: string[] = (
+                    await databaseClient
+                        .db("MessagesService")
+                        .collection("Messages")
+                        .distinct("receiver_id", {
+                            sender_id: data.user_id,
+                        })
+                ).concat(
+                    await databaseClient
+                        .db("MessagesService")
+                        .collection("Messages")
+                        .distinct("sender_id", {
+                            receiver_id: data.user_id,
+                        })
+                );
+
+                return chatIds;
+            } catch (err) {
+                console.error("Error getting chat IDs:", err);
+                throw new Error("Failed to get chat IDs");
             }
         },
     };
