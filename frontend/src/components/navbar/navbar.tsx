@@ -1,42 +1,42 @@
 import { DesignContext } from "@/context/design";
 import { EMediaQuery } from "@/enums/design";
-import { HomeIcon, MapIcon, MessageCircleIcon, NotebookPenIcon, SettingsIcon, SparklesIcon, UserIcon } from "lucide-react";
+import { HomeIcon, MapIcon, MessageCircleIcon, NotebookText, SettingsIcon, SparklesIcon, UserRound  } from "lucide-react";
 import React, { useContext } from "react";
 
 const items = {
     home: {
         name: "Domů",
-        icon: <HomeIcon size={36} color="#000000" className="hover:stroke-red-600 hover:scale-110 duration-300"/>,
+        icon: <HomeIcon size={24} color="#000000" className="hover:stroke-red-600 hover:scale-110 duration-300 stroke-white"/>,
         link: "/home"
     },
     explore: {
         name: "Objevit",
-        icon: <SparklesIcon size={36} color="#000000" className="hover:stroke-yellow-600 hover:scale-110 duration-300"/>,
+        icon: <SparklesIcon size={24} color="#000000" className="hover:stroke-yellow-600 hover:scale-110 duration-300 stroke-white"/>,
         link: "/home",
     },
     diary: {
         name: "Deník",
-        icon: <NotebookPenIcon size={36} color="#000000" className="hover:stroke-blue-600 hover:scale-110 duration-300"/>,
+        icon: <NotebookText size={24} color="#000000" className="hover:stroke-blue-600 hover:scale-110 duration-300 stroke-white"/>,
         link: "/diary"
     },
     chats: {
         name: "Chaty",
-        icon: <MessageCircleIcon size={36} color="#000000" className="hover:stroke-orange-600 hover:scale-110 duration-300"/>,
+        icon: <MessageCircleIcon size={24} color="#000000" className="hover:stroke-orange-600 hover:scale-110 duration-300 stroke-white"/>,
         link: "/chat"
     },
     profile: {
         name: "Profil",
-        icon: <UserIcon size={36} color="#000000" className="hover:stroke-green-600 hover:scale-110 duration-300"/>,
+        icon: <UserRound  size={24} color="#000000" className="hover:stroke-green-600 hover:scale-110 duration-300 stroke-white"/>,
         link: "/profile"
     },
     map: {
         name: "Mapa",
-        icon: <MapIcon size={36} color="#000000" className="hover:stroke-purple-600 hover:scale-110 duration-300"/>,
+        icon: <MapIcon size={24} color="#000000" className="hover:stroke-purple-600 hover:scale-110 duration-300 stroke-white"/>,
         link: "/map"
     },
     settings: {
         name: "Nastavení",
-        icon: <SettingsIcon size={36} color="#000000" className="hover:stroke-gray-600 hover:scale-110 duration-300"/>,
+        icon: <SettingsIcon size={24} color="#000000" className="hover:stroke-gray-600 hover:scale-110 duration-300 stroke-white"/>,
         link: "/settings"
     }
 }
@@ -48,7 +48,8 @@ export const Navbar: React.FC<NavbarProps> = () => {
         <>
             {designContext.media === EMediaQuery.DESKTOP ? 
             <DesktopNavbar/> :
-            <MobileNavbar/>}
+            <MobileNavbar/>
+            }
         </>
     )
 }
@@ -78,7 +79,7 @@ const DesktopNavbar: React.FC<DesktopNavbarProps> = () => {
 
 
     return(
-        <div className="flex flex-col gap-14 h-screen w-20 border-r-2 border-r-zinc-400/30 bg-white/50 py-4">
+        <div className="flex flex-col gap-14 h-screen w-20 border-r-2 py-4 bg-gradient-to-b from-gray-800 to-gray-950">
             <div className="flex-1 flex flex-col items-center gap-8 justify-center">
                 {desktopMainItems.map((item) => (
                     <NavbarItem {...{item}}/>

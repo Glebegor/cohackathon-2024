@@ -39,18 +39,18 @@ const Messages = () => {
             <RxCross1/>
         </div>
         {/* Messages */}
-        <div className="flex flex-col gap-3 justify-end w-full h-[82%]">
+        <div className="flex flex-col gap-3 justify-end w-full h-[82%] px-1">
             {messages.map((message, index) => (
                 message.sender ? 
                 <div key={index} className="flex justify-end">
-                    <div className="px-3 py-2 ring-1 bg-gradient-to-r from-purple-300 to-pink-300 rounded-3xl text-xs">{message.message}</div>
+                    <div className="px-3 py-2 ring-1 bg-gradient-to-r from-gray-600 to-gray-950 rounded-3xl text-xs text-white">{message.message}</div>
                 </div> :
                 <div key={index} className="flex items-center gap-2">
                     <Avatar className="w-8 h-8">
                         <AvatarImage src={message.avatar} />
                         <AvatarFallback>Avatar</AvatarFallback>
                     </Avatar>
-                    <div className="px-3 py-2 ring-1 bg-gradient-to-r from-purple-300 to-pink-300 rounded-3xl text-xs">{message.message}</div>
+                    <div className="px-3 py-2 ring-1 bg-gradient-to-r from-gray-600 to-gray-950 rounded-3xl text-xs text-white">{message.message}</div>
                 </div>
             ))}
         </div>
