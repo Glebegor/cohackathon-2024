@@ -16,8 +16,12 @@ function App() {
         <Routes>
           <Route element={<MainLayout/>}>
             <Route path="home" element={<Dashboard />} />
+            <Route path="diary" element={<Dashboard />} />
             <Route path="login" element={<Login />} />
-        </Route>
+            <Route path="chat" element={<Dashboard />} />
+            <Route path="profile" element={<Dashboard />} />
+            <Route path="settings" element={<Dashboard />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </MediaQueryContext.Provider>
