@@ -4,7 +4,7 @@ import { authenticate } from './middlewares/authenticationMiddleware';
 
 import userRoutes from './routes/userRoutes'
 import userProfileRoutes from './routes/userProfileRoutes'
-import childHouseRoutes from './routes/userRoutes'
+import childHouseRoutes from './routes/childHouseRoutes'
 
 const app: Express = express();
 const port: number = parseInt(process.env.PORT || '5002', 10);
