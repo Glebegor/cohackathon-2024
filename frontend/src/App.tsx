@@ -4,6 +4,9 @@ import Login from './pages/login/login'
 import { MainLayout } from './pages/layouts/main'
 import './index.css'
 
+//temporary
+import Messages from './pages/messages/Messages'
+
 function App() {
   return (
     <BrowserRouter>
@@ -11,6 +14,7 @@ function App() {
         <Route element={<MainLayout/>}>
           <Route path="home" element={<Dashboard />} />
           <Route path="login" element={<Login />} />
+          <Route path="messages" element={<Messages />} />
         </Route>
       </Routes>
     </BrowserRouter>
