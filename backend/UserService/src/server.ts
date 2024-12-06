@@ -1,5 +1,6 @@
 import express, { Express } from 'express';
 import cors from 'cors'
+import { authenticate } from './middlewares/authenticationMiddleware';
 
 import userRoutes from './routes/userRoutes'
 import userProfileRoutes from './routes/userProfileRoutes'
