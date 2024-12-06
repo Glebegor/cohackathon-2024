@@ -2,7 +2,7 @@ import express, { Express } from 'express';
 
 const app: Express = express();
 
-const port: number = parseInt(process.env.PORT || '4000', 10);
+const port: number = parseInt(process.env.PORT || '5002', 10);
 
 // Spuštění serveru
 app.listen(port, () => {
