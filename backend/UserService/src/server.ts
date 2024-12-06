@@ -14,6 +14,7 @@ app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+app.use('/api/v2/diary', diaryRoutes);
 app.use('/api/v2/user', userRoutes);
 app.use('/api/v2/user-profile', userProfileRoutes);
 app.use('/api/v2/child-house', childHouseRoutes);
