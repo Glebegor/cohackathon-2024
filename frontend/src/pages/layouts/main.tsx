@@ -49,7 +49,7 @@ const ContentLayout:React.FC<ContentLayoutProps> = ({children}) => {
             <div className="flex">
                 {children}
             </div> :
-            <div className="flex flex-col-reverse">
+            <div className="flex flex-col-reverse h-full">
                 {children}
             </div>}
         </>
