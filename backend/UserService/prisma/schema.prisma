@@ -14,16 +14,17 @@ datasource db {
 }
 
 model User {
-  id            Int          @id @default(autoincrement())
+  id            Int      @id @default(autoincrement())
   childhouse_id Int
-  childHouse    ChildHouse   @relation(fields: [childhouse_id], references: [id])
   name          String
   surname       String
-  email         String       @unique
+  email         String   @unique
   password_hash String
   last_login    DateTime
-  profile       UserProfile?
-  
+  activated     Boolean
+
+  childHouse ChildHouse   @relation(fields: [childhouse_id], references: [id])
+  profile    UserProfile?
 
   @@map("users")
 }
@@ -31,12 +32,13 @@ model User {
 model UserProfile {
   id              Int      @id @default(autoincrement())
   user_id         Int      @unique
-  user            User     @relation(fields: [user_id], references: [id])
   description     String
   interests       String[]
   note            String
   profile_picture String
   back_story      String
+
+  user User @relation(fields: [user_id], references: [id])
 
   @@map("user_profiles")
 }
@@ -49,7 +51,8 @@ model ChildHouse {
   address     String
   phone       String
   email       String @unique
-  users       User[]
+
+  users User[]
 
   @@map("child_houses")
 }
