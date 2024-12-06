@@ -1,6 +1,6 @@
 import { MediaQueryContext } from "@/context/media";
 import { EMediaQuery } from "@/enums/media";
-import { MessageCircleIcon, NotebookPenIcon, SettingsIcon, SparklesIcon, UserIcon } from "lucide-react";
+import { MapIcon, MessageCircleIcon, NotebookPenIcon, SettingsIcon, SparklesIcon, UserIcon } from "lucide-react";
 import React, { useContext } from "react";
 
 const items = {
@@ -23,6 +23,11 @@ const items = {
         name: "Profil",
         icon: <UserIcon size={36} color="#000000" className="hover:stroke-green-600 hover:scale-110 duration-300"/>,
         link: "/profile"
+    },
+    map: {
+        name: "Mapa",
+        icon: <MapIcon size={36} color="#000000" className="hover:stroke-purple-600 hover:scale-110 duration-300"/>,
+        link: "/map"
     },
     settings: {
         name: "Nastavení",
@@ -52,7 +57,7 @@ const NavbarItem:React.FC<NavbarItemProps> = ({item}) => {
 }
 
 const MobileNavbar: React.FC<MobileNavbarProps> = () => {
-    const mobileItems = [items.explore, items.diary, items.chats, items.profile, items.settings];
+    const mobileItems = [items.explore, items.diary, items.chats, items.profile, items.map, items.settings];
 
     return(
         <div className="flex fixed bottom-0 h-36">
@@ -64,7 +69,7 @@ const MobileNavbar: React.FC<MobileNavbarProps> = () => {
 }
 
 const DesktopNavbar: React.FC<DesktopNavbarProps> = () => {
-    const desktopMainItems = [items.explore, items.diary, items.chats, items.profile];
+    const desktopMainItems = [items.explore, items.diary, items.chats, items.map, items.profile];
 
 
     return(

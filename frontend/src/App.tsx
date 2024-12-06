@@ -21,6 +21,7 @@ function App() {
             <Route path="chat" element={<Dashboard />} />
             <Route path="profile" element={<Dashboard />} />
             <Route path="settings" element={<Dashboard />} />
+            <Route path="map" element={<Dashboard />} />
           </Route>
         </Routes>
       </BrowserRouter>
