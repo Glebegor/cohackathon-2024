@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router'
 import { Dashboard } from './pages/dashboard/dashboard'
+import Login from './pages/login/login'
 import { MainLayout } from './pages/layouts/main'
 import './index.css'
 import { MediaQueryContext } from './context/media'
@@ -15,7 +16,8 @@ function App() {
         <Routes>
           <Route element={<MainLayout/>}>
             <Route path="home" element={<Dashboard />} />
-          </Route>
+            <Route path="login" element={<Login />} />
+        </Route>
         </Routes>
       </BrowserRouter>
     </MediaQueryContext.Provider>

@@ -9,7 +9,7 @@ Main backend ip is 5000:<br>
 - MessagesService - 5003
 - SupportService - 5004
 - Mongo - 5100
-- PostgreSQL - 5200
+- PostgreSQLAuth - 5200
 - RabbitMQ - 5300
 - Redis - 5400
 - LoadBalancer - 5500
