@@ -18,3 +18,13 @@ interface UserProfile {
     profile_picture: string;
     back_story: string;
 }
+
+interface ChildHouse {
+    id: number;
+    admin_id: number;
+    name: string;
+    description: string;
+    address: string;
+    phone: string;
+    email: string;    
+}
