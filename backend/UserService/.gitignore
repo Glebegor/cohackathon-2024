@@ -1,0 +1,51 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Logs
+logs/
+*.log
+*.csv
+*.pid
+*.seed
+*.pid.lock
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env.dev
+.env.production
+
+# Build output
+dist/
+build/
+out/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+
+# Miscellaneous
+coverage/
+*.iml
+*.sublime-workspace
+*.code-workspace
+
+# Prisma
+prisma/dev.db
+prisma/dev.db-journal
+prisma/*.log
+prisma/migrations/
+
+# Docker
+docker-compose.override.yml
+.env.docker
+.env.*
+
+# Debug
+debug/
