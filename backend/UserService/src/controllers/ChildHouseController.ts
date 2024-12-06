@@ -21,7 +21,7 @@ export class ChildHouseController extends BaseController {
 
   async getChildHouseById(req: Request, res: Response): Promise<void> {
     try {
-      const id = parseInt(req.params.id, 10);
+      const id = parseInt(req.params.id);
       const childHouse = await this.childHouseModel.getChildHouseById(id);
       if (!childHouse) {
         res.status(404).json({ success: false, message: "Child house not found" });

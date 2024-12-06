@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { ChildHouseController } from "../controllers/ChildHouseController";
+import { authenticate } from '../middlewares/authenticationMiddleware';
 
 const router = Router();
 const childHouseController = new ChildHouseController();
