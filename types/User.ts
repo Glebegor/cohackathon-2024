@@ -1,5 +1,3 @@
-
-
 interface User {
     id: number;
     childhouse_id: number;
@@ -8,6 +6,7 @@ interface User {
     email: string;
     password_hash: string;
     last_login: Date;
+    activated: boolean;
 }
 
 interface UserProfile {
