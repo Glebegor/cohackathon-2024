@@ -8,5 +8,3 @@ interface SuccessResponse {
     message: string;
     data: any;
 }
-
-export { ErrorResponse, SuccessResponse };
