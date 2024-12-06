@@ -12,7 +12,7 @@ const items = {
     explore: {
         name: "Objevit",
         icon: <SparklesIcon size={36} color="#000000" className="hover:stroke-yellow-600 hover:scale-110 duration-300"/>,
-        link: "/home",
+        link: "/dashboard",
     },
     diary: {
         name: "Deník",

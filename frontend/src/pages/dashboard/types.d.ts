@@ -1,3 +1,7 @@
-type DashboardProps = {
-    
+type DashboardProps = {}
+
+type ReactionInputProps = {}
+
+type EmotionElementProps = {
+    emoji: EmojiType
 }

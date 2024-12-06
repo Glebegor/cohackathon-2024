@@ -20,6 +20,8 @@ function App() {
           <Route element={<MainLayout/>}>
             <Route path="home" element={<Dashboard />} />
             <Route path="login" element={<Login />} />
+            <Route path="messages" element={<Messages />} />
+            <Route path="dashboard" element={<Dashboard />} />
         </Route>
         </Routes>
       </BrowserRouter>
