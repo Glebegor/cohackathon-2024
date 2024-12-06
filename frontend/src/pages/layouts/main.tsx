@@ -25,7 +25,7 @@ export const MainLayout: React.FC<MainLayoutProps> = () => {
                     zIndex: 0
                 }}
             />
-            <div className="z-10 min-h-screen relative">
+            <div className="z-10 min-h-screen relative w-screen">
                 <ContentLayout>
                     <Navbar/>
                     <div className="flex-1">
@@ -46,7 +46,7 @@ const ContentLayout:React.FC<ContentLayoutProps> = ({children}) => {
             <div className="flex">
                 {children}
             </div> :
-            <div className="flex flex-col-reverse">
+            <div className="flex flex-col-reverse h-full">
                 {children}
             </div>}
         </>
