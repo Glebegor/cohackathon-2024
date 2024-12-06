@@ -30,7 +30,7 @@ RUN if [ "$NODE_ENV" = "production" ]; then \
 fi
 
 # Exponování portu
-EXPOSE 4000
+EXPOSE 5002
 
 # Spuštění serveru
 CMD if [ "$NODE_ENV" = "production" ]; then node dist/index.js; else npm run dev; fi
