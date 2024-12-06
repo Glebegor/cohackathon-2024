@@ -6,37 +6,37 @@ import React, { useContext } from "react";
 const items = {
     home: {
         name: "Domů",
-        icon: <HomeIcon size={24} color="#000000" className="hover:stroke-red-600 hover:scale-110 duration-300 stroke-white"/>,
+        icon: <HomeIcon size={24} color="#000000" className="hover:stroke-red-600 hover:scale-110 duration-300"/>,
         link: "/home"
     },
     explore: {
         name: "Objevit",
-        icon: <SparklesIcon size={24} color="#000000" className="hover:stroke-yellow-600 hover:scale-110 duration-300 stroke-white"/>,
+        icon: <SparklesIcon size={24} color="#000000" className="hover:stroke-yellow-600 hover:scale-110 duration-300"/>,
         link: "/home",
     },
     diary: {
         name: "Deník",
-        icon: <NotebookText size={24} color="#000000" className="hover:stroke-blue-600 hover:scale-110 duration-300 stroke-white"/>,
+        icon: <NotebookText size={24} color="#000000" className="hover:stroke-blue-600 hover:scale-110 duration-300"/>,
         link: "/diary"
     },
     chats: {
         name: "Chaty",
-        icon: <MessageCircleIcon size={24} color="#000000" className="hover:stroke-orange-600 hover:scale-110 duration-300 stroke-white"/>,
+        icon: <MessageCircleIcon size={24} color="#000000" className="hover:stroke-orange-600 hover:scale-110 duration-300"/>,
         link: "/chat"
     },
     profile: {
         name: "Profil",
-        icon: <UserRound  size={24} color="#000000" className="hover:stroke-green-600 hover:scale-110 duration-300 stroke-white"/>,
+        icon: <UserRound  size={24} color="#000000" className="hover:stroke-green-600 hover:scale-110 duration-300"/>,
         link: "/profile"
     },
     map: {
         name: "Mapa",
-        icon: <MapIcon size={24} color="#000000" className="hover:stroke-purple-600 hover:scale-110 duration-300 stroke-white"/>,
+        icon: <MapIcon size={24} color="#000000" className="hover:stroke-purple-600 hover:scale-110 duration-300"/>,
         link: "/map"
     },
     settings: {
         name: "Nastavení",
-        icon: <SettingsIcon size={24} color="#000000" className="hover:stroke-gray-600 hover:scale-110 duration-300 stroke-white"/>,
+        icon: <SettingsIcon size={24} color="#000000" className="hover:stroke-gray-600 hover:scale-110 duration-300"/>,
         link: "/settings"
     }
 }
@@ -79,7 +79,7 @@ const DesktopNavbar: React.FC<DesktopNavbarProps> = () => {
 
 
     return(
-        <div className="flex flex-col gap-14 h-screen w-20 border-r-2 py-4 bg-gradient-to-b from-gray-800 to-gray-950">
+        <div className="flex flex-col gap-14 h-screen w-20 border-r-2 py-4">
             <div className="flex-1 flex flex-col items-center gap-8 justify-center">
                 {desktopMainItems.map((item) => (
                     <NavbarItem {...{item}}/>
