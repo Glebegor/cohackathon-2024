@@ -3,21 +3,24 @@ import { Dashboard } from './pages/dashboard/dashboard'
 import Login from './pages/login/login'
 import { MainLayout } from './pages/layouts/main'
 import './index.css'
-
-//temporary
-import Messages from './pages/messages/Messages'
+import { MediaQueryContext } from './context/media'
+import { EMediaQuery } from './enums/media'
+import { useMediaQuery } from 'react-responsive'
 
 function App() {
+  const media:EMediaQuery = (useMediaQuery({ query: '(min-width: 768px)' }) ? EMediaQuery.DESKTOP : EMediaQuery.MOBILE);
+    
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<MainLayout/>}>
-          <Route path="home" element={<Dashboard />} />
-          <Route path="login" element={<Login />} />
-          <Route path="messages" element={<Messages />} />
+    <MediaQueryContext.Provider value={{...{media}}}>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<MainLayout/>}>
+            <Route path="home" element={<Dashboard />} />
+            <Route path="login" element={<Login />} />
         </Route>
-      </Routes>
-    </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
+    </MediaQueryContext.Provider>
   )
 }
 

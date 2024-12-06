@@ -1,5 +1,8 @@
 import * as express from 'express';
 import * as mongodb from 'mongodb';
+import Config from '../domain/common/config';
+import newConfig from './config';
+
 class Application {
     public config: Config;
     public app: express.Application;
@@ -7,6 +10,5 @@ class Application {
 
     constructor() {
         this.app = express();
-        this.config = {
-            } 
+        this.config = newConfig();
 }
