@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router'
 import { Dashboard } from './pages/dashboard/dashboard'
 import { MainLayout } from './pages/layouts/main'
+import './index.css'
 
 function App() {
   return (
