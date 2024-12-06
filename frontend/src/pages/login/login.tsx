@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
 enum MODE {
   LOGIN = "LOGIN",
@@ -127,9 +128,9 @@ const Login = () => {
 //   };
 
   return (
-    <div className="h-[calc(100vh-80px)] px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 flex items-center justify-center">
-      <form className="flex flex-col gap-8" /*onSubmit={handleSubmit}*/>
-        <h1 className="text-2xl font-semibold">{formTitle}</h1>
+    <div className="h-[calc(100vh-80px)] w-screen px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 flex items-center justify-center">
+      <form className="flex flex-col gap-8 w-64" /*onSubmit={handleSubmit}*/>
+        <h1 className="text-3xl font-bold">{formTitle}</h1>
         {/* Reginster */}
         {mode === MODE.REGISTER && (
             <>
@@ -139,7 +140,7 @@ const Login = () => {
                     type="text"
                     name="username"
                     placeholder="Karel"
-                    className="ring-2 ring-gray-300 rounded-md p-4"
+                    className="ring-2 ring-gray-300 rounded-md p-4 bg-transparent"
                     onChange={(e) => setUsername(e.target.value)}
                     />
                 </div>
@@ -149,7 +150,7 @@ const Login = () => {
                         type="email"
                         name="email"
                         placeholder="karel@email.cz"
-                        className="ring-2 ring-gray-300 rounded-md p-4"
+                        className="ring-2 ring-gray-300 rounded-md p-4 bg-transparent"
                         onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
@@ -159,7 +160,7 @@ const Login = () => {
                     type="password"
                     name="password"
                     placeholder="Heslo"
-                    className="ring-2 ring-gray-300 rounded-md p-4"
+                    className="ring-2 ring-gray-300 rounded-md p-4 bg-transparent"
                     onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
@@ -174,7 +175,7 @@ const Login = () => {
                         type="email"
                         name="email"
                         placeholder="karel@email.cz"
-                        className="ring-2 ring-gray-300 rounded-md p-4"
+                        className="ring-2 ring-gray-300 rounded-md p-4 bg-transparent"
                         onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
@@ -184,7 +185,7 @@ const Login = () => {
                         type="password"
                         name="password"
                         placeholder="Heslo"
-                        className="ring-2 ring-gray-300 rounded-md p-4"
+                        className="ring-2 ring-gray-300 rounded-md p-4 bg-transparent"
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
@@ -227,12 +228,15 @@ const Login = () => {
           </div>
         )}
         {/* Button */}
-        <button
+        {/* <button
           className="bg-wapit text-white p-2 rounded-md disabled:bg-pink-200 disabled:cursor-not-allowed"
           disabled={isLoading}
         >
           {isLoading ? "Loading..." : buttonTitle}
-        </button>
+        </button> */}
+        <Button disabled={isLoading}>
+            {isLoading ? "Loading..." : buttonTitle}
+        </Button>
         {/* Labels */}
         {error && <div className="text-red-600">{error}</div>}
         {mode === MODE.LOGIN && (
