@@ -15,9 +15,9 @@ class MainRouter {
         this.mongoClient = mongoClient;
         this.init();
     }
-
     private init() {
-        this.router.use("", new ControllerMessages(this.config, this.mongoClient).routes);
+        var controllerMessages = new ControllerMessages(this.config, this.mongoClient);
+        controllerMessages.routes(this.router);
     }
 }
 

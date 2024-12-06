@@ -1,7 +1,10 @@
 import { MongoClient } from "mongodb";
 import Config from "../domain/common/config";
 import {IUsecaseMessages, newUsecaseMessages } from "../usecases/messagesUsecase";
-import { newRepositoryMessages } from "../repositoryes/messagesUsecase";
+import { IRepositoryMessages, newRepositoryMessages } from "../repositoryes/messagesRepository";
+import { createMessageRequest } from "../domain/common/requests";
+import { ErrorResponse, SuccessResponse } from "../domain/common/responses";
+import { Message } from "../domain/common/message";
 
 class ControllerMessages {
     public config: Config;
@@ -10,36 +13,60 @@ class ControllerMessages {
 
     constructor(config: Config, databaseClient: MongoClient) {
         this.config = config;
-        this.usecase = newUsecaseMessages(newRepositoryMessages(databaseClient));
+        var repo: IRepositoryMessages = newRepositoryMessages(databaseClient);
+        this.usecase = newUsecaseMessages(repo);
+        
+        this.createMessage = this.createMessage.bind(this);
+        this.getLast10Messages = this.getLast10Messages.bind(this);
     }
 
     private async createMessage(req: any, res: any): Promise<void> {
-        
+        var input: createMessageRequest = req.body;
 
+        var err: string = await this.usecase.createMessage(input);
+
+        if (err != "") {
+            var responseError: ErrorResponse = {
+                status: 400,
+                error: err
+            }
+            res.status(400).send(responseError);
+        } else {
+            var responseSuccess: SuccessResponse = {
+                status: 200,
+                message: "Message created",
+                data: {}
+            }
+            res.status(200).send(responseSuccess);
+        }
     }
 
-    private async deleteMessage(req: any, res: any): Promise<void> {
-
-    }
-
-    private async updateMessage(req: any, res: any): Promise<void> {
-
-    }
-
-    private async getMessages(req: any, res: any): Promise<void> {
-
-    }
 
     private async getLast10Messages(req: any, res: any): Promise<void> {
+        var input = req.body;
 
+        var messages: Message[] = await this.usecase.getLast10Messages(input);
+
+        if (messages.length == 0 ){ 
+            var responseError: ErrorResponse = {
+                status: 400,
+                error: "No messages found"
+            }
+            res.status(400).send(responseError);
+        }
+        else {
+            var responseSuccess: SuccessResponse = {
+                status: 200,
+                message: "Messages found",
+                data: messages
+            }
+            res.status(200).send(responseSuccess);
+        }
     }
     
     public routes(router: any): void {
         router.post(this.routeString, this.createMessage);
-        router.delete(this.routeString, this.deleteMessage);
-        router.put(this.routeString, this.updateMessage);
-        router.get(this.routeString + "/:id", this.getMessages);
-        router.get(this.routeString + "/last5", this.getLast10Messages);
+        router.get(this.routeString, this.getLast10Messages);
     }
 }
 
