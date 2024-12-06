@@ -9,10 +9,10 @@
             "user": "postgres",
             "host": "localhost",
             "database": "hackathon-postgres",
-            "port": "5432"
+            "port": "5200"
         }, 
         "mongo": {
-            "user": "postgres",
+            "user": "root",
             "host": "localhost",
             "database": "hackathon-mongo",
             "port": "5100"
