@@ -20,11 +20,13 @@ func connectDB(config Config) (*mongo.Database, error) {
 	client, err := mongo.Connect(ctx, clientOptions)
 	if err != nil {
 		log.Fatal("Error connecting to MongoDB:", err)
+		return nil, err
 	}
 
 	err = client.Ping(ctx, nil)
 	if err != nil {
 		log.Fatal("Error pinging MongoDB:", err)
+		return nil, err
 	}
 	fmt.Println("Connected to MongoDB!")
 
