@@ -9,4 +9,4 @@ router.get("/:id", userProfileController.getUserProfileById.bind(userProfileCont
 router.put("/:id", userProfileController.updateUserProfile.bind(userProfileController));
 router.delete("/:id", userProfileController.deleteUserProfile.bind(userProfileController));
 
-export default router;
+export {router};

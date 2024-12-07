@@ -40,10 +40,16 @@ class ControllerAuth {
             res.status(401).send(response);
         }
         else {
-            console.log(this.config.server.secret);
-            var access_token = generateAccessToken(user, this.config.server.secret);
-            
-            var refresh_token = generateRefreshToken(user, this.config.server.secret);
+            try {
+                var access_token = generateAccessToken(user, this.config.server.secret);
+                var refresh_token = generateRefreshToken(user, this.config.server.secret);
+            } catch (error) {
+                var response = {
+                    error: "Error generating token"
+                }
+                res.status(500).send(response);
+            }
+           
 
             var resp: LoginResponse = {
                 access_token: access_token,
@@ -57,15 +63,22 @@ class ControllerAuth {
     async refresh(req: any, res: any) {
         var input: RefreshResponse = req.body;
 
-        var decoded = verifyToken(input.refresh_token, this.config.server.secret);
-
-        if (decoded.id == undefined) {
+        try {
+            var decoded = verifyToken(input.refresh_token, this.config.server.secret);
+        } catch (error) {
             var response = {
                 error: "Invalid refresh token"
             }
             res.status(401).send(response);
+            return
         }
 
+        if (decoded.id == undefined) {
+            var response = {
+                error: "Invalid refresh token"
+         }
+            res.status(401).send(response);
+        }
         var user = await this.usecase.findUserById(decoded.id);
         if (user == null) {
             var response = {
@@ -74,8 +87,18 @@ class ControllerAuth {
             res.status(401).send(response);
         }
 
-        var access_token = generateAccessToken(user, this.config.server.secret);
-        var refresh_token = generateRefreshToken(user, this.config.server.secret);
+        try {
+            var access_token = generateAccessToken(user, this.config.server.secret);
+            var refresh_token = generateRefreshToken(user, this.config.server.secret);   
+        } catch (error) {
+            var response = {
+                error: "Error generating token"
+            }
+            res.status(500).send(response);
+            return
+
+        }
+        
 
         var resp: LoginResponse = {
             access_token: access_token,
@@ -88,7 +111,15 @@ class ControllerAuth {
     async verify(req: any, res: any) {
         var input: VerifyRequest = req.body;
 
-        var decoded = verifyToken(input.access_token, this.config.server.secret);
+        try {
+            var decoded = verifyToken(input.access_token, this.config.server.secret);
+        } catch (error) {
+            var response = {
+                error: "Invalid access token"
+            }
+            res.status(401).send(response);
+            return
+        }
 
         if (decoded.id == undefined) {
             var response = {
@@ -117,7 +148,16 @@ class ControllerAuth {
     async approve(req: any, res: any) {
         var input: ApproveRequest = req.body;
 
-        var decoded = verifyToken(input.access_token, this.config.server.secret);
+        try {
+            var decoded = verifyToken(input.access_token, this.config.server.secret);
+        } catch (error) {
+            var response = {
+                error: "Invalid access token"
+            }
+            res.status(401).send(response);
+            return
+        }
+
 
         if (decoded.id == undefined) {
             var response = {

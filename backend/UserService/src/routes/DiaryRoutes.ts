@@ -12,4 +12,4 @@ router.get("/get-diary-by-userId/:id", diaryController.getDiaryByUserId.bind(dia
 router.put("/:id", diaryController.updateDiary.bind(diaryController));
 router.delete("/:id", diaryController.deleteDiary.bind(diaryController));
 
-export default router;
+export {router};

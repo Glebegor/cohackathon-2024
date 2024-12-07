@@ -2,7 +2,7 @@
 {   
     "type": "dev",
     "server": {
-        "port": "5002",
+        "port": "5001",
         "host": "localhost"
     },
     "db": {
@@ -21,7 +21,7 @@
     },
     "services": {
         "messagesServicePort": "5003",
-        "authServicePort": "5001",
+        "userServicePort": "5002",
         "supportServicePort": "5004"
     }
 }
