@@ -40,7 +40,7 @@ func NewConfig() (*Config, error) {
 		return nil, err
 	}
 
-	if err := godotenv.Load(); err != nil {
+	if err := godotenv.Load("config/.env"); err != nil {
 		return nil, err
 	}
 
