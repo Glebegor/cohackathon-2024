@@ -44,6 +44,7 @@ export const Diary:React.FC<DiaryProps> = () => {
         }
     ];
 
+    const [search, setSearch] = React.useState<string>("")
     const [from, setFrom] = React.useState<Date>()
     const [to, setTo] = React.useState<Date>()
     const [emoji, setEmoji] = React.useState<string>()
@@ -51,7 +52,8 @@ export const Diary:React.FC<DiaryProps> = () => {
     const finalDiaryItems = diaryItems.filter(item => (
         (!from || item.date >= from) && (!to || item.date <= to) &&
         (!to || item.date <= to) && (!to || item.date <= to) &&
-        (!emoji || item.emoji === emoji)
+        (!emoji || item.emoji === emoji) &&
+        (!search || item.text.toLowerCase().includes(search.toLowerCase()))
     ));
 
     return (
@@ -89,7 +91,7 @@ export const Diary:React.FC<DiaryProps> = () => {
                 </div>
                 <div className="flex flex-col gap-6 p-6 bg-gray-200 rounded-3xl">
                     <div>
-                        <input type="text" placeholder="Vyhledat záznam" className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"/>
+                        <input value={search} onChange={(e) => setSearch(e.target.value)} type="text" placeholder="Vyhledat záznam" className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"/>
                     </div>
                     <div className="flex gap-4 items-center">
                         <div>
