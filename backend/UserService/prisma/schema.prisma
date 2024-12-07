@@ -24,7 +24,7 @@ model User {
   id            Int       @id @default(autoincrement())
   childhouse_id Int
   name          String
-  surename      String
+  surname       String
   email         String    @unique
   password_hash String
   last_login    DateTime?
