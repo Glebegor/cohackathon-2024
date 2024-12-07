@@ -5,7 +5,7 @@
 
 # Each has command: npm test
 
-services=("UserService" "AuthService" "MessagesService")
+services=("AuthService" "UserService" "MessagesService")
 
 for service in "${services[@]}"; do
     echo "Running tests for $service..."
