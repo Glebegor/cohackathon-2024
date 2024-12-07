@@ -6,6 +6,7 @@ import logo from "@/../public/Logo.png";
 
 import { Menu } from 'lucide-react';
 import { Link } from "react-router";
+import { Button } from "./ui/button";
 
 export const Navbar: React.FC<NavbarProps> = () => {
     const mediaContext = useContext(DesignContext);
@@ -18,25 +19,18 @@ export const Navbar: React.FC<NavbarProps> = () => {
                         <img src={logo} alt="Logo" className="w-[200px] h-[60px] cursor-pointer"/>
                     </Link>
                     <div className="flex flex-row gap-[30px]">
-                        <div className="flex flex-row justify-between items-center gap-[30px]">
-                            <Link to="/" className="group text-white text-[20px] font-medium cursor-pointer relative no-underline">
-                                Home
-                                <span className="absolute left-0 bottom-[-10px] h-[1px] w-0 bg-cyan-400 transition-all duration-350 group-hover:w-full"></span>
-                            </Link>
-                            <Link to="/o-nas" className="group text-white text-[20px] font-medium cursor-pointer relative no-underline">
-                                O aplikaci
-                                <span className="absolute left-0 bottom-[-10px] h-[1px] w-0 bg-cyan-400 transition-all duration-350 group-hover:w-full"></span>
-                            </Link>
-                        </div>
-
-                        <button className="cursor-pointer px-[15px] py-[8px] text-[16px] text-white rounded-[6px] border border-white bg-transparent tracking-[1px] transition duration-350 hover:border-cyan-400 hover:text-cyan-400"><Link to="/login">Přihlášení</Link></button>
+                        <Link to={"/login"}>
+                            <Button className="bg-gradient-to-b from-purple-600 to-pink-700 w-28 h-10 text-sm">
+                                <p>Přihlásit se</p>
+                            </Button>
+                        </Link>
                     </div>
                 </div>
             }
             {mediaContext.media === EMediaQuery.MOBILE && 
-                <div className="w-full px-[7.5%] py-8 flex items-center justify-between absolute bg-transparent z-[100]">
+                <div className="w-full px-[7.5%] py-6 flex items-center justify-between absolute bg-transparent z-[100]">
                     <Link to="/">
-                        <img src={logo} alt="Logo" className="w-[175px] h-[70px] cursor-pointer"/>
+                        <img src={logo} alt="Logo" className="w-[200px] h-[60px] cursor-pointer"/>
                     </Link>
                     <Menu className="block cursor-pointer w-[40px] h-[40px] text-black"/>
                 </div>

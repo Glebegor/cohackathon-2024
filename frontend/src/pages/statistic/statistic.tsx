@@ -78,67 +78,43 @@ const Statistics:React.FC<DiaryProps> = () => {
     }
 
   return (
-    <div className="relative flex flex-col gap-8">
-        <div className="-z-50 top-0 left-0 absolute w-full">
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 1440 320"
-                preserveAspectRatio="none"
-                style={{
-                top: 0,
-                left: 0,
-                opacity: 1,
-                width: "100%",
-                height: "50%",
-                zIndex: 1,
-                }}
-            >
-                <defs>
-                <linearGradient id="wave-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style={{ stopColor: "#e54f95", stopOpacity: 1 }} />
-                    <stop offset="100%" style={{ stopColor: "#4a328a", stopOpacity: 1 }} />
-                </linearGradient>
-                </defs>
-                <path
-                d="M0,64L30,69.3C60,75,120,85,180,101.3C240,117,300,139,360,133.3C420,128,480,96,540,90.7C600,85,660,107,720,122.7C780,139,840,149,900,133.3C960,117,1020,75,1080,74.7C1140,75,1200,117,1260,128C1320,139,1380,149,1410,154.7L1440,160V0H1410C1380,0,1320,0,1260,0C1200,0,1140,0,1080,0C1020,0,960,0,900,0C840,0,780,0,720,0C660,0,600,0,540,0C480,0,420,0,360,0C300,0,240,0,180,0C120,0,60,0,30,0L0,0Z"
-                fill="url(#wave-gradient)"
-                />
-            </svg>
-        </div>
+    <div className="flex flex-col gap-8">
         <div className="flex flex-col gap-8 w-2/3 m-auto z-10 pt-14">
             <div className="flex justify-between items-center gap-4">
                 <p className="text-4xl text-white font-sans font-semibold select-none">Statistiky deníčku</p>
             </div>
-            <Chart data={finalDiaryItems}/>
-            <div className="flex flex-col gap-6 p-6 bg-gray-200 rounded-3xl">
-                <h2 className="w-full text-xl">Nejčastější nálady za tento měsíc</h2>
-                <div className="flex gap-4 flex-wrap items-center">
-                    {Object.entries(handleEmojiCount(finalDiaryItems.map(item => item.emoji))).map(([emoji, count]) => (
-                        <div key={emoji} className="flex gap-4 justify-between items-center w-20">
-                            <div className="text-lg w-20 flex">{count} <div>x</div></div>
-                            <EmotionElement emoji={emoji} selectedEmoji={undefined} setSelectedEmoji={function (value: any): void {
-                                throw new Error("Function not implemented.");
-                            } }/>
+            <div className="flex gap-8 justify-stretch items-stretch">
+                <div className="w-1/4 flex flex-col gap-6 p-6 bg-gray-200 rounded-3xl justify-stretch items-stretch">
+                    <h2 className="w-full text-xl">Nejčastější nálady</h2>
+                    <div className="flex flex-col gap-4">
+                        {Object.entries(handleEmojiCount(finalDiaryItems.map(item => item.emoji))).map(([emoji, count]) => (
+                            <div key={emoji} className="flex gap-4 justify-between items-center px-8">
+                                <div className="size-12">
+                                    <EmotionElement emoji={emoji} selectedEmoji={undefined} setSelectedEmoji={function (value: any): void {
+                                        throw new Error("Function not implemented.");
+                                    } }/>
+                                </div>
+                                <div className="text-lg flex">{count} <div>x</div></div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div className="w-3/4 flex flex-col gap-6 p-6 bg-gray-200 rounded-3xl">
+                    <h2 className="w-full text-xl">Highligths z deníčku</h2>
+                    {finalDiaryItems.sort((a, b) => b.emojiValue - a.emojiValue).slice(0, 4).map(item =>
+                        <div className="flex gap-4 items-center">
+                            <div className="size-10">
+                                <EmotionElement emoji={item.emoji} selectedEmoji={undefined} setSelectedEmoji={function (value: any): void {
+                                    throw new Error("Function not implemented.");
+                                }}/>
+                            </div>
+                            <div className="flex-1">{item.text}</div>
+                            <div>{item.date.toLocaleDateString()}</div>
                         </div>
-                    ))}
+                    )}
                 </div>
             </div>
-            <div className="flex flex-col gap-6 p-6 bg-gray-200 rounded-3xl">
-                <h2 className="w-full text-xl">Nejlepší dny za tento měsíc</h2>
-                {finalDiaryItems.map(item => item.emojiValue > 15 && 
-                    <div className="flex flex-wrap w-[calc(45%)] gap-4">
-                        <div className="w-6">
-                            <EmotionElement emoji={item.emoji} selectedEmoji={undefined} setSelectedEmoji={function (value: any): void {
-                                throw new Error("Function not implemented.");
-                            }}/>
-                        </div>
-                        <div className="flex flex-col">
-                            <div>{item.date.toDateString()}</div>
-                            <div>{item.text}</div>
-                        </div>
-                    </div>
-                )}
-            </div>
+            <Chart data={finalDiaryItems}/>
         </div>
     </div>
   )

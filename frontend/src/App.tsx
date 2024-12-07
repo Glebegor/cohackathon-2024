@@ -6,6 +6,8 @@ import { useMediaQuery } from 'react-responsive'
 import { DesignContext } from './context/design'
 import { lazy, Suspense, useState } from 'react'
 import { Loading } from './pages/loading/loading'
+import { User } from '../../types/user'; 
+import { GlobalContext } from './context/global'
 
 const Home = lazy(() => import('./pages/home/home'));
 const Dashboard = lazy(() => import('./pages/dashboard/dashboard'));
@@ -16,8 +18,8 @@ const Map = lazy(() => import('./pages/map/map'));
 const Settings = lazy(() => import('./pages/settings/settings'));
 const Login = lazy(() => import('./pages/login/login'));
 const Statistics = lazy(() => import('./pages/statistic/statistic'));
-import { User } from '../../types/user'; 
-import { GlobalContext } from './context/global'
+const Explore = lazy(() => import('./pages/explore/explore'));
+const Life = lazy(() => import('./pages/life/life'));
 
 const LazyLoader:React.FC<LazyLoderProps> = ({children}) => {
   return(
@@ -55,6 +57,8 @@ function App() {
               <Route path="map" element={<LazyLoader><Map/></LazyLoader>} />
               <Route path="settings" element={<LazyLoader><Settings/></LazyLoader>} />
               <Route path="statistic" element={<LazyLoader><Statistics/></LazyLoader>} />
+              <Route path="life" element={<LazyLoader><Life/></LazyLoader>} />
+              <Route path="explore" element={<LazyLoader><Explore/></LazyLoader>} />
           </Route>
           <Route path="login" element={<Login />} />
           <Route path="/" element={<Home />} />

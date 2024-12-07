@@ -1,6 +1,6 @@
 import { DesignContext } from "@/context/design";
 import { EMediaQuery } from "@/enums/design";
-import { HomeIcon, InfoIcon, MapIcon, MessageCircleIcon, NotebookText, ChartLine, SparklesIcon, UserRound  } from "lucide-react";
+import { HomeIcon, InfoIcon, MapIcon, MessageCircleIcon, NotebookText, ChartLine, SparklesIcon, UserRound, CalendarHeart  } from "lucide-react";
 import React, { useContext } from "react";
 import { useLocation } from "react-router";
 
@@ -15,7 +15,7 @@ const items = {
     explore: {
         name: "Objevit",
         icon: <SparklesIcon size={24} color="#000000"/>,
-        link: "/home",
+        link: "/explore",
         hoverColor: "hover:stroke-yellow-600",
         activeColor: "stroke-yellow-600"
     },
@@ -60,6 +60,13 @@ const items = {
         link: "/settings",
         hoverColor: "hover:stroke-gray-600",
         activeColor: "stroke-gray-600"
+    },
+    life: {
+        name: "Životní plán",
+        icon: <CalendarHeart size={24} color="#000000"/>,
+        link: "/life",
+        hoverColor: "hover:stroke-pink-600",
+        activeColor: "stroke-pink-600"
     }
 }
 
@@ -105,7 +112,7 @@ const MobileNavbar: React.FC<MobileNavbarProps> = () => {
 }
 
 const DesktopNavbar: React.FC<DesktopNavbarProps> = () => {
-    const desktopMainItems = [items.home, items.explore, items.diary, items.statistic, items.chats, items.map, items.profile];
+    const desktopMainItems = [items.home, items.explore, items.chats, items.diary, items.statistic, items.life, items.profile];
 
     return(
         <div className="h-screen w-20 relative">
