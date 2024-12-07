@@ -23,13 +23,17 @@ type Config struct {
 	Server_port   string
 	Server_host   string
 	Server_secret string
+
+	Services_auth_port    string
+	Services_user_port    string
+	Services_support_port string
 }
 
 func NewConfig() (*Config, error) {
 	config := &Config{}
 
 	viper.SetConfigName("config")
-	viper.AddConfigPath(".")
+	viper.AddConfigPath("./config")
 	viper.SetConfigType("yml")
 
 	if err := viper.ReadInConfig(); err != nil {
@@ -56,6 +60,10 @@ func NewConfig() (*Config, error) {
 	config.Db_mongo_password = os.Getenv("DB_MONGO_PASSWORD")
 	config.Db_post_password = os.Getenv("DB_POSTGRES_PASSWORD")
 	config.Server_secret = os.Getenv("SECRET_KEY")
+
+	config.Services_auth_port = viper.GetString("services.auth.port")
+	config.Services_user_port = viper.GetString("services.user.port")
+	config.Services_support_port = viper.GetString("services.support.port")
 
 	return config, nil
 }
