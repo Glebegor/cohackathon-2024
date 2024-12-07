@@ -10,6 +10,7 @@ db-run-postgres-dev:
 db-stop-postgres-dev:
 	docker stop hackathon-postgres
 
+# Db run dev
 db-run-all-dev: 
 	make db-run-mongo-dev || true
 	make db-run-postgres-dev || true
@@ -17,6 +18,8 @@ db-run-all-dev:
 db-stop-all-dev: 
 	make db-stop-mongo-dev || true
 	make db-stop-postgres-dev || true
+
+# rabbitmq run dev
 
 rabbitmq-run-dev:
 	docker run -it --rm --name rabbitmq -p 5300:5672 -p 5301:15672 --rm -d rabbitmq:3.13-management
