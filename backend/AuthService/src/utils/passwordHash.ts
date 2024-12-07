@@ -7,3 +7,5 @@ function hashPassword(password: string, secret: string): string {
         .digest('hex');
     return hash;    
 }
+
+export default hashPassword;
