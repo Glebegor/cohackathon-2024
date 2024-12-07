@@ -10,7 +10,7 @@ Main backend ip is 5000:<br>
 - SupportService - 5004
 - Mongo - 5100
 - PostgreSQLAuth - 5200
-- RabbitMQ - 5300
+- RabbitMQ - app: 5300, managment 5301
 - Redis - 5400
 - LoadBalancer - 5500
 

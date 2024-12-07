@@ -36,23 +36,12 @@ class Application {
         });
     }
 
-
-    // This method is printing all routes
-    printRoutes() {
-        this.app._router.stack.forEach((r: any) => {
-            if (r.route && r.route.path) {
-                console.log(r.route.path);
-            }
-        })
-    }
-
     // This method is running an application
     run() {
         var mainRouter: MainRouter = new MainRouter(this.config, this.prismaClient);
 
         this.app.use('/api/v2', mainRouter.run());
 
-        this.printRoutes();
         this.app.listen(this.config.server.port, () => {
             console.log(`Server is running on port ${this.config.server.port}`);
         });

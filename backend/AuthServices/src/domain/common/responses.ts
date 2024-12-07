@@ -1,12 +1,18 @@
-interface ErrorResponse {
-    status: number;    
-    error: string;
+
+interface RefreshResponse {
+    access_token: string;
+    refresh_token: string;
 }
 
-interface SuccessResponse {
-    status: number;
-    message: string;
-    data: any;
+interface LoginResponse {
+    access_token: string;
+    refresh_token: string;
 }
 
-export { ErrorResponse, SuccessResponse };
+interface VerifyResponse {
+    access_token: string;
+    role_id: number;
+}
+
+
+export { RefreshResponse, LoginResponse, VerifyResponse };

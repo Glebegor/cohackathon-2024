@@ -27,4 +27,9 @@ interface RefreshRequest {
     refresh_token: string;
 }
 
-export { LoginRequest, RegisterRequest, VerifyRequest, RefreshRequest };
+interface ApproveRequest {
+    user_id: number;
+    access_token: string;
+}
+
+export { LoginRequest, RegisterRequest, VerifyRequest, RefreshRequest, ApproveRequest };
