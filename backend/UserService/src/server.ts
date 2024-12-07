@@ -1,6 +1,7 @@
 import express, { Express } from 'express';
 import cors from 'cors'
 import { authenticate } from './middlewares/authenticationMiddleware';
+import { scheduleCronJobs } from "./utils/cronScheduler";
 
 import diaryRoutes from './routes/DiaryRoutes'
 import userRoutes from './routes/UserRoutes'
@@ -13,6 +14,8 @@ const port: number = parseInt(process.env.PORT || '5002', 10);
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+scheduleCronJobs();
 
 app.use('/api/v2/diary', diaryRoutes);
 app.use('/api/v2/user', userRoutes);

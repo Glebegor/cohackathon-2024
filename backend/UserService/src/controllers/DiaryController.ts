@@ -33,6 +33,38 @@ export class DiaryController extends BaseController {
     }
   }
 
+  async getSharedDiaryByUserId(req: Request, res: Response): Promise<void> {
+    try {
+      const userId = parseInt(req.params.id, 10);
+      const sharedDiaries = await this.childHouseModel.getSharedDiaryByUserId(userId);
+  
+      if (!sharedDiaries || sharedDiaries.length === 0) {
+        res.status(404).json({ success: false, message: "No shared diaries found for this user" });
+        return;
+      }
+  
+      res.status(200).json({ success: true, data: sharedDiaries });
+    } catch (error) {
+      this.handleError(error, res);
+    }
+  }
+  
+  async getDiaryByUserId(req: Request, res: Response): Promise<void> {
+    try {
+      const userId = parseInt(req.params.id, 10);
+      const diaries = await this.childHouseModel.getDiaryByUserId(userId);
+  
+      if (!diaries || diaries.length === 0) {
+        res.status(404).json({ success: false, message: "No diaries found for this user" });
+        return;
+      }
+  
+      res.status(200).json({ success: true, data: diaries });
+    } catch (error) {
+      this.handleError(error, res);
+    }
+  }
+
   async updateDiary(req: Request, res: Response): Promise<void> {
     try {
       const id = parseInt(req.params.id, 10);
