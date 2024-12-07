@@ -28,8 +28,9 @@ func NewWsController(db *mongo.Database, config *bootstrap.Config, upgrader webs
 	}
 }
 func (wsController *WsController) SetupRouter(router *gin.Engine) {
-	router.GET("/", wsController.HandleConnection)
+	router.GET("/sockets/:receiver_id", wsController.HandleConnection)
 }
+
 func (wsController *WsController) HandleConnection(ctx *gin.Context) {
 	fmt.Println("Client connected")
 
@@ -73,6 +74,10 @@ func (wsController *WsController) HandleMessages(ctx *gin.Context, conn *websock
 
 		// Log the received message (for debugging)
 		fmt.Printf("Message received: %+v\n", input)
+
+		if input.Date == "" {
+			input.Date = fmt.Sprintf("%d", time.Now().Unix())
+		}
 
 		// Save the message using the use case
 		err := wsController.usecase.SaveMessage(input)

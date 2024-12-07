@@ -22,8 +22,8 @@ func (r *MessageRepository) GetLast10Messages(input entities.Get10LastRequest) (
 	collection := r.db.Collection("messages")
 	filter := bson.M{
 		"$or": []bson.M{
-			{"senderId": input.SenderId, "receiverId": input.ReceiverId},
-			{"senderId": input.SenderId, "receiverId": input.ReceiverId},
+			{"sender_id": input.SenderId, "receiver_id": input.ReceiverId},
+			{"sender_id": input.SenderId, "receiver_id": input.ReceiverId},
 		},
 	}
 	opts := options.Find().SetSort(bson.D{{Key: "timestamp", Value: -1}}).SetLimit(10)
@@ -44,11 +44,11 @@ func (r *MessageRepository) GetChatIds(input entities.GetChatIdsRequest) ([]stri
 	collection := r.db.Collection("messages")
 	filter := bson.M{
 		"$or": []bson.M{
-			{"senderId": input.SenderId},
-			{"receiverId": input.SenderId},
+			{"sender_id": input.SenderId},
+			{"receiver_id": input.SenderId},
 		},
 	}
-	cursor, err := collection.Distinct(context.Background(), "receiverId", filter)
+	cursor, err := collection.Distinct(context.Background(), "receiver_id", filter)
 	if err != nil {
 		return nil, err
 	}

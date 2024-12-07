@@ -22,3 +22,8 @@
 
 ### Broker
 - RabbitMQ
+
+## Envs
+
+2 types:
+dev and prod.
