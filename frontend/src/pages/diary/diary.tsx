@@ -29,7 +29,7 @@ const Diary:React.FC<DiaryProps> = () => {
     const diaryItems:DiaryItem[] = [
         {
             text: "Dobrý",
-            date: new Date(),
+            date: new Date("2024-10-10"),
             emoji: "smile",
         },
         {
@@ -41,7 +41,27 @@ const Diary:React.FC<DiaryProps> = () => {
             text: "Dneska jsem byla na výletě",
             date: new Date(),
             emoji: "smile",
-        }
+        },
+        {
+            text: "Dneska jsem byla na výletě",
+            date: new Date("2024-12-6"),
+            emoji: "lost",
+        },
+        {
+            text: "Dneska jsem byla na výletě",
+            date: new Date("2024-12-5"),
+            emoji: "love",
+        },
+        {
+            text: "Dneska jsem byla na výletě",
+            date: new Date("2024-12-4"),
+            emoji: "lost",
+        },
+        {
+            text: "Dneska jsem byla na výletě",
+            date: new Date("2024-12-3"),
+            emoji: "lost",
+        },
     ];
 
     const [newNote, setNewNote] = useState<DiaryItem>({
@@ -189,13 +209,17 @@ const Diary:React.FC<DiaryProps> = () => {
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-col gap-6 p-6 bg-gray-200 rounded-3xl">
+                <div className="flex flex-col gap-4 p-6 bg-gray-200 rounded-3xl max-h-[300px] overflow-y-auto scrollbar">
                     {finalDiaryItems.map((item) => (
                         <DiaryItem {...{item}}/>
                     ))}
                     {finalDiaryItems.length === 0 && (
                         <p className="text-center text-muted-foreground font-semibold">Nenalezeny žádné záznamy</p>
                     )}
+                </div>
+                {/* Statistiky */}
+                <div>
+                    
                 </div>
             </div>
         </div>

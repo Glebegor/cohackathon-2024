@@ -1,6 +1,6 @@
 import { DesignContext } from "@/context/design";
 import { EMediaQuery } from "@/enums/design";
-import { HomeIcon, InfoIcon, MapIcon, MessageCircleIcon, NotebookText, SparklesIcon, UserRound  } from "lucide-react";
+import { HomeIcon, InfoIcon, MapIcon, MessageCircleIcon, NotebookText, ChartLine, SparklesIcon, UserRound  } from "lucide-react";
 import React, { useContext } from "react";
 
 const items = {
@@ -18,6 +18,11 @@ const items = {
         name: "Deník",
         icon: <NotebookText size={24} color="#000000" className="hover:stroke-blue-600 hover:scale-110 duration-300"/>,
         link: "/diary"
+    },
+    statistic: {
+        name: "Deník",
+        icon: <ChartLine  size={24} color="#000000" className="hover:stroke-blue-600 hover:scale-110 duration-300"/>,
+        link: "/statistic"
     },
     chats: {
         name: "Chaty",
@@ -63,7 +68,7 @@ const NavbarItem:React.FC<NavbarItemProps> = ({item}) => {
 }
 
 const MobileNavbar: React.FC<MobileNavbarProps> = () => {
-    const mobileItems = [items.explore, items.diary, items.chats, items.profile, items.map, items.settings];
+    const mobileItems = [items.explore, items.diary, items.statistic, items.chats, items.profile, items.map, items.settings];
 
     return(
         <div className="flex fixed bottom-0 h-36">
@@ -75,7 +80,7 @@ const MobileNavbar: React.FC<MobileNavbarProps> = () => {
 }
 
 const DesktopNavbar: React.FC<DesktopNavbarProps> = () => {
-    const desktopMainItems = [items.home, items.explore, items.diary, items.chats, items.map, items.profile];
+    const desktopMainItems = [items.home, items.explore, items.diary, items.statistic, items.chats, items.map, items.profile];
 
 
     return(
