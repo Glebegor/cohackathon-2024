@@ -15,7 +15,7 @@ const items = {
     explore: {
         name: "Objevit",
         icon: <SparklesIcon size={24} color="#000000"/>,
-        link: "/home",
+        link: "/explore",
         hoverColor: "hover:stroke-yellow-600",
         activeColor: "stroke-yellow-600"
     },

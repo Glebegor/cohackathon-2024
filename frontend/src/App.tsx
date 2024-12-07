@@ -16,6 +16,7 @@ const Map = lazy(() => import('./pages/map/map'));
 const Settings = lazy(() => import('./pages/settings/settings'));
 const Login = lazy(() => import('./pages/login/login'));
 const Statistics = lazy(() => import('./pages/statistic/statistic'));
+const Explore = lazy(() => import('./pages/explore/explore'));
 import { User } from '../../types/user'; 
 import { GlobalContext } from './context/global'
 
@@ -55,6 +56,7 @@ function App() {
               <Route path="map" element={<LazyLoader><Map/></LazyLoader>} />
               <Route path="settings" element={<LazyLoader><Settings/></LazyLoader>} />
               <Route path="statistic" element={<LazyLoader><Statistics/></LazyLoader>} />
+              <Route path="explore" element={<LazyLoader><Explore/></LazyLoader>} />
           </Route>
           <Route path="login" element={<Login />} />
           <Route path="/" element={<Home />} />
