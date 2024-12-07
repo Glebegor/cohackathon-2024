@@ -17,3 +17,8 @@ db-run-all-dev:
 db-stop-all-dev: 
 	make db-stop-mongo-dev || true
 	make db-stop-postgres-dev || true
+
+rabbitmq-run-dev:
+	docker run -it --rm --name rabbitmq -p 5300:5672 -p 5301:15672 --rm -d rabbitmq:3.13-management
+rabbitmq-run-dev:
+	docker stop hackathon-rabbitmq

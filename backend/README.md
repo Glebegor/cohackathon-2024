@@ -14,3 +14,8 @@ Main backend ip is 5000:<br>
 - Redis - 5400
 - LoadBalancer - 5500
 
+## User roles
+- 0 child -18
+- 1 child +18
+- 2 admin
+- 3 superadmin
