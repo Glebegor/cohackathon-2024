@@ -1,7 +1,7 @@
 import React from "react";
 import { ReactionInput } from "./reaction";
 
-export const Dashboard:React.FC<DashboardProps> = () => {
+const Dashboard:React.FC<DashboardProps> = () => {
     return(
         <div className="relative">
             <div className="-z-50 top-0 left-0 absolute w-full">
@@ -36,3 +36,5 @@ export const Dashboard:React.FC<DashboardProps> = () => {
         </div>
     )
 }
+
+export default Dashboard;

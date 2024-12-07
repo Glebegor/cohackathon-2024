@@ -1,41 +1,66 @@
 import { BrowserRouter, Route, Routes } from 'react-router'
-import { Dashboard } from './pages/dashboard/dashboard'
-import Login from './pages/login/login'
 import { MainLayout } from './pages/layouts/main'
 import './index.css'
 import { EMediaQuery, ETheme } from './enums/design'
 import { useMediaQuery } from 'react-responsive'
 import { DesignContext } from './context/design'
-import Messages from './pages/messages/Messages'
-import Home from './pages/home/home'
-import { Diary } from './pages/diary/diary'
-import Profile from './pages/profile/profile'
-import Map from './pages/map/map'
-import Statistic from './pages/statistic/statistic'
+import { lazy, Suspense, useState } from 'react'
+import { Loading } from './pages/loading/loading'
+
+const Home = lazy(() => import('./pages/home/home'));
+const Dashboard = lazy(() => import('./pages/dashboard/dashboard'));
+const Messages = lazy(() => import('./pages/messages/Messages'));
+const Diary = lazy(() => import('./pages/diary/diary'));
+const Profile = lazy(() => import('./pages/profile/profile'));
+const Map = lazy(() => import('./pages/map/map'));
+const Settings = lazy(() => import('./pages/settings/settings'));
+const Login = lazy(() => import('./pages/login/login'));
+
+import { User } from '../../types/user'; 
+import { GlobalContext } from './context/global'
+
+const LazyLoader:React.FC<LazyLoderProps> = ({children}) => {
+  return(
+    <Suspense fallback={<Loading/>}>{children}</Suspense>
+  )
+}
 
 function App() {
   const media:EMediaQuery = (useMediaQuery({ query: '(min-width: 768px)' }) ? EMediaQuery.DESKTOP : EMediaQuery.MOBILE);
   const theme:ETheme = ETheme.MODERN;
+
+  const [user, setUser] = useState<User>({
+    id: 1,
+    childhouse_id: 1,
+    name: "Adam",
+    surname: "Hojer",
+    email: "adam.hojer@infis.cz",
+    password_hash: "password",
+    last_login: new Date(),
+    activated: true
+  })
     
   return (
-    <DesignContext.Provider value={{...{media, theme}}}>
-      <BrowserRouter>
-        <Routes>
-          <Route element={<MainLayout/>}>
-            <Route path="home" element={<Dashboard />} />
-            <Route path="chat" element={<Messages />} />
-            <Route path="messages" element={<Messages />} />
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="diary" element={<Diary />} />
-            <Route path="profile" element={<Profile />} />
-            <Route path="map" element={<Map />} />
-            <Route path="statistic" element={<Statistic />} />
-        </Route>
-        <Route path="login" element={<Login />} />
-        <Route path="/" element={<Home />} />
-        </Routes>
-      </BrowserRouter>
-    </DesignContext.Provider>
+    <GlobalContext.Provider value={{...{user, setUser}}}>
+      <DesignContext.Provider value={{...{media, theme}}}>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<MainLayout/>}>
+              <Route path="home" element={<LazyLoader><Dashboard/></LazyLoader>} />
+              <Route path="chat" element={<LazyLoader><Messages/></LazyLoader>} />
+              <Route path="messages" element={<LazyLoader><Messages/></LazyLoader>} />
+              <Route path="dashboard" element={<LazyLoader><Dashboard/></LazyLoader>} />
+              <Route path="diary" element={<LazyLoader><Diary/></LazyLoader>} />
+              <Route path="profile" element={<LazyLoader><Profile/></LazyLoader>} />
+              <Route path="map" element={<LazyLoader><Map/></LazyLoader>} />
+              <Route path="settings" element={<LazyLoader><Settings/></LazyLoader>} />
+          </Route>
+          <Route path="login" element={<Login />} />
+          <Route path="/" element={<Home />} />
+          </Routes>
+        </BrowserRouter>
+      </DesignContext.Provider>
+    </GlobalContext.Provider>
   )
 }
 

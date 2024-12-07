@@ -1,6 +1,6 @@
 import { DesignContext } from "@/context/design";
 import { EMediaQuery } from "@/enums/design";
-import { HomeIcon, MapIcon, MessageCircleIcon, NotebookText, ChartLine, SettingsIcon, SparklesIcon, UserRound  } from "lucide-react";
+import { HomeIcon, InfoIcon, MapIcon, MessageCircleIcon, NotebookText, ChartLine, SparklesIcon, UserRound  } from "lucide-react";
 import React, { useContext } from "react";
 
 const items = {
@@ -40,8 +40,8 @@ const items = {
         link: "/map"
     },
     settings: {
-        name: "Nastavení",
-        icon: <SettingsIcon size={24} color="#000000" className="hover:stroke-gray-600 hover:scale-110 duration-300"/>,
+        name: "O aplikaci",
+        icon: <InfoIcon size={24} color="#000000" className="hover:stroke-gray-600 hover:scale-110 duration-300"/>,
         link: "/settings"
     }
 }
