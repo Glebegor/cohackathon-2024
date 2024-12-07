@@ -44,17 +44,17 @@ const Diary:React.FC<DiaryProps> = () => {
         },
         {
             text: "Dneska jsem byla na výletě",
-            date: new Date("2024-12-6"),
-            emoji: "lost",
-        },
-        {
-            text: "Dneska jsem byla na výletě",
             date: new Date("2024-12-5"),
             emoji: "love",
         },
         {
             text: "Dneska jsem byla na výletě",
             date: new Date("2024-12-4"),
+            emoji: "lost",
+        },
+        {
+            text: "Dneska jsem byla na výletě",
+            date: new Date("2024-12-6"),
             emoji: "lost",
         },
         {
@@ -77,12 +77,19 @@ const Diary:React.FC<DiaryProps> = () => {
 
     const [newForm, setNewForm] = useState<boolean>(false);
 
-    const finalDiaryItems = diaryItems.filter(item => (
+    const finalDiaryItems = diaryItems.sort((a, b) => b.date.getTime() - a.date.getTime()).filter(item => (
         (!from || item.date >= from) && (!to || item.date <= to) &&
         (!to || item.date <= to) && (!to || item.date <= to) &&
         (!emoji || item.emoji === emoji) &&
         (!search || item.text.toLowerCase().includes(search.toLowerCase()))
     ));
+
+    const reducedDiaryItems = finalDiaryItems.reduce((acc, item) => {
+        const date = item.date.toLocaleString('cs-CZ', { month: 'long', year: "numeric" });
+        if (!acc[date]) acc[date] = [];
+        acc[date].push(item);
+        return acc;
+    }, {} as Record<string, DiaryItem[]>);
 
     return (
         <div className="relative">
@@ -183,17 +190,17 @@ const Diary:React.FC<DiaryProps> = () => {
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-col gap-4 p-6 bg-gray-200 rounded-3xl max-h-[300px] overflow-y-auto scrollbar">
-                    {finalDiaryItems.map((item) => (
-                        <DiaryItem {...{item}}/>
+                <div className="flex flex-col gap-6">
+                    {reducedDiaryItems && Object.keys(reducedDiaryItems).map((date) => (
+                        <>
+                            <p className="text-xl font-sans font-semibold">{date}</p>
+                            <div className="flex flex-col gap-6 bg-gray-200 rounded-3xl p-6">
+                                {reducedDiaryItems[date].map((item) => (
+                                    <DiaryItem {...{item}}/>
+                                ))}
+                            </div>
+                        </>
                     ))}
-                    {finalDiaryItems.length === 0 && (
-                        <p className="text-center text-muted-foreground font-semibold">Nenalezeny žádné záznamy</p>
-                    )}
-                </div>
-                {/* Statistiky */}
-                <div>
-                    
                 </div>
             </div>
         </div>
