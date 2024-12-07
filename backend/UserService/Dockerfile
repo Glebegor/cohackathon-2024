@@ -1,36 +1,38 @@
-# Base image
 FROM node:18
 
-# Nastavení pracovního adresáře
+# Set working directory
 WORKDIR /usr/src/app
 
-# Definování argumentu pro prostředí
-ARG NODE_ENV=production
+# Build argument for NODE_ENV, default to 'prod'
+ARG NODE_ENV=prod
 ENV NODE_ENV=$NODE_ENV
 
-# Kopírování package.json a package-lock.json (pro optimalizaci cache)
+# Copy necessary configuration files
 COPY package*.json tsconfig.json ./
 
-# Instalace závislostí (včetně devDependencies pro build fázi)
+# Install dependencies (including dev dependencies for non-prod builds)
 RUN npm install --include=dev --frozen-lockfile --no-audit
 
-# Kopírování zbytku aplikace
+# Copy the rest of the application code
 COPY . .
 
-# Provedení migrace a generování Prisma klienta
-RUN if [ "$NODE_ENV" = "production" ]; then \
-  npx prisma generate; \
-else \
-  npx prisma generate; \
+# Generate the Prisma client (needed for prod as well as dev)
+RUN npx prisma generate
+
+# Build the app if in production
+RUN if [ "$NODE_ENV" = "prod" ]; then \
+    npm run build || exit 1; \
 fi
 
-# Kompilace TypeScript kódu
-RUN if [ "$NODE_ENV" = "production" ]; then \
-  npm run build; \
-fi
 
-# Exponování portu
+# Expose the application port
 EXPOSE 5002
 
-# Spuštění serveru
-CMD if [ "$NODE_ENV" = "production" ]; then node dist/index.js; else npm run dev; fi
+# Run the appropriate server command based on NODE_ENV
+
+CMD if [ "$NODE_ENV" = "prod" ]; then \
+        node dist/index.js; \
+    else \
+        npm run dev; \
+    fi
+

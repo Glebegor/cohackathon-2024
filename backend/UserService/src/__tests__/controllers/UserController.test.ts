@@ -1,109 +1,169 @@
-// import request from "supertest";
-// import { UserController } from "../controllers/UserController";
-// import { UserModel } from "../models/UserModel";
+import { Request, Response } from "express";
+import { UserController } from "../../controllers/UserController";
+import { UserModel } from "../../models/UserModel";
 
-// // Mockování UserModel
-// jest.mock("../models/UserModel");
+jest.mock("../../models/UserModel");
 
-// describe("UserController", () => {
-//   let userController: UserController;
-//   let userModel: jest.Mocked<UserModel>;
+describe("UserController", () => {
+  let userController: UserController;
+  let req: Partial<Request>;
+  let res: Partial<Response>;
+  let userModelMock: jest.Mocked<UserModel>;
 
-//   beforeEach(() => {
-//     userModel = new UserModel() as jest.Mocked<UserModel>;
-//     userController = new UserController();
-//   });
+  beforeEach(() => {
+    userController = new UserController();
+    req = {};
+    res = {
+      status: jest.fn().mockReturnThis(),
+      json: jest.fn(),
+    };
+    userModelMock = UserModel.prototype as jest.Mocked<UserModel>;
+  });
 
-//   describe("POST /users", () => {
-//     it("should create a new user", async () => {
-//       const newUser = { id: 1, name: "John Doe", email: "john@example.com" };
+  describe("createUser", () => {
+    it("should create a user and return 201 status", async () => {
+      const mockUser = {
+        id: 1,
+        name: "John",
+        surname: "Doe",
+        email: "john.doe@example.com",
+        password_hash: "hashedPassword",
+        last_login: null,
+        activated: false,
+        role_id: 1,
+        childhouse_id: 2,
+      };
+      userModelMock.createUser.mockResolvedValue(mockUser);
 
-//       // Mockování metody createUser
-//       userModel.createUser.mockResolvedValue(newUser);
+      req.body = {
+        name: "John",
+        surname: "Doe",
+        email: "john.doe@example.com",
+        password_hash: "hashedPassword",
+        role_id: 1,
+        childhouse_id: 2,
+      };
 
-//       const response = await request(app)
-//         .post("/users")
-//         .send({ name: "John Doe", email: "john@example.com" });
+      await userController.createUser(req as Request, res as Response);
 
-//       expect(response.status).toBe(201);
-//       expect(response.body.success).toBe(true);
-//       expect(response.body.data).toEqual(newUser);
-//     });
+      expect(userModelMock.createUser).toHaveBeenCalledWith(req.body);
+      expect(res.status).toHaveBeenCalledWith(201);
+      expect(res.json).toHaveBeenCalledWith({ success: true, data: mockUser });
+    });
 
-//     it("should handle error if user creation fails", async () => {
-//       const errorMessage = "Error creating user";
-      
-//       // Mockování chyby při vytváření uživatele
-//       userModel.createUser.mockRejectedValue(new Error(errorMessage));
+    it("should handle errors", async () => {
+      const error = new Error("Database error");
+      userModelMock.createUser.mockRejectedValue(error);
 
-//       const response = await request(app)
-//         .post("/users")
-//         .send({ name: "John Doe", email: "john@example.com" });
+      req.body = {
+        name: "John",
+        surname: "Doe",
+        email: "john.doe@example.com",
+        password_hash: "hashedPassword",
+        role_id: 1,
+        childhouse_id: 2,
+      };
 
-//       expect(response.status).toBe(500);
-//       expect(response.body.success).toBe(false);
-//       expect(response.body.message).toBe(errorMessage);
-//     });
-//   });
+      await userController.createUser(req as Request, res as Response);
 
-//   describe("GET /users/:id", () => {
-//     it("should get a user by id", async () => {
-//       const user = { id: 1, name: "John Doe", email: "john@example.com" };
+      expect(res.status).toHaveBeenCalledWith(500);
+      expect(res.json).toHaveBeenCalledWith({
+        success: false,
+        message: error.message,
+      });
+    });
+  });
 
-//       // Mockování metody getUserById
-//       userModel.getUserById.mockResolvedValue(user);
+  describe("getUserById", () => {
+    it("should return a user if found", async () => {
+      const mockUser = {
+        id: 1,
+        name: "John",
+        surname: "Doe",
+        email: "john.doe@example.com",
+        password_hash: "hashedPassword",
+        last_login: null,
+        activated: false,
+        role_id: 1,
+        childhouse_id: 2,
+      };
+      userModelMock.getUserById.mockResolvedValue(mockUser);
 
-//       const response = await request(app)
-//         .get("/users/1");
+      req.params = { id: "1" };
 
-//       expect(response.status).toBe(200);
-//       expect(response.body.success).toBe(true);
-//       expect(response.body.data).toEqual(user);
-//     });
+      await userController.getUserById(req as Request, res as Response);
 
-//     it("should return 404 if user not found", async () => {
-//       // Mockování, že uživatel není nalezen
-//       userModel.getUserById.mockResolvedValue(null);
+      expect(userModelMock.getUserById).toHaveBeenCalledWith(1);
+      expect(res.status).toHaveBeenCalledWith(200);
+      expect(res.json).toHaveBeenCalledWith({ success: true, data: mockUser });
+    });
 
-//       const response = await request(app)
-//         .get("/users/999");
+    it("should return 404 if user is not found", async () => {
+      userModelMock.getUserById.mockResolvedValue(null);
 
-//       expect(response.status).toBe(404);
-//       expect(response.body.success).toBe(false);
-//       expect(response.body.message).toBe("User not found");
-//     });
-//   });
+      req.params = { id: "1" };
 
-//   describe("PUT /users/:id", () => {
-//     it("should update a user", async () => {
-//       const updatedUser = { id: 1, name: "John Doe", email: "john@example.com" };
+      await userController.getUserById(req as Request, res as Response);
 
-//       // Mockování metody updateUser
-//       userModel.updateUser.mockResolvedValue(updatedUser);
+      expect(userModelMock.getUserById).toHaveBeenCalledWith(1);
+      expect(res.status).toHaveBeenCalledWith(404);
+      expect(res.json).toHaveBeenCalledWith({
+        success: false,
+        message: "User not found",
+      });
+    });
+  });
 
-//       const response = await request(app)
-//         .put("/users/1")
-//         .send({ name: "John Doe", email: "john@example.com" });
+  describe("getChildHouseUsers", () => {
+    it("should return users belonging to a child house", async () => {
+      const mockUsers = [
+        {
+          id: 1,
+          name: "John",
+          surname: "Doe",
+          email: "john.doe@example.com",
+          password_hash: "hashedPassword",
+          last_login: null,
+          activated: false,
+          role_id: 1,
+          childhouse_id: 2,
+        },
+      ];
+      userModelMock.getChildHouseUsers.mockResolvedValue(mockUsers);
 
-//       expect(response.status).toBe(200);
-//       expect(response.body.success).toBe(true);
-//       expect(response.body.data).toEqual(updatedUser);
-//     });
-//   });
+      req.params = { childHouseId: "2" };
 
-//   describe("DELETE /users/:id", () => {
-//     it("should delete a user", async () => {
-//       const deletedUser = { id: 1, name: "John Doe", email: "john@example.com" };
+      await userController.getChildHouseUsers(req as Request, res as Response);
 
-//       // Mockování metody deleteUser
-//       userModel.deleteUser.mockResolvedValue(deletedUser);
+      expect(userModelMock.getChildHouseUsers).toHaveBeenCalledWith(2);
+      expect(res.status).toHaveBeenCalledWith(200);
+      expect(res.json).toHaveBeenCalledWith({ success: true, data: mockUsers });
+    });
+  });
 
-//       const response = await request(app)
-//         .delete("/users/1");
+  describe("updateUser", () => {
+    it("should update a user and return the updated data", async () => {
+      const mockUser = {
+        id: 1,
+        name: "John",
+        surname: "Doe",
+        email: "john.doe@example.com",
+        password_hash: "hashedPassword",
+        last_login: null,
+        activated: false,
+        role_id: 1,
+        childhouse_id: 2,
+      };
+      userModelMock.updateUser.mockResolvedValue(mockUser);
 
-//       expect(response.status).toBe(200);
-//       expect(response.body.success).toBe(true);
-//       expect(response.body.data).toEqual(deletedUser);
-//     });
-//   });
-// });
+      req.params = { id: "1" };
+      req.body = { name: "John Updated" };
+
+      await userController.updateUser(req as Request, res as Response);
+
+      expect(userModelMock.updateUser).toHaveBeenCalledWith(1, req.body);
+      expect(res.status).toHaveBeenCalledWith(200);
+      expect(res.json).toHaveBeenCalledWith({ success: true, data: mockUser });
+    });
+  });
+});
