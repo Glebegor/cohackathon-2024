@@ -24,7 +24,7 @@ rabbitmq-stop-dev:
 # Redis dev
 db-run-redis-dev:
 	docker network create hackathon-network || true
-	docker run --name="hackathon-redis" -d --rm -p 5400:6379 redis
+	docker run --name="hackathon-redis" --network hackathon-network  -d --rm -p 5400:6379 redis
 
 db-stop-redis-dev:
 	docker stop hackathon-redis

@@ -8,8 +8,11 @@ import {router as UserRouter} from './routes/UserRoutes'
 import {router as UserProfileRouter} from './routes/UserProfileRoutes'
 import {router as Childrouter} from './routes/ChildHouseRoutes'
 
+import { Config, newConfig } from './config/config';
+
+const config: Config = newConfig();
 const app: Express = express();
-const port: number = parseInt(process.env.PORT || '5002', 10);
+const port: number = config.server.port
 
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));

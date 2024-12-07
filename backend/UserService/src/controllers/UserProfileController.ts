@@ -1,12 +1,18 @@
 import { Request, Response } from "express";
 import { UserProfileModel } from "../models/UserProfileModel";
 import { BaseController } from "./BaseController";
+import { Config, newConfig } from "../config/config";
+import { createClient, RedisClientType } from "redis";
 
 export class UserProfileController extends BaseController {
   private userProfileModel: UserProfileModel;
+  private config: Config;
+  private redisClient: RedisClientType;
 
   constructor() {
     super();
+    this.config = newConfig();
+    this.redisClient = createClient();
     this.userProfileModel = new UserProfileModel();
   }
 

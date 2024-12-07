@@ -1,12 +1,19 @@
 import { Request, Response } from "express";
 import { ChildHouseModel } from "../models/ChildHouseModel";
 import { BaseController } from "./BaseController";
+import { RedisClientType } from "redis";
+import  connRedisCli  from "../database/redis";
+import { Config, newConfig } from "../config/config";
 
 export class ChildHouseController extends BaseController {
   private childHouseModel: ChildHouseModel;
+  private connectedRedisClient: any; 
+  private config: Config;
 
   constructor() {
     super();
+    this.config = newConfig();
+    this.connectedRedisClient = connRedisCli;
     this.childHouseModel = new ChildHouseModel();
   }
 

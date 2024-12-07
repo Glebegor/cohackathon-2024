@@ -2,7 +2,7 @@
 {   
     "type": "prod",
     "server": {
-        "port": "5001",
+        "port": "5002",
         "host": "localhost"
     },
     "db": {
@@ -17,11 +17,20 @@
             "host": "localhost",
             "database": "hackathon-mongo",
             "port": "5100"
+        },
+        "redis": {
+            "user": "root",
+            "host": "hackathon-redis",
+            "port": "6379"
+        },
+        "rabbitmq": {
+            "host": "hackathon-rabbitmq",
+            "port": "5672"
         }
     },
     "services": {
         "messagesServicePort": "5003",
-        "userServicePort": "5002",
+        "authServicePort": "5001",
         "supportServicePort": "5004"
     }
 }

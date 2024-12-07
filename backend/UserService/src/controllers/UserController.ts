@@ -1,12 +1,15 @@
 import { Request, Response } from "express";
 import { UserModel } from "../models/UserModel";
 import { BaseController } from "./BaseController";
+import { Config, newConfig } from "../config/config";
 
 export class UserController extends BaseController {
   private userModel: UserModel;
+  private config: Config;
 
   constructor() {
     super();
+    this.config = newConfig();
     this.userModel = new UserModel();
   }
 
