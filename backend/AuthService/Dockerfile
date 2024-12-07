@@ -37,7 +37,6 @@ RUN if [ "$NODE_ENV" = "prod" ]; then \
 EXPOSE 5001
 
 # Run the appropriate server command based on NODE_ENV
-
 CMD if [ "$NODE_ENV" = "prod" ]; then \
         node dist/index.js; \
     else \
