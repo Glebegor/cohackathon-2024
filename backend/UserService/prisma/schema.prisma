@@ -34,6 +34,7 @@ model User {
   role       Role         @relation(fields: [role_id], references: [id])
   childHouse ChildHouse   @relation(fields: [childhouse_id], references: [id])
   profile    UserProfile?
+  Diary      Diary[]
 
   @@map("users")
 }
@@ -64,4 +65,17 @@ model ChildHouse {
   users User[]
 
   @@map("child_houses")
+}
+
+model Diary {
+  id        Int      @id @default(autoincrement())
+  user_id   Int
+  emotion   String
+  note      String
+  createdAt DateTime @default(now())
+  shared    Boolean
+
+  user User @relation(fields: [user_id], references: [id])
+
+  @@map("diary")
 }
