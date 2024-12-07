@@ -40,15 +40,12 @@ class Application {
         this.server = http.createServer(this.app);
         
         // Initialize the WebSocket
-        websocketInit(this.server);
-        console.log('WebSocket initialized on /api/v2/messages/socket');
+        websocketInit(this.server, this.mongoClient);
+        console.log('WS /');
 
         this.server.listen(this.config.server.port, this.config.server.host, () => {
             console.log(`Server running at http://${this.config.server.host}:${this.config.server.port}/`);
         });
-        // this.app.listen(this.config.server.port, this.config.server.host, () => {
-            // console.log(`Server running at http://${this.config.server.host}:${this.config.server.port}/`);
-        // });    
     }
 
     printRoutes() {

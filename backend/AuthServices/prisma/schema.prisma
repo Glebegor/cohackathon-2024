@@ -1,0 +1,81 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Role {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  users User[]
+}
+
+model User {
+  id            Int       @id @default(autoincrement())
+  childhouse_id Int
+  name          String
+  surname      String
+  email         String    @unique
+  password_hash String
+  last_login    DateTime?
+  activated     Boolean   @default(false)
+  role_id       Int       @default(0)
+
+  role       Role         @relation(fields: [role_id], references: [id])
+  childHouse ChildHouse   @relation(fields: [childhouse_id], references: [id])
+  profile    UserProfile?
+  Diary      Diary[]
+
+  @@map("users")
+}
+
+model UserProfile {
+  id              Int     @id @default(autoincrement())
+  user_id         Int     @unique
+  description     String?
+  interests       String?
+  note            String?
+  profile_picture String?
+  back_story      String?
+
+  user User @relation(fields: [user_id], references: [id])
+
+  @@map("user_profiles")
+}
+
+model ChildHouse {
+  id          Int    @id @default(autoincrement())
+  admin_id    Int?
+  name        String
+  description String
+  address     String
+  phone       String
+  email       String @unique
+
+  users User[]
+
+  @@map("child_houses")
+}
+
+model Diary {
+  id        Int      @id @default(autoincrement())
+  user_id   Int
+  emotion   String
+  note      String
+  createdAt DateTime @default(now())
+  shared    Boolean
+
+  user User @relation(fields: [user_id], references: [id])
+
+  @@map("diary")
+}

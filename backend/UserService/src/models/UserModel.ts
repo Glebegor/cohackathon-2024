@@ -22,6 +22,16 @@ export class UserModel extends BaseModel {
     }
   }
 
+  async getChildHouseUsers(childHouseId: number): Promise<User[]> {
+    try {
+      return await this.prisma.user.findMany({
+        where: { childhouse_id: childHouseId },
+      });
+    } catch (error) {
+      throw new Error(`Error retrieving users for child house: ${error.message}`);
+    }
+  }
+
   async updateUser(id: number, data: Partial<User>): Promise<User> {
     try {
       return await this.prisma.user.update({

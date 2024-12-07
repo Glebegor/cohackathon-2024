@@ -35,7 +35,7 @@ export class UserProfileController extends BaseController {
 
   async updateUserProfile(req: Request, res: Response): Promise<void> {
     try {
-      const id = parseInt(req.params.id, 10);
+      const id = parseInt(req.params.id);
       const profile = await this.userProfileModel.updateUserProfile(id, req.body);
       res.status(200).json({ success: true, data: profile });
     } catch (error) {
