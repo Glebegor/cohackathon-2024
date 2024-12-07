@@ -2,6 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+.scrollbar::-webkit-scrollbar {
+  width: 8px; 
+  height: 90%; 
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background: #dddddd; 
+  border-radius: 10px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+.scrollbar::-webkit-scrollbar-button {
+  display: block;
+  height: 10px;
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

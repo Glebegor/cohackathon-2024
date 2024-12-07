@@ -49,7 +49,10 @@ module.exports = {
   				'3': 'hsl(var(--chart-3))',
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
-  			}
+  			},
+			scrollbarBg: '#f0f0f0',
+			scrollbarThumb: '#4b5563',
+			scrollbarThumbHover: '#1f2937',
   		},
   		keyframes: {
   			'accordion-down': {
