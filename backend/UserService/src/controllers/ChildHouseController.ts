@@ -12,7 +12,9 @@ export class ChildHouseController extends BaseController {
 
   async createChildHouse(req: Request, res: Response): Promise<void> {
     try {
+      console.log(req.body)
       const childHouse = await this.childHouseModel.createChildHouse(req.body);
+      console.log(req.body)
       res.status(201).json({ success: true, data: childHouse });
     } catch (error) {
       this.handleError(error, res);

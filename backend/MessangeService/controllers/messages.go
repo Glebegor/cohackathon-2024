@@ -22,7 +22,7 @@ func NewMessageController(db *mongo.Database, config *bootstrap.Config) common.M
 
 func (c *MessageController) SetupRouter(gin *gin.Engine) {
 	gin.GET("/messages", c.GetLast10Messages)
-	gin.GET("/messages/chatIds", c.GetChatIds)
+	gin.GET("/messages/chats", c.GetChatIds)
 }
 
 func (c *MessageController) GetLast10Messages(ctx *gin.Context) {
