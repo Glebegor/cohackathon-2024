@@ -9,3 +9,10 @@ type Message struct {
 	Message    string             `bson:"message" json:"message"`
 	Date       string             `bson:"date" json:"date"`
 }
+
+type MessageToSave struct {
+	SenderId   string `json:"sender_id"`
+	ReceiverId string `json:"receiver_id"`
+	Message    string `json:"message"`
+	Date       string `json:"date"`
+}

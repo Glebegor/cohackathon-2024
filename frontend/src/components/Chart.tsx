@@ -25,15 +25,12 @@ const chartConfig = {
 
 export default function Component({data}:{data:DiaryItem[]}) {
     return (
-    <Card>
+    <Card className="flex flex-col gap-6 bg-gray-200 rounded-3xl">
       <CardHeader>
-        <CardTitle>Area Chart - Linear</CardTitle>
-        <CardDescription>
-          Showing total visitors for the last 6 months
-        </CardDescription>
+        <h2 className="w-full text-xl">Vývoj nálad během měsíce</h2>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig}>
+        <ChartContainer config={chartConfig} className="p-8">
           <AreaChart
             accessibilityLayer
             data={data}
@@ -70,18 +67,6 @@ export default function Component({data}:{data:DiaryItem[]}) {
           </AreaChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter>
-        <div className="flex w-full items-start gap-2 text-sm">
-          <div className="grid gap-2">
-            <div className="flex items-center gap-2 font-medium leading-none">
-              Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-            </div>
-            <div className="flex items-center gap-2 leading-none text-muted-foreground">
-              January - June 2024
-            </div>
-          </div>
-        </div>
-      </CardFooter>
     </Card>
   )
 }

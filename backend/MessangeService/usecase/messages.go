@@ -1,6 +1,7 @@
 package usecase
 
 import (
+	"hackathon-messages/domain/common"
 	"hackathon-messages/domain/entities"
 	"hackathon-messages/repository"
 
@@ -8,17 +9,20 @@ import (
 )
 
 type MessageUsecase struct {
-	repository *repository.MessageRepository
+	repo common.MessagesRepository
 }
 
-func NewMessageUsecase(db *mongo.Database) *MessageUsecase {
-	return &MessageUsecase{}
+func NewMessageUsecase(db *mongo.Database) common.MessagesUsecase {
+	repos := repository.NewMessageRepository(db)
+	return &MessageUsecase{
+		repo: repos,
+	}
 }
 
 func (u *MessageUsecase) GetLast10Messages(input entities.Get10LastRequest) ([]entities.Message, error) {
-	return u.repository.GetLast10Messages(input)
+	return u.repo.GetLast10Messages(input)
 }
 
 func (u *MessageUsecase) GetChatIds(input entities.GetChatIdsRequest) ([]string, error) {
-	return u.repository.GetChatIds(input)
+	return u.repo.GetChatIds(input)
 }

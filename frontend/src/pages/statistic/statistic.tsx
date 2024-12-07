@@ -2,6 +2,7 @@ import { emojis } from "@/components/emotions";
 import Lottie from "lottie-react";
 import { emojisComplete, EmojiType } from "@/components/emotions";
 import Chart from "../../components/Chart"
+import { Button } from "@/components/ui/button";
 
 const EmotionElement:React.FC<EmotionElementProps> = ({emoji}) => {
     return(
@@ -11,7 +12,7 @@ const EmotionElement:React.FC<EmotionElementProps> = ({emoji}) => {
     )
 }
 
-export const Statistic:React.FC<DiaryProps> = () => {
+const Statistics:React.FC<DiaryProps> = () => {
 
     const diaryItems:DiaryItem[] = [
         {
@@ -105,38 +106,42 @@ export const Statistic:React.FC<DiaryProps> = () => {
             </svg>
         </div>
         <div className="flex flex-col gap-8 w-2/3 m-auto z-10 pt-14">
+            <div className="flex justify-between items-center gap-4">
+                <p className="text-4xl text-white font-sans font-semibold select-none">Statistiky deníčku</p>
+            </div>
             <Chart data={finalDiaryItems}/>
-        </div>
-        <div className="flex gap-6 w-2/3 m-auto z-10 p-6 rounded-3xl flex-wrap ring-1 bg-gray-100">
-            <h2 className="w-full text-lg">Nejčastější nálady za tento měsíc</h2>
-            {Object.entries(handleEmojiCount(finalDiaryItems.map(item => item.emoji))).map(([emoji, count]) => (
-                <div key={emoji} className="flex gap-4 justify-between items-center w-20">
-                    <div className="text-lg w-20 flex">{count} <div>x</div></div>
-                    <EmotionElement emoji={emoji} selectedEmoji={undefined} setSelectedEmoji={function (value: any): void {
-                        throw new Error("Function not implemented.");
-                    } }/>
+            <div className="flex flex-col gap-6 p-6 bg-gray-200 rounded-3xl">
+                <h2 className="w-full text-xl">Nejčastější nálady za tento měsíc</h2>
+                <div className="flex gap-4 flex-wrap items-center">
+                    {Object.entries(handleEmojiCount(finalDiaryItems.map(item => item.emoji))).map(([emoji, count]) => (
+                        <div key={emoji} className="flex gap-4 justify-between items-center w-20">
+                            <div className="text-lg w-20 flex">{count} <div>x</div></div>
+                            <EmotionElement emoji={emoji} selectedEmoji={undefined} setSelectedEmoji={function (value: any): void {
+                                throw new Error("Function not implemented.");
+                            } }/>
+                        </div>
+                    ))}
                 </div>
-            ))}
-        </div>
-        <div className="flex gap-6 w-2/3 m-auto z-10 p-6 rounded-3xl flex-wrap ring-1 bg-gray-100">
-            {/* if finalDairyItem.value > 15 write finalDairyItem.text */}
-            <h2 className="w-full text-lg">Nejlepší dny za tento měsíc</h2>
-            {finalDiaryItems.map(item => item.emojiValue > 15 && 
-                <div className="flex flex-wrap w-[calc(45%)] gap-4">
-                    <div className="w-6">
-                        <EmotionElement emoji={item.emoji} selectedEmoji={undefined} setSelectedEmoji={function (value: any): void {
-                            throw new Error("Function not implemented.");
-                        }}/>
+            </div>
+            <div className="flex flex-col gap-6 p-6 bg-gray-200 rounded-3xl">
+                <h2 className="w-full text-xl">Nejlepší dny za tento měsíc</h2>
+                {finalDiaryItems.map(item => item.emojiValue > 15 && 
+                    <div className="flex flex-wrap w-[calc(45%)] gap-4">
+                        <div className="w-6">
+                            <EmotionElement emoji={item.emoji} selectedEmoji={undefined} setSelectedEmoji={function (value: any): void {
+                                throw new Error("Function not implemented.");
+                            }}/>
+                        </div>
+                        <div className="flex flex-col">
+                            <div>{item.date.toDateString()}</div>
+                            <div>{item.text}</div>
+                        </div>
                     </div>
-                    <div className="flex flex-col">
-                        <div>{item.date.toDateString()}</div>
-                        <div>{item.text}</div>
-                    </div>
-                </div>
-            )}
+                )}
+            </div>
         </div>
     </div>
   )
 }
 
-export default Statistic
+export default Statistics

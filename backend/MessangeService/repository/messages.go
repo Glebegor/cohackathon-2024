@@ -26,7 +26,7 @@ func (r *MessageRepository) GetLast10Messages(input entities.Get10LastRequest) (
 			{"senderId": input.SenderId, "receiverId": input.ReceiverId},
 		},
 	}
-	opts := options.Find().SetSort(bson.D{{"timestamp", -1}}).SetLimit(10)
+	opts := options.Find().SetSort(bson.D{{Key: "timestamp", Value: -1}}).SetLimit(10)
 	cursor, err := collection.Find(context.Background(), filter, opts)
 	if err != nil {
 		return nil, err
@@ -37,7 +37,6 @@ func (r *MessageRepository) GetLast10Messages(input entities.Get10LastRequest) (
 	if err = cursor.All(context.Background(), &messages); err != nil {
 		return nil, err
 	}
-
 	return messages, nil
 }
 
