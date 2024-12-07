@@ -41,7 +41,27 @@ export const Diary:React.FC<DiaryProps> = () => {
             text: "Dneska jsem byla na výletě",
             date: new Date(),
             emoji: "smile",
-        }
+        },
+        {
+            text: "Dneska jsem byla na výletě",
+            date: new Date(),
+            emoji: "lost",
+        },
+        {
+            text: "Dneska jsem byla na výletě",
+            date: new Date(),
+            emoji: "love",
+        },
+        {
+            text: "Dneska jsem byla na výletě",
+            date: new Date(),
+            emoji: "lost",
+        },
+        {
+            text: "Dneska jsem byla na výletě",
+            date: new Date(),
+            emoji: "lost",
+        },
     ];
 
     const [search, setSearch] = React.useState<string>("")
@@ -161,13 +181,17 @@ export const Diary:React.FC<DiaryProps> = () => {
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-col gap-6 p-6 bg-gray-200 rounded-3xl">
+                <div className="flex flex-col gap-4 p-6 bg-gray-200 rounded-3xl max-h-[300px] overflow-y-auto scrollbar">
                     {finalDiaryItems.map((item) => (
                         <DiaryItem {...{item}}/>
                     ))}
                     {finalDiaryItems.length === 0 && (
                         <p className="text-center text-muted-foreground font-semibold">Nenalezeny žádné záznamy</p>
                     )}
+                </div>
+                {/* Statistiky */}
+                <div>
+                    
                 </div>
             </div>
         </div>
