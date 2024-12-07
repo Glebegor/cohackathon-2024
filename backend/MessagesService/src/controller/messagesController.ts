@@ -2,7 +2,7 @@ import { MongoClient } from "mongodb";
 import Config from "../domain/common/config";
 import {IUsecaseMessages, newUsecaseMessages } from "../usecases/messagesUsecase";
 import { IRepositoryMessages, newRepositoryMessages } from "../repositoryes/messagesRepository";
-import { createMessageRequest, getChatsIdsRequest } from "../domain/common/requests";
+import { createMessageRequest, getChatsIdsRequest, getLast10MessagesRequest } from "../domain/common/requests";
 import { ErrorResponse, SuccessResponse } from "../domain/common/responses";
 import { Message } from "../domain/common/message";
 
@@ -18,6 +18,7 @@ class ControllerMessages {
         
         this.createMessage = this.createMessage.bind(this);
         this.getLast10Messages = this.getLast10Messages.bind(this);
+        this.getChatsIds = this.getChatsIds.bind(this);
     }
 
     private async createMessage(req: any, res: any): Promise<void> {
@@ -43,7 +44,7 @@ class ControllerMessages {
 
 
     private async getLast10Messages(req: any, res: any): Promise<void> {
-        var input = req.body;
+        var input: getLast10MessagesRequest = req.body;
 
         var messages: Message[] = await this.usecase.getLast10Messages(input);
 
