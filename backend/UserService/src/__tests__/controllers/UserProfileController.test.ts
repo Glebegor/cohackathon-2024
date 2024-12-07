@@ -65,9 +65,9 @@ describe("UserProfileController", () => {
       await userProfileController.createUserProfile(req as Request, res as Response);
 
       expect(res.status).toHaveBeenCalledWith(500);
-      expect(res.json).toHaveBeenCalledWith({
+      expect(res.json). toHaveBeenCalledWith({
         success: false,
-        message: error.message,
+        message: "Internal server error",
       });
     });
   });

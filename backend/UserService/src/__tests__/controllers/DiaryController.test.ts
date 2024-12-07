@@ -25,10 +25,10 @@ describe("DiaryController", () => {
       const mockDiary = {
         id: 1,
         user_id: 1,
-        emotion: "happy", // přidáno emocionální hodnocení
-        note: "Test diary content", // přidána poznámka
-        createdAt: new Date(), // změněný název pro datum
-        shared: false, // přidána informace o sdílení
+        emotion: "happy", 
+        note: "Test diary content", 
+        createdAt: new Date(),
+        shared: false,
       };
       diaryModelMock.createDiary.mockResolvedValue(mockDiary);
 
@@ -45,7 +45,7 @@ describe("DiaryController", () => {
     });
 
     it("should handle errors", async () => {
-      const error = new Error("Database error");
+      const error = new Error("Internal server error");
       diaryModelMock.createDiary.mockRejectedValue(error);
 
       req.body = {
@@ -58,7 +58,7 @@ describe("DiaryController", () => {
       expect(res.status).toHaveBeenCalledWith(500);
       expect(res.json).toHaveBeenCalledWith({
         success: false,
-        message: error.message,
+        message: "Internal server error",
       });
     });
   });
@@ -68,10 +68,10 @@ describe("DiaryController", () => {
       const mockDiary = {
         id: 1,
         user_id: 1,
-        emotion: "happy", // přidáno emocionální hodnocení
-        note: "Test diary content", // přidána poznámka
-        createdAt: new Date(), // změněný název pro datum
-        shared: false, // přidána informace o sdílení
+        emotion: "happy", 
+        note: "Test diary content", 
+        createdAt: new Date(),
+        shared: false,
       };
       diaryModelMock.getDiaryById.mockResolvedValue(mockDiary);
 
@@ -95,7 +95,7 @@ describe("DiaryController", () => {
       expect(res.status).toHaveBeenCalledWith(404);
       expect(res.json).toHaveBeenCalledWith({
         success: false,
-        message: "Child house not found",
+        message: "Diary not found",
       });
     });
   });
@@ -106,22 +106,17 @@ describe("DiaryController", () => {
         {
           id: 1,
           user_id: 1,
-          emotion: "happy", // přidáno emocionální hodnocení
-          note: "Test diary content", // přidána poznámka
-          createdAt: new Date(), // změněný název pro datum
-          shared: false, // přidána informace o sdílení
+          emotion: "happy", 
+          note: "Test diary content", 
+          createdAt: new Date(),
+          shared: true,
         },
       ];
-      diaryModelMock.getSharedDiaryByUserId.mockResolvedValue(
-        mockSharedDiaries
-      );
+      diaryModelMock.getSharedDiaryByUserId.mockResolvedValue(mockSharedDiaries);
 
       req.params = { id: "1" };
 
-      await diaryController.getSharedDiaryByUserId(
-        req as Request,
-        res as Response
-      );
+      await diaryController.getSharedDiaryByUserId(req as Request, res as Response);
 
       expect(diaryModelMock.getSharedDiaryByUserId).toHaveBeenCalledWith(1);
       expect(res.status).toHaveBeenCalledWith(200);
@@ -136,10 +131,7 @@ describe("DiaryController", () => {
 
       req.params = { id: "1" };
 
-      await diaryController.getSharedDiaryByUserId(
-        req as Request,
-        res as Response
-      );
+      await diaryController.getSharedDiaryByUserId(req as Request, res as Response);
 
       expect(diaryModelMock.getSharedDiaryByUserId).toHaveBeenCalledWith(1);
       expect(res.status).toHaveBeenCalledWith(404);
@@ -156,10 +148,10 @@ describe("DiaryController", () => {
         {
           id: 1,
           user_id: 1,
-          emotion: "happy", // přidáno emocionální hodnocení
-          note: "Test diary content", // přidána poznámka
-          createdAt: new Date(), // změněný název pro datum
-          shared: false, // přidána informace o sdílení
+          emotion: "happy", 
+          note: "Test diary content", 
+          createdAt: new Date(),
+          shared: false,
         },
       ];
       diaryModelMock.getDiaryByUserId.mockResolvedValue(mockDiaries);
@@ -195,12 +187,12 @@ describe("DiaryController", () => {
   describe("updateDiary", () => {
     it("should update a diary and return the updated data", async () => {
       const mockDiary = {
-          id: 1,
-          user_id: 1,
-          emotion: "happy",   // přidáno emocionální hodnocení
-          note: "Test diary content",  // přidána poznámka
-          createdAt: new Date(), // změněný název pro datum
-          shared: false, // přidána informace o sdílení
+        id: 1,
+        user_id: 1,
+        emotion: "happy",   
+        note: "Updated diary content",  
+        createdAt: new Date(),
+        shared: false,
       };
       diaryModelMock.updateDiary.mockResolvedValue(mockDiary);
 
@@ -218,12 +210,12 @@ describe("DiaryController", () => {
   describe("deleteDiary", () => {
     it("should delete a diary and return the deleted diary data", async () => {
       const mockDiary = {
-          id: 1,
-          user_id: 1,
-          emotion: "happy",   // přidáno emocionální hodnocení
-          note: "Test diary content",  // přidána poznámka
-          createdAt: new Date(), // změněný název pro datum
-          shared: false, // přidána informace o sdílení
+        id: 1,
+        user_id: 1,
+        emotion: "happy",   
+        note: "Test diary content",  
+        createdAt: new Date(),
+        shared: false,
       };
       diaryModelMock.deleteDiary.mockResolvedValue(mockDiary);
 
