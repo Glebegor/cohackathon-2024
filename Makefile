@@ -1,13 +1,15 @@
 
 # db mongo dev
 db-run-mongo-dev:
-	docker run --name="hackathon-mongo" -e MONGO_INITDB_ROOT_USERNAME="root" -e MONGO_INITDB_ROOT_PASSWORD="123321" -d --rm -p 5100:27017  mongo 
+	docker network create hackathon-network || true
+	docker run --name="hackathon-mongo" --network hackathon-network -e MONGO_INITDB_ROOT_USERNAME="root" -e MONGO_INITDB_ROOT_PASSWORD="123321" -d --rm -p 5100:27017  mongo 
 db-stop-mongo-dev:
 	docker stop hackathon-mongo
 
 # db postgres dev
 db-run-postgres-dev:
-	docker run --name="hackathon-postgres" -e POSTGRES_USER="root" -e POSTGRES_PASSWORD="123321" -d --rm -p 5200:5432 postgres
+	docker network create hackathon-network || true
+	docker run --name="hackathon-postgres" --network hackathon-network -e POSTGRES_USER="root" -e POSTGRES_PASSWORD="123321" -d --rm -p 5200:5432 postgres
 db-stop-postgres-dev:
 	docker stop hackathon-postgres
 
