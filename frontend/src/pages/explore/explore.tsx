@@ -58,19 +58,19 @@ const Explore = () => {
         <div className="flex flex-col gap-4 p-6 bg-gray-200 rounded-3xl">
             {/* Explore people */}
             {data.map((item) => (
-                <div className="flex gap-4 items-center justify-between">
+                <div className="flex gap-4 items-center">
                     <div className="relative">
                         <img src={item.avatar} className="w-12 h-12 rounded-full"/>
                         <div className="w-4 absolute top-0 right-0">
                             <EmotionElement emoji={item.emoji as EmojiType} selectedEmoji={item.emoji as EmojiType} setSelectedEmoji={() => {}}/>
                         </div>
                     </div>
-                    <div className="flex flex-col w-[60%]">
+                    <div className="flex flex-col max-w-[50%]">
                         <p className="text-lg font-bold">{item.name}</p>
-                        <p className="truncate w-[90%]">{item.text}</p>
+                        <p className="truncate max-w-[90%]">{item.text}</p>
                     </div>
                     <div className="flex gap-4">
-                        <Button className="bg-fosterPurple hover:bg-fosterPurple/90">Žažádat</Button>
+                        <Button className="bg-fosterPurple hover:bg-fosterPurple/90">Zažádat</Button>
                         <Button className="bg-fosterPink hover:bg-fosterPink/90">Profil</Button>
                     </div>
                 </div>
