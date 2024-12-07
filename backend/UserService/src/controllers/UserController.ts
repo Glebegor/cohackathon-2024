@@ -33,6 +33,16 @@ export class UserController extends BaseController {
     }
   }
 
+  async getChildHouseUsers(req: Request, res: Response): Promise<void> {
+    try {
+      const childHouseId = parseInt(req.params.childHouseId, 10);
+      const users = await this.userModel.getChildHouseUsers(childHouseId);
+      res.status(200).json({ success: true, data: users });
+    } catch (error) {
+      this.handleError(error, res);
+    }
+  }
+
   async updateUser(req: Request, res: Response): Promise<void> {
     try {
       const id = parseInt(req.params.id, 10);

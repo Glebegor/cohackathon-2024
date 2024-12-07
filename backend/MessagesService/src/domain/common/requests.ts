@@ -19,4 +19,9 @@ interface getLast10MessagesRequest {
     last_timestamp: Date | undefined;
 }
 
-export { createMessageRequest, getLast10MessagesRequest, connectionRequest };
+interface getChatsIdsRequest {
+    access_token: string;
+    user_id: string;
+}
+
+export { createMessageRequest, getLast10MessagesRequest, connectionRequest, getChatsIdsRequest };
