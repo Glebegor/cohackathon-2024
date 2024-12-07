@@ -1,5 +1,6 @@
 
 {   
+    "type": "dev",
     "server": {
         "port": "5001",
         "host": "localhost"
@@ -8,7 +9,7 @@
         "postgres": {
             "user": "root",
             "host": "localhost",
-            "database": "hackathon-postgres",
+            "database": "postgres",
             "port": "5200"
         }, 
         "mongo": {
