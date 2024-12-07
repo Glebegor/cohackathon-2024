@@ -1,7 +1,6 @@
 import { Navbar } from "@/components/navbar/navbar";
 import { DesignContext } from "@/context/design";
 import { EMediaQuery } from "@/enums/design";
-import { Gradient } from "animated-gradient"
 import React, { useContext } from "react";
 import { Outlet } from "react-router";
 
