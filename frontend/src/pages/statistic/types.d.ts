@@ -6,7 +6,6 @@ type DiaryItemProps = {
 
 type DiaryItem = {
     emoji: EmojiType,
-    emojiValue?: number,
     text: string
     date: Date
 }

@@ -29,7 +29,7 @@ export const Diary:React.FC<DiaryProps> = () => {
     const diaryItems:DiaryItem[] = [
         {
             text: "Dobrý",
-            date: new Date(),
+            date: new Date("2024-10-10"),
             emoji: "smile",
         },
         {
@@ -44,22 +44,22 @@ export const Diary:React.FC<DiaryProps> = () => {
         },
         {
             text: "Dneska jsem byla na výletě",
-            date: new Date(),
+            date: new Date("2024-12-6"),
             emoji: "lost",
         },
         {
             text: "Dneska jsem byla na výletě",
-            date: new Date(),
+            date: new Date("2024-12-5"),
             emoji: "love",
         },
         {
             text: "Dneska jsem byla na výletě",
-            date: new Date(),
+            date: new Date("2024-12-4"),
             emoji: "lost",
         },
         {
             text: "Dneska jsem byla na výletě",
-            date: new Date(),
+            date: new Date("2024-12-3"),
             emoji: "lost",
         },
     ];
