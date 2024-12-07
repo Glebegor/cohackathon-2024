@@ -11,6 +11,7 @@ import Home from './pages/home/home'
 import { Diary } from './pages/diary/diary'
 import Profile from './pages/profile/profile'
 import Map from './pages/map/map'
+import Statistic from './pages/statistic/statistic'
 
 function App() {
   const media:EMediaQuery = (useMediaQuery({ query: '(min-width: 768px)' }) ? EMediaQuery.DESKTOP : EMediaQuery.MOBILE);
@@ -28,6 +29,7 @@ function App() {
             <Route path="diary" element={<Diary />} />
             <Route path="profile" element={<Profile />} />
             <Route path="map" element={<Map />} />
+            <Route path="statistic" element={<Statistic />} />
         </Route>
         <Route path="login" element={<Login />} />
         <Route path="/" element={<Home />} />

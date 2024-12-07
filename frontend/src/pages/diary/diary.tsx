@@ -29,7 +29,7 @@ export const Diary:React.FC<DiaryProps> = () => {
     const diaryItems:DiaryItem[] = [
         {
             text: "Dobrý",
-            date: new Date(),
+            date: new Date("2024-10-10"),
             emoji: "smile",
         },
         {
@@ -41,7 +41,27 @@ export const Diary:React.FC<DiaryProps> = () => {
             text: "Dneska jsem byla na výletě",
             date: new Date(),
             emoji: "smile",
-        }
+        },
+        {
+            text: "Dneska jsem byla na výletě",
+            date: new Date("2024-12-6"),
+            emoji: "lost",
+        },
+        {
+            text: "Dneska jsem byla na výletě",
+            date: new Date("2024-12-5"),
+            emoji: "love",
+        },
+        {
+            text: "Dneska jsem byla na výletě",
+            date: new Date("2024-12-4"),
+            emoji: "lost",
+        },
+        {
+            text: "Dneska jsem byla na výletě",
+            date: new Date("2024-12-3"),
+            emoji: "lost",
+        },
     ];
 
     const [search, setSearch] = React.useState<string>("")
@@ -85,8 +105,8 @@ export const Diary:React.FC<DiaryProps> = () => {
                 </svg>
             </div>
             <div className="flex flex-col gap-8 w-2/3 m-auto z-10 pt-14">
-                <div className="flex justify-between items-center gap-4">
-                    <p className="text-4xl text-white font-sans font-semibold select-none">Můj deníček</p>
+                <div className="flex justify-between items-center gap-4 mt-16">
+                    <p className="text-3xl text-black  font-sans font-semibold select-none">Můj deníček</p>
                     <button className="bg-fosterPink hover:bg-fosterPink/90 text-white px-4 py-2 rounded-3xl">Nový záznam</button>
                 </div>
                 <div className="flex flex-col gap-6 p-6 bg-gray-200 rounded-3xl">
@@ -161,13 +181,17 @@ export const Diary:React.FC<DiaryProps> = () => {
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-col gap-6 p-6 bg-gray-200 rounded-3xl">
+                <div className="flex flex-col gap-4 p-6 bg-gray-200 rounded-3xl max-h-[300px] overflow-y-auto scrollbar">
                     {finalDiaryItems.map((item) => (
                         <DiaryItem {...{item}}/>
                     ))}
                     {finalDiaryItems.length === 0 && (
                         <p className="text-center text-muted-foreground font-semibold">Nenalezeny žádné záznamy</p>
                     )}
+                </div>
+                {/* Statistiky */}
+                <div>
+                    
                 </div>
             </div>
         </div>

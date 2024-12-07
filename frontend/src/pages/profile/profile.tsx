@@ -124,13 +124,15 @@ const profile = () => {
             {/* Deník */}
             <div className="flex w-1/2 justify-center">
                 <div className="w-3/4 h-1/2 mt-[30%]">
-                    <p className="text-3xl font-sans font-semibold mb-6">Diář</p>
-                    <div className="flex flex-col gap-5 p-5 ring-1 rounded-2xl max-h-[500px] overflow-y-auto scrollbar">
+                    <p className="text-3xl font-sans border-none font-semibold mb-6">Diář</p>
+                    <div className="flex flex-col gap-5 p-5 rounded-2xl max-h-[500px] overflow-y-auto scrollbar bg-gray-200">
                         <input type="text" placeholder="Hledání" className="bg-transparent p-2 rounded-lg ring-1"/>
                         {diary.map((entry) => (
                             <div className="flex gap-5">
                                 <div className="w-6">
-                                    <EmotionElement emoji={entry.emoji}/>
+                                    <EmotionElement emoji={entry.emoji} selectedEmoji={undefined} setSelectedEmoji={function (value: any): void {
+                                        throw new Error("Function not implemented.");
+                                    } }/>
                                 </div>
                                 <div className="w-5/6">
                                     <p className="text-md font-sans font-semibold">{entry.date}</p>
