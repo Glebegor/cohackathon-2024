@@ -19,3 +19,21 @@ Main backend ip is 5000:<br>
 - 1 child +18
 - 2 admin
 - 3 superadmin
+
+
+## API
+
+### AuthService
+
+- localhost:5001/api/v2/login POST
+- localhost:5001/api/v2/refresh POST
+- localhost:5001/api/v2/verify POST
+- localhost:5001/api/v2/approve POST
+
+### MessagesService
+
+
+
+
+### UserService
+
