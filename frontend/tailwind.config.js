@@ -50,6 +50,8 @@ module.exports = {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			},
+			fosterPink: "#e54f95",
+			fosterPurple: "#4a328a",
 			scrollbarBg: '#f0f0f0',
 			scrollbarThumb: '#4b5563',
 			scrollbarThumbHover: '#1f2937',

@@ -1,16 +1,24 @@
-import { RegisterRequest } from "../domain/common/requests";
+import { LoginRequest, RegisterRequest } from "../domain/common/requests";
 import { IAuthRepository } from "../repositoryes/authRepository";
 
 interface IAuthUsecase {
     repo: IAuthRepository;
-    register(input: RegisterRequest): Promise<string>;
+    login(input: LoginRequest): Promise<any>;
+    findUserById(id: number): Promise<any>;
+    approveUserById(id: number): Promise<any>;
 }
 
 function newAuthUsecase(repo: IAuthRepository): IAuthUsecase {
     return {
         repo: repo,
-        register: async function (input: RegisterRequest): Promise<string> {
-            return repo.createUser(input);
+        login: async (input: LoginRequest) => {
+            return repo.verifyUserByEmailAndPassword(input.email, input.password_hash);
+        },
+        findUserById: async (id: number) => {
+            return repo.findUserById(id);
+        },
+        approveUserById: async (id: number) => {
+            return repo.approveUserById(id);
         }
     };
 }

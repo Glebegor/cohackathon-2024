@@ -8,6 +8,7 @@ import { useMediaQuery } from 'react-responsive'
 import { DesignContext } from './context/design'
 import Messages from './pages/messages/Messages'
 import Home from './pages/home/home'
+import { Diary } from './pages/diary/diary'
 import Profile from './pages/profile/profile'
 import Map from './pages/map/map'
 
@@ -24,6 +25,7 @@ function App() {
             <Route path="chat" element={<Messages />} />
             <Route path="messages" element={<Messages />} />
             <Route path="dashboard" element={<Dashboard />} />
+            <Route path="diary" element={<Diary />} />
             <Route path="profile" element={<Profile />} />
             <Route path="map" element={<Map />} />
         </Route>
