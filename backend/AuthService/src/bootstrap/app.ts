@@ -15,6 +15,7 @@ class Application {
 
         // Connect to the database
         this.prismaClient = new PrismaClient();
+        console.log(process.env.DATABASE_URL);
         this.pingDb().then((message: string) => {
             console.log(message);
         })
