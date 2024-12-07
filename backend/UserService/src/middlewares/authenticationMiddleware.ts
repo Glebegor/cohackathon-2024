@@ -4,9 +4,9 @@ import { AuthService } from "../services/AuthService";
 const authService = new AuthService();
 
 export async function authenticate(req: Request, res: Response, next: NextFunction): Promise<void> {
-  const authHeader = req.headers.authorization;
+  const authHeader = req.headers.authorization || req.headers.Authorization;
 
-  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+  if (typeof authHeader !== "string" || !authHeader.startsWith("Bearer ")) {
     res.status(401).json({ success: false, message: "Unauthorized: No token provided." });
     return;
   }

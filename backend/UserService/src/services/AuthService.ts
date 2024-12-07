@@ -5,7 +5,7 @@ export class AuthService {
   private replyQueue: string;
 
   constructor() {
-    const url = process.env.RABBITMQ_URL || "amqp://localhost";
+    const url = process.env.RABBITMQ_URL || "amqp://guest:guest@100.122.0.1:5301";
     this.client = new RabbitMQClient(url);
     this.replyQueue = process.env.AUTH_REPLY_QUEUE || "auth_replies";
   }

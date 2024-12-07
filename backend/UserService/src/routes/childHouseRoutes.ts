@@ -5,7 +5,7 @@ import { authenticate } from '../middlewares/authenticationMiddleware';
 const router = Router();
 const childHouseController = new ChildHouseController();
 
-router.post("/", childHouseController.createChildHouse.bind(childHouseController));
+router.post("/", authenticate,  childHouseController.createChildHouse.bind(childHouseController));
 router.get("/:id", childHouseController.getChildHouseById.bind(childHouseController));
 router.get("/get-all", childHouseController.getAllChildHouses.bind(childHouseController));
 router.put("/:id", childHouseController.updateChildHouse.bind(childHouseController));
