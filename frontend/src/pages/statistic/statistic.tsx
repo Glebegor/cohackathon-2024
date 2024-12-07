@@ -1,5 +1,15 @@
+import { emojis } from "@/components/emotions";
+import Lottie from "lottie-react";
 import { emojisComplete, EmojiType } from "@/components/emotions";
 import Chart from "../../components/Chart"
+
+const EmotionElement:React.FC<EmotionElementProps> = ({emoji}) => {
+    return(
+        <div>
+            <Lottie animationData={emojis[emoji as keyof typeof emojis]}/>
+        </div>
+    )
+}
 
 export const Statistic:React.FC<DiaryProps> = () => {
 
@@ -20,33 +30,54 @@ export const Statistic:React.FC<DiaryProps> = () => {
             emoji: "smile",
         },
         {
-            text: "Dneska jsem byla na výletě",
+            text: "dnes nic moc, ale zítra bude líp",
             date: new Date("2024-12-6"),
             emoji: "lost",
         },
         {
-            text: "Dneska jsem byla na výletě",
+            text: "super",
             date: new Date("2024-12-5"),
             emoji: "love",
         },
         {
-            text: "Dneska jsem byla na výletě",
+            text: "blablabla",
             date: new Date("2024-12-4"),
             emoji: "lost",
         },
         {
-            text: "Dneska jsem byla na výletě",
+            text: "jsem unavený, ale zítra bude líp",
             date: new Date("2024-12-3"),
             emoji: "lost",
         },
+        {
+            text: "dneska byl super den",
+            date: new Date("2024-12-2"),
+            emoji: "smile",
+        },
+        {
+            text: "dneska byl super den",
+            date: new Date("2024-12-1"),
+            emoji: "smile",
+        },
+        {
+            text: "dneska byl super den",
+            date: new Date("2024-12-7"),
+            emoji: "smile",
+        }
     ];
 
     const finalDiaryItems = diaryItems.filter(item => (
         item.date >= new Date("2024-12-01") && item.date <= new Date("2024-12-31")
     )).map(item => ({...item, emojiValue: emojisComplete[item.emoji as EmojiType].value}));
 
+    const handleEmojiCount = (emojis: string[]) => {
+        let counts: { [key: string]: number } = {};
+        emojis.forEach(function(x) { counts[x] = (counts[x] || 0) + 1; });
+        return counts;
+    }
+
   return (
-    <div className="relative">
+    <div className="relative flex flex-col gap-8">
         <div className="-z-50 top-0 left-0 absolute w-full">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -75,6 +106,34 @@ export const Statistic:React.FC<DiaryProps> = () => {
         </div>
         <div className="flex flex-col gap-8 w-2/3 m-auto z-10 pt-14">
             <Chart data={finalDiaryItems}/>
+        </div>
+        <div className="flex gap-6 w-2/3 m-auto z-10 p-6 rounded-3xl flex-wrap ring-1 bg-gray-100">
+            <h2 className="w-full text-lg">Nejčastější nálady za tento měsíc</h2>
+            {Object.entries(handleEmojiCount(finalDiaryItems.map(item => item.emoji))).map(([emoji, count]) => (
+                <div key={emoji} className="flex gap-4 justify-between items-center w-20">
+                    <div className="text-lg w-20 flex">{count} <div>x</div></div>
+                    <EmotionElement emoji={emoji} selectedEmoji={undefined} setSelectedEmoji={function (value: any): void {
+                        throw new Error("Function not implemented.");
+                    } }/>
+                </div>
+            ))}
+        </div>
+        <div className="flex gap-6 w-2/3 m-auto z-10 p-6 rounded-3xl flex-wrap ring-1 bg-gray-100">
+            {/* if finalDairyItem.value > 15 write finalDairyItem.text */}
+            <h2 className="w-full text-lg">Nejlepší dny za tento měsíc</h2>
+            {finalDiaryItems.map(item => item.emojiValue > 15 && 
+                <div className="flex flex-wrap w-[calc(45%)] gap-4">
+                    <div className="w-6">
+                        <EmotionElement emoji={item.emoji} selectedEmoji={undefined} setSelectedEmoji={function (value: any): void {
+                            throw new Error("Function not implemented.");
+                        }}/>
+                    </div>
+                    <div className="flex flex-col">
+                        <div>{item.date.toDateString()}</div>
+                        <div>{item.text}</div>
+                    </div>
+                </div>
+            )}
         </div>
     </div>
   )
