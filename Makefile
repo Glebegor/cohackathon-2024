@@ -15,7 +15,7 @@ db-stop-postgres-dev:
 
 # rabbitmq run dev
 rabbitmq-run-dev:
-	docker run -it --rm --name rabbitmq -p 5300:5672 -p 5301:15672 --rm -d rabbitmq:3.13-management
+	docker run -it --rm --name hackathon-rabbitmq -p 5300:5672 -p 5301:15672 --rm -d rabbitmq:3.13-management
 
 rabbitmq-stop-dev:
 	docker stop hackathon-rabbitmq
