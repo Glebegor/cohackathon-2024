@@ -7,12 +7,10 @@ import { createClient, RedisClientType } from "redis";
 export class DiaryController extends BaseController {
   private childHouseModel: DiaryModel;
   private config: Config;
-  private redisClient: RedisClientType;
 
   constructor() {
     super();
     this.config = newConfig();
-    this.redisClient = createClient();
     this.childHouseModel = new DiaryModel();
   }
 

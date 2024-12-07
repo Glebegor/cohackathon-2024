@@ -14,7 +14,7 @@ export class ChildHouseController extends BaseController {
     super();
     this.config = newConfig();
     this.connectedRedisClient = connRedisCli;
-    this.childHouseModel = new ChildHouseModel();
+    this.childHouseModel = new ChildHouseModel(this.connectedRedisClient);
   }
 
   async createChildHouse(req: Request, res: Response): Promise<void> {

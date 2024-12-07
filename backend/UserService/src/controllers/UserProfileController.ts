@@ -3,17 +3,18 @@ import { UserProfileModel } from "../models/UserProfileModel";
 import { BaseController } from "./BaseController";
 import { Config, newConfig } from "../config/config";
 import { createClient, RedisClientType } from "redis";
+import  connRedisCli  from "../database/redis";
 
 export class UserProfileController extends BaseController {
   private userProfileModel: UserProfileModel;
   private config: Config;
-  private redisClient: RedisClientType;
+  private connectedRedisClient: any;
 
   constructor() {
     super();
     this.config = newConfig();
-    this.redisClient = createClient();
-    this.userProfileModel = new UserProfileModel();
+    this.connectedRedisClient = connRedisCli;
+    this.userProfileModel = new UserProfileModel(this.connectedRedisClient);
   }
 
   async createUserProfile(req: Request, res: Response): Promise<void> {

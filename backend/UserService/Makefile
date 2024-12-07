@@ -9,4 +9,4 @@ run-prod:
 	cp ./src/config/.prod.env ./.env
 	cp ./src/config/config.prod.json ./src/config/config.json
 	docker build  -t userservice-hack .
-	docker run --name="userservice-hack" --network hackathon-network --rm -p 5002:5002 userservice-hack
+	docker run --name="userservice-hack" --network hackathon-network --rm -d -p 5002:5002 userservice-hack

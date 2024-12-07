@@ -2,8 +2,11 @@ import { PrismaClient, UserProfile } from "@prisma/client";
 import { BaseModel } from "./BaseModel";
 
 export class UserProfileModel extends BaseModel {
-  constructor() {
+  public conRedCli: any;
+
+  constructor(connectedRedisClient: any) {
     super();
+    this.conRedCli = connectedRedisClient;
   }
 
   async createUserProfile(data: Omit<UserProfile, "id">): Promise<UserProfile> {
@@ -16,6 +19,13 @@ export class UserProfileModel extends BaseModel {
 
   async getUserProfileById(id: number): Promise<UserProfile | null> {
     try {
+      var userProfile = await this.conRedCli.get(id);
+      if (userProfile) {
+        return JSON.parse(userProfile);
+      } else {
+        userProfile = await this.prisma.userProfile.findUnique({ where: { id } });
+        await this.conRedCli.set(id, JSON.stringify(userProfile));
+      }
       return await this.prisma.userProfile.findUnique({ where: { id } });
     } catch (error) {
       throw new Error(`Error retrieving user profile: ${error.message}`);
