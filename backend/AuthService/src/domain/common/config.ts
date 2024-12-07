@@ -22,7 +22,7 @@ type Config = {
         }
     }
     services: {
-        authServicePort: number;
+        supportServicePort: number;
         userServicePort: number;
         messagesServicePort: number;
     }

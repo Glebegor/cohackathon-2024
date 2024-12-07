@@ -30,8 +30,8 @@ const ChatNavbar: React.FC<ChatNavbarProps> = ({ onSelectUser }) => {
         onSelectUser(user.name);
     }
     return (
-    <div className="w-1/3 pt-4 border-r border-gray-500">
-        <h3 className="flex justify-center text-xl border-b border-gray-500">Uživatelé</h3>
+    <div className="w-1/3 pt-4 bg-gray-200 m-4 rounded-3xl">
+        <h3 className="flex justify-center text-xl ">Uživatelé</h3>
         <div className="flex flex-col">
             {users.map((user, index) => (
                 <div key={index} className="flex items-center gap-3 p-3 cursor-pointer" onClick={() => handleUser(user)}>

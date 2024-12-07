@@ -108,7 +108,7 @@ const Messages = () => {
     <div className="flex h-full">
         <ChatNavbar onSelectUser={handleSelectUser} />
 
-        {selectedUser !== "null" ? <div className="w-2/3 h-full flex flex-col justify-center items-center">
+        {selectedUser !== "null" ? <div className="w-2/3 max-h-full flex flex-col justify-center items-center m-4">
             {/* Header/Name */}
             <div className="flex justify-between h-[10%] w-full p-5">
                 <h2>{selectedUser}</h2>

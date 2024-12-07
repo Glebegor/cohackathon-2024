@@ -135,11 +135,12 @@ class ControllerAuth {
         res.status(200).send(resp);
     }
 
-    routes(router: express.Router, routeString: string): void {
+    routes(router: express.Router, routeString: string): express.Router {
         router.post(routeString + '/login', this.login);
         router.post(routeString + '/refresh', this.refresh);
         router.post(routeString + '/verify', this.verify);
         router.post(routeString + '/approve', this.approve);
+        return router;
     }
 }
 

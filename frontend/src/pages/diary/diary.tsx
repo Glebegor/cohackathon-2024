@@ -85,8 +85,8 @@ export const Diary:React.FC<DiaryProps> = () => {
                 </svg>
             </div>
             <div className="flex flex-col gap-8 w-2/3 m-auto z-10 pt-14">
-                <div className="flex justify-between items-center gap-4">
-                    <p className="text-4xl text-white font-sans font-semibold select-none">Můj deníček</p>
+                <div className="flex justify-between items-center gap-4 mt-16">
+                    <p className="text-3xl text-black  font-sans font-semibold select-none">Můj deníček</p>
                     <button className="bg-fosterPink hover:bg-fosterPink/90 text-white px-4 py-2 rounded-3xl">Nový záznam</button>
                 </div>
                 <div className="flex flex-col gap-6 p-6 bg-gray-200 rounded-3xl">
