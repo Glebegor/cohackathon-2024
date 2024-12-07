@@ -5,7 +5,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { cn } from "@/lib/utils";
 import Lottie from "lottie-react";
 import { CalendarIcon, CircleXIcon } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 
 const DiaryItem:React.FC<DiaryItemProps> = ({item}) => {
     return(
@@ -25,7 +25,7 @@ const DiaryItem:React.FC<DiaryItemProps> = ({item}) => {
     )
 }
 
-export const Diary:React.FC<DiaryProps> = () => {
+const Diary:React.FC<DiaryProps> = () => {
     const diaryItems:DiaryItem[] = [
         {
             text: "Dobrý",
@@ -64,10 +64,18 @@ export const Diary:React.FC<DiaryProps> = () => {
         },
     ];
 
+    const [newNote, setNewNote] = useState<DiaryItem>({
+        text: "",
+        date: new Date(),
+        emoji: "smile",
+    });
+
     const [search, setSearch] = React.useState<string>("")
     const [from, setFrom] = React.useState<Date>()
     const [to, setTo] = React.useState<Date>()
     const [emoji, setEmoji] = React.useState<string>()
+
+    const [newForm, setNewForm] = useState<boolean>(false);
 
     const finalDiaryItems = diaryItems.filter(item => (
         (!from || item.date >= from) && (!to || item.date <= to) &&
@@ -78,37 +86,31 @@ export const Diary:React.FC<DiaryProps> = () => {
 
     return (
         <div className="relative">
-            <div className="-z-50 top-0 left-0 absolute w-full">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 1440 320"
-                    preserveAspectRatio="none"
-                    style={{
-                    top: 0,
-                    left: 0,
-                    opacity: 1,
-                    width: "100%",
-                    height: "50%",
-                    zIndex: 1,
-                    }}
-                >
-                    <defs>
-                    <linearGradient id="wave-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style={{ stopColor: "#e54f95", stopOpacity: 1 }} />
-                        <stop offset="100%" style={{ stopColor: "#4a328a", stopOpacity: 1 }} />
-                    </linearGradient>
-                    </defs>
-                    <path
-                    d="M0,64L30,69.3C60,75,120,85,180,101.3C240,117,300,139,360,133.3C420,128,480,96,540,90.7C600,85,660,107,720,122.7C780,139,840,149,900,133.3C960,117,1020,75,1080,74.7C1140,75,1200,117,1260,128C1320,139,1380,149,1410,154.7L1440,160V0H1410C1380,0,1320,0,1260,0C1200,0,1140,0,1080,0C1020,0,960,0,900,0C840,0,780,0,720,0C660,0,600,0,540,0C480,0,420,0,360,0C300,0,240,0,180,0C120,0,60,0,30,0L0,0Z"
-                    fill="url(#wave-gradient)"
-                    />
-                </svg>
-            </div>
             <div className="flex flex-col gap-8 w-2/3 m-auto z-10 pt-14">
-                <div className="flex justify-between items-center gap-4 mt-16">
-                    <p className="text-3xl text-black  font-sans font-semibold select-none">Můj deníček</p>
-                    <button className="bg-fosterPink hover:bg-fosterPink/90 text-white px-4 py-2 rounded-3xl">Nový záznam</button>
+                <div className="flex justify-between items-center gap-4">
+                    <p className="text-4xl text-white font-sans font-semibold select-none">Můj deníček</p>
+                    <Button className="bg-fosterPink hover:bg-fosterPink/90 text-white px-4 py-2 rounded-3xl" onClick={() => setNewForm(prev => !prev)}>Nový záznam</Button>
                 </div>
+                {newForm && <div className="flex flex-col gap-6 p-6 bg-gray-200 rounded-3xl animate-in duration-1000">
+                    <div>
+                        <input value={newNote.text} onChange={e => setNewNote(prev => ({...prev, text: e.target.value}))} type="text" placeholder="Jak se dneska máš?" className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"/>
+                    </div>
+                    <div className="flex gap-4 items-center">
+                        <div className="flex gap-4 items-center flex-1">
+                            {
+                                ["smile", "angry", "surprised", "love", "sad", "sadWithTear", "neutral", "joy", "mindBlown", "party", "sleep", "updown"].map((emj) => (
+                                    <div className={`max-w-12 max-h-12 ${newNote.emoji && newNote.emoji !== emj && "opacity-50"}`} onClick={() => setNewNote(prev => ({...prev, emoji: prev.emoji === emj ? undefined : emj}))}>
+                                        <Lottie animationData={emojis[emj as keyof typeof emojis]} loop={emj === newNote.emoji} autoplay={true}/>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                        <div className="flex gap-4">
+                            <Button className="bg-fosterPink hover:bg-fosterPink/90">Do deníčku</Button>
+                            <Button className="bg-fosterPurple hover:bg-fosterPurple/90">Sdílet</Button>
+                        </div>
+                    </div>
+                </div>}
                 <div className="flex flex-col gap-6 p-6 bg-gray-200 rounded-3xl">
                     <div>
                         <input value={search} onChange={(e) => setSearch(e.target.value)} type="text" placeholder="Vyhledat záznam" className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"/>
@@ -197,3 +199,5 @@ export const Diary:React.FC<DiaryProps> = () => {
         </div>
     );
 }
+
+export default Diary;

@@ -1,7 +1,9 @@
 type NavbarItem = {
     name: string,
     icon: ReactNode,
-    link: string
+    link: string,
+    hoverColor: string,
+    activeColor: string
 }
 
 type NavbarProps = {

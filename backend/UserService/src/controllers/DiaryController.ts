@@ -24,7 +24,7 @@ export class DiaryController extends BaseController {
       const id = parseInt(req.params.id);
       const diary = await this.childHouseModel.getDiaryById(id);
       if (!diary) {
-        res.status(404).json({ success: false, message: "Child house not found" });
+        res.status(404).json({ success: false, message: "Diary not found" });
         return;
       }
       res.status(200).json({ success: true, data: diary });

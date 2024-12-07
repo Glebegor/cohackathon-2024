@@ -12,7 +12,7 @@ Main backend ip is 5000:<br>
 - PostgreSQLAuth - 5200
 - RabbitMQ - app: 5300, managment 5301
 - Redis - 5400
-- LoadBalancer - 5500
+- LoadBalancer - 5500 ?
 
 ## User roles
 - 0 child -18

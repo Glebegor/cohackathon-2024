@@ -69,7 +69,7 @@ describe("UserController", () => {
       expect(res.status).toHaveBeenCalledWith(500);
       expect(res.json).toHaveBeenCalledWith({
         success: false,
-        message: error.message,
+        message: "Internal server error",
       });
     });
   });

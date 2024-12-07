@@ -1,4 +1,4 @@
-interface User {
+export interface User {
     id: number;
     childhouse_id: number;
     name: string;
@@ -9,7 +9,7 @@ interface User {
     activated: boolean;
 }
 
-interface UserProfile {
+export interface UserProfile {
     user: User;
     description: string;
     interests: string[];

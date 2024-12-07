@@ -1,18 +1,25 @@
 
 server:
-  port: 8080
+  port: 5003
   host: localhost
 db:
   mongo:
     username: root
     database: hackathon-mongo
-    host: localhost
-    port: 27017
+    host: 0.0.0.0
+    port: 5100
     name: hackathon-mongo
 
   postgres:
     username: root
     database: hackathon-postgres
-    host: localhost
-    port: 5432
+    host: 0.0.0.0
+    port: 5200
     name: hackathon-postgres
+
+services:
+  auth: 5001
+  user: 5002
+  support: 5004
+
+    

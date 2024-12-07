@@ -1,0 +1,3 @@
+type LazyLoderProps = {
+    children: ReactNode
+}

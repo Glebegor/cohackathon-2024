@@ -71,7 +71,7 @@ describe("ChildHouseController", () => {
       expect(res.status).toHaveBeenCalledWith(500);
       expect(res.json).toHaveBeenCalledWith({
         success: false,
-        message: error.message,
+        message: "Internal server error",
       });
     });
   });
@@ -174,7 +174,7 @@ describe("ChildHouseController", () => {
       expect(res.status).toHaveBeenCalledWith(500);
       expect(res.json).toHaveBeenCalledWith({
         success: false,
-        message: error.message,
+        message: "Internal server error",
       });
     });
   });

@@ -21,8 +21,8 @@ func NewMessageController(db *mongo.Database, config *bootstrap.Config) common.M
 }
 
 func (c *MessageController) SetupRouter(gin *gin.Engine) {
-	gin.GET("/messages")
-	gin.GET("/messages/chatIds")
+	gin.GET("/messages", c.GetLast10Messages)
+	gin.GET("/messages/chatIds", c.GetChatIds)
 }
 
 func (c *MessageController) GetLast10Messages(ctx *gin.Context) {
@@ -34,14 +34,12 @@ func (c *MessageController) GetLast10Messages(ctx *gin.Context) {
 	}
 
 	messages, err := c.usecase.GetLast10Messages(input)
-
 	if err != nil {
 		ctx.JSON(500, gin.H{"error": err.Error()})
 		return
 	}
 
-	ctx.JSON(200, messages)
-
+	ctx.JSON(200, map[string]interface{}{"status": 200, "data": messages})
 }
 
 func (c *MessageController) GetChatIds(ctx *gin.Context) {
@@ -52,12 +50,12 @@ func (c *MessageController) GetChatIds(ctx *gin.Context) {
 		return
 	}
 
-	chatIds, err := c.usecase.GetChatIds()
+	chatIds, err := c.usecase.GetChatIds(input)
 
 	if err != nil {
 		ctx.JSON(500, gin.H{"error": err.Error()})
 		return
 	}
 
-	ctx.JSON(200, chatIds)
+	ctx.JSON(200, map[string]interface{}{"status": 200, "data": chatIds})
 }
