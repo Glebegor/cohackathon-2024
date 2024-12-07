@@ -2,7 +2,7 @@
 import { DesignContext } from "@/context/design";
 import { EMediaQuery } from "@/enums/design";
 import React, { useContext } from "react";
-import logo from "@/../public/IScorp_logo.png";
+import logo from "@/../public/Logo.png";
 
 import { Menu } from 'lucide-react';
 import { Link } from "react-router";
@@ -13,9 +13,9 @@ export const Navbar: React.FC<NavbarProps> = () => {
     return(
         <>
             {mediaContext.media === EMediaQuery.DESKTOP &&
-                <div className="w-full px-[7.5%] py-8 flex items-center justify-between absolute bg-transparent z-[100]">
+                <div className="w-full px-[7.5%] py-6 flex items-center justify-between absolute bg-transparent z-[100]">
                     <Link to="/">
-                        <img src={logo} alt="Logo" className="w-[230px] h-[70px] cursor-pointer"/>
+                        <img src={logo} alt="Logo" className="w-[200px] h-[60px] cursor-pointer"/>
                     </Link>
                     <div className="flex flex-row gap-[30px]">
                         <div className="flex flex-row justify-between items-center gap-[30px]">
@@ -36,7 +36,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
             {mediaContext.media === EMediaQuery.MOBILE && 
                 <div className="w-full px-[7.5%] py-8 flex items-center justify-between absolute bg-transparent z-[100]">
                     <Link to="/">
-                        <img src={logo} alt="Logo" className="w-[230px] h-[90px] cursor-pointer"/>
+                        <img src={logo} alt="Logo" className="w-[175px] h-[70px] cursor-pointer"/>
                     </Link>
                     <Menu className="block cursor-pointer w-[40px] h-[40px] text-black"/>
                 </div>
