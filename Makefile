@@ -13,19 +13,31 @@ db-run-postgres-dev:
 db-stop-postgres-dev:
 	docker stop hackathon-postgres
 
-# Db run dev
-db-run-all-dev: 
-	make db-run-mongo-dev || true
-	make db-run-postgres-dev || true
-
-db-stop-all-dev: 
-	make db-stop-mongo-dev || true
-	make db-stop-postgres-dev || true
-
 # rabbitmq run dev
-
 rabbitmq-run-dev:
 	docker run -it --rm --name rabbitmq -p 5300:5672 -p 5301:15672 --rm -d rabbitmq:3.13-management
 
 rabbitmq-run-dev:
 	docker stop hackathon-rabbitmq
+
+# Redis dev
+db-run-redis-dev:
+	docker network create hackathon-network || true
+	docker run --name="hackathon-redis" -d --rm -p 5400:6379 redis
+
+db-stop-redis-dev:
+	docker stop hackathon-redis
+
+
+# Run all containers
+db-run-all-dev: 
+	make db-run-mongo-dev || true
+	make db-run-postgres-dev || true
+	make db-run-rabbitmq-dev || true
+	make db-run-redis-dev || true
+
+db-stop-all-dev: 
+	make db-stop-mongo-dev || true
+	make db-stop-postgres-dev || true
+	make db-stop-rabbitmq-dev || true
+	make db-stop-redis-dev || true
