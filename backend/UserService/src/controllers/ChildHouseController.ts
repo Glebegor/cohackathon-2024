@@ -33,6 +33,15 @@ export class ChildHouseController extends BaseController {
     }
   }
 
+  async getAllChildHouses(req: Request, res: Response): Promise<void> {
+    try {
+      const childHouses = await this.childHouseModel.getAllChildHouses();
+      res.status(200).json({ success: true, data: childHouses });
+    } catch (error) {
+      this.handleError(error, res);
+    }
+  }
+
   async updateChildHouse(req: Request, res: Response): Promise<void> {
     try {
       const id = parseInt(req.params.id, 10);

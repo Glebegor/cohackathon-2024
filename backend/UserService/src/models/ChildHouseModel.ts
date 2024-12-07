@@ -22,6 +22,14 @@ export class ChildHouseModel extends BaseModel {
     }
   }
 
+  async getAllChildHouses(): Promise<ChildHouse[]> {
+    try {
+      return await this.prisma.childHouse.findMany();
+    } catch (error) {
+      throw new Error(`Error retrieving all child houses: ${error.message}`);
+    }
+  }
+  
   async updateChildHouse(
     id: number,
     data: Partial<ChildHouse>
