@@ -14,9 +14,10 @@ func main() {
 	app := bootstrap.NewApplication()
 	config := app.Config
 	db := app.Db
+	mq := app.AmqpConnection
 
 	gin := gin.Default()
 
-	controllers.SetupRouter(gin, db, config)
+	controllers.SetupRouter(gin, db, config, mq)
 	gin.Run(config.Server_host + ":" + config.Server_port)
 }

@@ -6,6 +6,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
+	"github.com/streadway/amqp"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
@@ -18,13 +19,13 @@ func upgraderInit() websocket.Upgrader {
 	return upgrader
 }
 
-func SetupRouter(gin *gin.Engine, db *mongo.Database, config *bootstrap.Config) {
+func SetupRouter(gin *gin.Engine, db *mongo.Database, config *bootstrap.Config, mq *amqp.Connection) {
 
 	// Controllers initialization
-	controllerMessage := NewMessageController(db, config)
+	controllerMessage := NewMessageController(db, config, mq)
 	controllerMessage.SetupRouter(gin)
 
 	upgrader := upgraderInit()
-	controllerWebSockets := NewWsController(db, config, upgrader)
+	controllerWebSockets := NewWsController(db, config, upgrader, mq)
 	controllerWebSockets.SetupRouter(gin)
 }

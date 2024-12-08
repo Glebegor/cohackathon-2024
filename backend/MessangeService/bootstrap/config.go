@@ -27,6 +27,11 @@ type Config struct {
 	Services_auth_port    string
 	Services_user_port    string
 	Services_support_port string
+
+	Rabbitmq_host     string
+	Rabbitmq_port     string
+	Rabbitmq_username string
+	Rabbitmq_password string
 }
 
 func NewConfig() (*Config, error) {
@@ -64,6 +69,11 @@ func NewConfig() (*Config, error) {
 	config.Services_auth_port = viper.GetString("services.auth.port")
 	config.Services_user_port = viper.GetString("services.user.port")
 	config.Services_support_port = viper.GetString("services.support.port")
+
+	config.Rabbitmq_host = viper.GetString("rabbitmq.host")
+	config.Rabbitmq_port = viper.GetString("rabbitmq.port")
+	config.Rabbitmq_username = viper.GetString("rabbitmq.username")
+	config.Rabbitmq_password = os.Getenv("RABBITMQ_PASSWORD")
 
 	return config, nil
 }

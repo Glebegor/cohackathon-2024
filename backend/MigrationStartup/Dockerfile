@@ -1,22 +1,24 @@
+# Use the official Node.js image
 FROM node:18
 
-# Set working directory
+# Set the working directory in the container
 WORKDIR /usr/src/app
 
-# Build argument for NODE_ENV, default to 'prod'
-ARG NODE_ENV=prod
-ENV NODE_ENV=$NODE_ENV
+# Copy package.json and package-lock.json first (for better caching)
+COPY package.json package-lock.json ./
 
-# Copy necessary configuration files
-COPY package*.json tsconfig.json ./
+# Install the dependencies
+RUN npm install
 
-# Install dependencies (including dev dependencies for non-prod builds)
-RUN npm install --include=dev --frozen-lockfile --no-audit
-
-# Copy the rest of the application code
+# Copy the rest of the application files
 COPY . .
 
-# Generate the Prisma client (needed for prod as well as dev)
-RUN npx prisma migrate deploy
+# Install TypeScript and ts-node globally (if needed)
+RUN npm install -g ts-node typescript
+
+# Generate Prisma client
 RUN npx prisma generate
-RUN npx prisma db seed
+
+# Run the Prisma seeding script using ts-node (without --loader ts-node/esm)
+RUN npx prisma migrate dev --name init
+RUN npx ts-node prisma/seed.ts

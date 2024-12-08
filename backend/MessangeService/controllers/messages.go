@@ -4,20 +4,23 @@ import (
 	bootstrap "hackathon-messages/bootstrap"
 	common "hackathon-messages/domain/common"
 	"hackathon-messages/domain/entities"
+	"hackathon-messages/middleware"
 	"hackathon-messages/usecase"
 
 	"github.com/gin-gonic/gin"
+	"github.com/streadway/amqp"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
 type MessageController struct {
 	config  *bootstrap.Config
 	usecase common.MessagesUsecase
+	mq      *amqp.Connection
 }
 
-func NewMessageController(db *mongo.Database, config *bootstrap.Config) common.MessagesController {
+func NewMessageController(db *mongo.Database, config *bootstrap.Config, mq *amqp.Connection) common.MessagesController {
 	usecase := usecase.NewMessageUsecase(db)
-	return &MessageController{config: config, usecase: usecase}
+	return &MessageController{config: config, usecase: usecase, mq: mq}
 }
 
 func (c *MessageController) SetupRouter(gin *gin.Engine) {
@@ -32,6 +35,7 @@ func (c *MessageController) GetLast10Messages(ctx *gin.Context) {
 		ctx.JSON(400, gin.H{"error": err.Error()})
 		return
 	}
+	middleware.VerificationOfTheTokenMiddleWare(ctx, c.config)
 
 	messages, err := c.usecase.GetLast10Messages(input)
 	if err != nil {

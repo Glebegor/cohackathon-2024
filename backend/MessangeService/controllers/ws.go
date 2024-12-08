@@ -10,6 +10,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
+	"github.com/streadway/amqp"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
@@ -17,14 +18,16 @@ type WsController struct {
 	usecase  common.WsUsecase
 	config   *bootstrap.Config
 	upgrader websocket.Upgrader
+	mq       *amqp.Connection
 }
 
-func NewWsController(db *mongo.Database, config *bootstrap.Config, upgrader websocket.Upgrader) common.WsController {
+func NewWsController(db *mongo.Database, config *bootstrap.Config, upgrader websocket.Upgrader, mq *amqp.Connection) common.WsController {
 	usecasee := usecase.NewWsUsecase(db)
 	return &WsController{
 		usecase:  usecasee,
 		config:   config,
 		upgrader: upgrader,
+		mq:       mq,
 	}
 }
 func (wsController *WsController) SetupRouter(router *gin.Engine) {

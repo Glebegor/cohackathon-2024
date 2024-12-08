@@ -9,7 +9,7 @@
         "postgres": {
             "user": "root",
             "host": "hackathon-postgres",
-            "database": "postgres",
+            "database": "postgresmain",
             "port": "5432"
         }, 
         "mongo": {
