@@ -79,12 +79,12 @@ const Statistics:React.FC<DiaryProps> = () => {
 
   return (
     <div className="flex flex-col gap-8">
-        <div className="flex flex-col gap-8 w-2/3 m-auto z-10 pt-14">
+        <div className="flex flex-col gap-8 md:w-2/3 max-md:p-8 m-auto z-10 pt-14">
             <div className="flex justify-between items-center gap-4">
                 <p className="text-4xl text-white font-sans font-semibold select-none">Statistiky deníčku</p>
             </div>
-            <div className="flex gap-8 justify-stretch items-stretch">
-                <div className="w-1/4 flex flex-col gap-6 p-6 bg-gray-200 rounded-3xl justify-stretch items-stretch">
+            <div className="flex gap-8 justify-stretch items-stretch max-md:flex-col">
+                <div className="md:w-1/4 flex flex-col gap-6 p-6 bg-gray-200 rounded-3xl justify-stretch items-stretch">
                     <h2 className="w-full text-xl">Nejčastější nálady</h2>
                     <div className="flex flex-col gap-4">
                         {Object.entries(handleEmojiCount(finalDiaryItems.map(item => item.emoji))).map(([emoji, count]) => (
@@ -99,7 +99,7 @@ const Statistics:React.FC<DiaryProps> = () => {
                         ))}
                     </div>
                 </div>
-                <div className="w-3/4 flex flex-col gap-6 p-6 bg-gray-200 rounded-3xl">
+                <div className="md:w-3/4 flex flex-col gap-6 p-6 bg-gray-200 rounded-3xl">
                     <h2 className="w-full text-xl">Highligths z deníčku</h2>
                     {finalDiaryItems.sort((a, b) => b.emojiValue - a.emojiValue).slice(0, 4).map(item =>
                         <div className="flex gap-4 items-center">

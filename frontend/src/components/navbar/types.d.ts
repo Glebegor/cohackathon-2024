@@ -18,4 +18,5 @@ type DesktopNavbarProps = {
 
 type NavbarItemProps = {
     item: NavbarItem
+    isMobile: boolean
 }

@@ -6,7 +6,7 @@ import React from "react";
 
 const EmotionElement:React.FC<EmotionElementProps> = ({emoji, selectedEmoji, setSelectedEmoji}) => {
     return(
-        <div className={`${selectedEmoji && selectedEmoji !== emoji &&"opacity-50"}`} onClick={() => setSelectedEmoji(selectedEmoji === emoji ? undefined : emoji)}>
+        <div className={`max-md:size-8 ${selectedEmoji && selectedEmoji !== emoji &&"opacity-50"}`} onClick={() => setSelectedEmoji(selectedEmoji === emoji ? undefined : emoji)}>
             <Lottie autoplay={selectedEmoji === emoji} loop={selectedEmoji === emoji} animationData={emojis[emoji as keyof typeof emojis]}/>
         </div>
     )
@@ -18,19 +18,19 @@ export const ReactionInput:React.FC<ReactionInputProps> = ({}) => {
     const [selectedEmoji, setSelectedEmoji] = React.useState<EmojiType>();
 
     return(
-        <div className="w-full min-h-64 relative pl-32">
+        <div className="w-full relative pl-32">
             <div className="absolute top-0 left-0 scale-125">
                 <img className="size-36" src="cat.png"/>
             </div>
             <div className="bg-gray-200 rounded-3xl w-full h-full p-6 flex flex-col gap-5">
-                <p className="text-3xl font-sans font-semibold select-none">Jak se dneska máš?</p>
-                <div className="flex gap-6 items-center p-2">
+                <p className="text-2xl font-sans font-semibold select-none">Jak se dneska máš?</p>
+                <div className="flex gap-6 max-md:gap-2 justify-center items-center p-2 max-md:flex-wrap">
                     {emojis.map((emoji) => (
                         <EmotionElement {...{emoji, selectedEmoji, setSelectedEmoji}} />
                     ))}     
                 </div>
                 {selectedEmoji && (
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 max-md:flex-wrap max-md:justify-center">
                         <Input placeholder="Copak se ti dnes přihodilo?" className="w-full"/>
                         <Button className="bg-fosterPink hover:bg-fosterPink/90">Do deníčku</Button>
                         <Button className="bg-fosterPurple hover:bg-fosterPurple/90">Sdílet</Button>

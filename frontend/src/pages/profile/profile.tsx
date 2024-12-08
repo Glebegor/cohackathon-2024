@@ -1,26 +1,21 @@
-import { emojis, EmojiType } from "@/components/emotions";
+import { emojis } from "@/components/emotions";
 import Lottie from "lottie-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import avatarImg from "../../../public/avatar.jpg"
 import { Button } from "@/components/ui/button";
 import { useContext, useState } from "react";
-import { User, UserProfile } from '../../../../types/user'; 
+import { UserProfile } from '../../../../types/user'; 
 import { GlobalContext } from "@/context/global";
-import { UserRoundCheck, UserRoundPlus } from "lucide-react";
-
-const EmotionElement:React.FC<EmotionElementProps> = ({emoji}) => {
-    return(
-        <div>
-            <Lottie animationData={emojis[emoji as keyof typeof emojis]}/>
-        </div>
-    )
-}
+import { Sparkles, UserRound, UserRoundCheck, UserRoundPlus } from "lucide-react";
+import { Input } from "@/components/ui/input";
 
 const Profile = () => {
     const globalContext = useContext(GlobalContext);
     const [isFriend, setIsFriend] = useState<boolean>(false);
 
     const isMe = false;
+
+    const [newLabel, setNewLabel] = useState<string>("");
 
     const [user, setUser] = useState<UserProfile>(
         {
@@ -35,7 +30,7 @@ const Profile = () => {
 
     return(
         <div>
-            <div className="flex flex-col gap-8 w-2/3 m-auto z-10 pt-14">
+            <div className="flex flex-col gap-8 md:w-2/3 max-md:p-8 m-auto z-10 pt-14">
                 <div className="flex justify-between items-center gap-4">
                     <div className="flex gap-4 items-center">
                         <Avatar className="size-16">
@@ -49,14 +44,15 @@ const Profile = () => {
                         {isFriend ? "Přátelé" : "Do přátel"}
                     </Button>
                 </div>
-                <div className="flex flex-col gap-4 p-6 bg-gray-200 rounded-3xl animate-in duration-1000">
-                    <p className="text-xl font-sans font-semibold">O mně</p>
-                    <p className="text-lg text-black/80 font-sans font-semibold">{user.description}</p>
-                    <p className="text-xl font-sans font-semibold">Zájmy</p>
-                    <div className="flex gap-2">
+                <div className="flex flex-col gap-6 p-6 bg-gray-200 rounded-3xl animate-in duration-1000">
+                    <p className="text-xl font-sans font-semibold flex gap-2 items-center"><UserRound/>O mně</p>
+                    <p className="text-lg text-black/80 font-sans font-semibold ml-14">{user.description}</p>
+                    <p className="text-xl font-sans font-semibold flex gap-2 items-center"><Sparkles/>Zájmy</p>
+                    <div className="flex gap-2 ml-14 items-center flex-wrap">
                         {user.interests.map((interest) => (
                             <Button variant="outline" size="sm" key={interest}>{interest}</Button>
                         ))}
+                        <Input className="w-min" value={newLabel} onChange={e => setNewLabel(e.target.value)} placeholder={"Nový tag"} />
                     </div>
                 </div>
             </div>

@@ -93,7 +93,7 @@ const Diary:React.FC<DiaryProps> = () => {
 
     return (
         <div className="relative">
-            <div className="flex flex-col gap-8 w-2/3 m-auto z-10 pt-14">
+            <div className="flex flex-col gap-8 md:w-2/3 max-md:p-8 m-auto z-10 pt-14">
                 <div className="flex justify-between items-center gap-4">
                     <p className="text-4xl text-white font-sans font-semibold select-none">Můj deníček</p>
                     <Button className="bg-fosterPink hover:bg-fosterPink/90 text-white px-4 py-2 rounded-3xl" onClick={() => setNewForm(prev => !prev)}>Nový záznam</Button>
@@ -122,7 +122,7 @@ const Diary:React.FC<DiaryProps> = () => {
                     <div>
                         <input value={search} onChange={(e) => setSearch(e.target.value)} type="text" placeholder="Vyhledat záznam" className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"/>
                     </div>
-                    <div className="flex gap-4 items-center">
+                    <div className="flex gap-4 items-center max-md:flex-col">
                         <div>
                             <Popover>
                                 <PopoverTrigger asChild>
@@ -179,10 +179,10 @@ const Diary:React.FC<DiaryProps> = () => {
                                 </PopoverContent>
                             </Popover>
                         </div>
-                        <div className="flex gap-4 items-center">
+                        <div className="flex gap-4 items-center max-md:flex-wrap max-md:justify-center">
                             {
                                 ["smile", "angry", "surprised", "love", "sad", "sadWithTear", "neutral", "joy", "mindBlown", "party", "sleep", "updown"].map((emj) => (
-                                    <div className={`max-w-12 max-h-12 ${emoji && emoji !== emj && "opacity-50"}`} onClick={() => setEmoji(emoji === emj ? undefined : emj)}>
+                                    <div className={`max-w-12 max-h-12 max-md:size-8 ${emoji && emoji !== emj && "opacity-50"}`} onClick={() => setEmoji(emoji === emj ? undefined : emj)}>
                                         <Lottie animationData={emojis[emj as keyof typeof emojis]} loop={false} autoplay={true}/>
                                     </div>
                                 ))

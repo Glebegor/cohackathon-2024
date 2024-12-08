@@ -1,6 +1,6 @@
 import { DesignContext } from "@/context/design";
 import { EMediaQuery } from "@/enums/design";
-import { HomeIcon, InfoIcon, MapIcon, MessageCircleIcon, NotebookText, ChartLine, SparklesIcon, UserRound, CalendarHeart  } from "lucide-react";
+import { HomeIcon, InfoIcon, MapIcon, MessageCircleIcon, NotebookText, ChartLine, SparklesIcon, UserRound, CalendarHeart, LogOut  } from "lucide-react";
 import React, { useContext } from "react";
 import { useLocation } from "react-router";
 
@@ -60,6 +60,13 @@ const items = {
         link: "/life",
         hoverColor: "hover:stroke-pink-600",
         activeColor: "stroke-pink-600"
+    },
+    logout: {
+        name: "Odhlásit",
+        icon: <LogOut size={24} color="#000000"/>,
+        link: "",
+        hoverColor: "hover:stroke-blue-600",
+        activeColor: "stroke-blue-600"
     }
 }
 
@@ -76,7 +83,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
     )
 }
 
-const NavbarItem:React.FC<NavbarItemProps> = ({item}) => {
+const NavbarItem:React.FC<NavbarItemProps> = ({item, isMobile}) => {
     const location = useLocation();
 
     const isActive = location.pathname === item.link;
@@ -84,7 +91,7 @@ const NavbarItem:React.FC<NavbarItemProps> = ({item}) => {
     console.log(isActive, location.pathname, item.link);
 
     return(
-        <a href={item.link} className={`size-8 flex justify-center items-center ${isActive && item.activeColor}`}>
+        <a href={item.link} className={`${!isMobile ? "size-8" : "size-12"} flex justify-center items-center ${isActive && item.activeColor} ${item.link === "" && "pointer-events-none"}`}>
             {React.cloneElement(item.icon, {
                 className: `hover:scale-110 duration-300 ${item.hoverColor} ${isActive && item.activeColor} `,
             })}
@@ -93,12 +100,12 @@ const NavbarItem:React.FC<NavbarItemProps> = ({item}) => {
 }
 
 const MobileNavbar: React.FC<MobileNavbarProps> = () => {
-    const mobileItems = [items.explore, items.diary, items.statistic, items.chats, items.profile, items.map, items.settings];
+    const mobileItems = [items.explore, items.chats, items.diary, items.statistic, items.life, items.profile, items.settings];
 
     return(
-        <div className="flex fixed bottom-0 h-36">
+        <div className="flex fixed bottom-0 h-20 w-screen justify-around items-center border-t-2 border-gray-400/50 border-solid z-50 bg-white">
             {mobileItems.map((item) => (
-                <NavbarItem {...{item}}/>
+                <NavbarItem {...{item}} isMobile={true}/>
             ))}
         </div>
     )
@@ -109,14 +116,17 @@ const DesktopNavbar: React.FC<DesktopNavbarProps> = () => {
 
     return(
         <div className="h-screen w-20 relative">
-            <div className="flex flex-col gap-14 h-screen fixed w-20 top-0 left-0 border-r-2 py-4">
+            <div className="flex flex-col gap-4 h-screen fixed w-20 top-0 left-0 border-r-2 py-4">
                 <div className="flex-1 flex flex-col items-center gap-8 justify-center">
                     {desktopMainItems.map((item) => (
-                        <NavbarItem {...{item}}/>
+                        <NavbarItem {...{item}} isMobile={false}/>
                     ))}
                 </div>
                 <div className="flex flex-col items-center gap-8">
-                    <NavbarItem item={items.settings} />
+                    <NavbarItem item={items.settings} isMobile={false} />
+                </div>
+                <div onClick={(e) => {e.stopPropagation(); window.location.href = "/"}} className="flex flex-col items-center gap-8">
+                    <NavbarItem item={items.logout} isMobile={false} />
                 </div>
             </div>
         </div>

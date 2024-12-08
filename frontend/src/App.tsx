@@ -10,14 +10,12 @@ import { User } from '../../types/user';
 import { GlobalContext } from './context/global'
 import { Dialog, DialogContent, DialogFooter } from './components/ui/dialog'
 import { Button } from './components/ui/button'
-import { CalendarHeart, Coins, EyeOff, Phone, Users } from 'lucide-react'
+import { CalendarHeart, Coins, EyeOff, Phone } from 'lucide-react'
 
 const Home = lazy(() => import('./pages/home/home'));
-const Dashboard = lazy(() => import('./pages/dashboard/dashboard'));
 const Messages = lazy(() => import('./pages/messages/Messages'));
 const Diary = lazy(() => import('./pages/diary/diary'));
 const Profile = lazy(() => import('./pages/profile/profile'));
-const Map = lazy(() => import('./pages/map/map'));
 const Settings = lazy(() => import('./pages/settings/settings'));
 const Login = lazy(() => import('./pages/login/login'));
 const Statistics = lazy(() => import('./pages/statistic/statistic'));
@@ -78,8 +76,10 @@ function App() {
             </div>
           </div>
           <DialogFooter>
-            <Button className='bg-orange-600 hover:bg-orange-600/80' onClick={() => window.open("https://www.linkabezpeci.cz/", "_blank")}>Web Linky Bezpečí</Button>
-            <Button onClick={() => setLinkaOpen(false)}>Zavřít</Button>
+            <div className='flex gap-2 max-md:flex-col '>
+              <Button className='bg-orange-600 hover:bg-orange-600/80' onClick={() => window.open("https://www.linkabezpeci.cz/", "_blank")}>Web Linky Bezpečí</Button>
+              <Button onClick={() => setLinkaOpen(false)}>Zavřít</Button>
+            </div>
           </DialogFooter>
         </DialogContent>
       </Dialog>
@@ -89,10 +89,8 @@ function App() {
             <Route element={<MainLayout/>}>
               <Route path="chat" element={<LazyLoader><Messages/></LazyLoader>} />
               <Route path="messages" element={<LazyLoader><Messages/></LazyLoader>} />
-              <Route path="dashboard" element={<LazyLoader><Dashboard/></LazyLoader>} />
               <Route path="diary" element={<LazyLoader><Diary/></LazyLoader>} />
               <Route path="profile" element={<LazyLoader><Profile/></LazyLoader>} />
-              <Route path="map" element={<LazyLoader><Map/></LazyLoader>} />
               <Route path="settings" element={<LazyLoader><Settings/></LazyLoader>} />
               <Route path="statistic" element={<LazyLoader><Statistics/></LazyLoader>} />
               <Route path="life" element={<LazyLoader><Life/></LazyLoader>} />

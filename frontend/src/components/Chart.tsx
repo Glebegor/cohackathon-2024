@@ -1,12 +1,8 @@
-import { TrendingUp } from "lucide-react"
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts"
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardFooter,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card"
 import {
   ChartConfig,
@@ -14,8 +10,6 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
-import Lottie from "lottie-react"
-import { emojisComplete, EmojiType } from "./emotions"
 const chartConfig = {
     desktop: {
         label: "Desktop",

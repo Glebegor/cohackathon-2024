@@ -6,12 +6,14 @@ import { Outlet } from "react-router";
 
 
 export const MainLayout: React.FC<MainLayoutProps> = () => {
+    const isMobile = useContext(DesignContext).media === EMediaQuery.MOBILE;
+
     return (
         <div className="z-10 min-h-screen relative w-full">
             <ContentLayout>
                 <Navbar/>
-                <div className="flex-1 relative pb-8">
-                    <div className="-z-50 top-0 left-0 absolute w-full">
+                <div className={`flex-1 relative ${isMobile ? "pb-24" : "pb-8"}`}>
+                    <div className={`-z-50 top-0 left-0 absolute w-full ${isMobile && "h-screen"}`}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 1440 320"

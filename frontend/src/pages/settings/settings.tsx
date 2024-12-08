@@ -13,7 +13,7 @@ const TechIcon:React.FC<TechIconProps> = ({src, alt, title}) => {
 const Settings:React.FC<SettingsProps> = () => {
     return(
         <div>
-            <div className="flex flex-col gap-8 w-2/3 m-auto z-10 pt-14">
+            <div className="flex flex-col gap-8 md:w-2/3 max-md:p-8 m-auto z-10 pt-14">
                 <div className="flex justify-between items-center gap-4">
                     <p className="text-4xl text-white font-sans font-semibold select-none">O aplikaci</p>
                     <Button className="bg-fosterPink hover:bg-fosterPink/90 text-white px-4 py-2 rounded-3xl" onClick={() => window.open('mailto:adam446643@gmail.com')}><Mail/>Napsat email</Button>
