@@ -53,14 +53,12 @@ const Login = () => {
     setIsLoading(true);
     setError("");
 
-    window.location.href = "/explore";
-
     try {
       let response;
 
         switch (mode) {
           case MODE.LOGIN:
-            pb.collection("users").authWithPassword(email, password).then(() => {window.location.href = "/explore"}).catch((err) => {setError("Něco se pokazilo.")});
+            pb.collection("users").authWithPassword(email, password).then((e) => {window.location.href = "/explore"}).catch((err) => {setError("Něco se pokazilo.")});
             break;
           case MODE.REGISTER:
             //register
@@ -194,14 +192,6 @@ const Login = () => {
         )}
 
         {/* Label */}
-        {mode === MODE.LOGIN && (
-          <div
-            className="text-sm underline cursor-pointer"
-            onClick={() => setMode(MODE.RESET_PASSWORD)}
-          >
-            Zapomenuté heslo?
-          </div>
-        )}
         {/* Button */}
         {/* <button
           className="bg-wapit text-white p-2 rounded-md disabled:bg-pink-200 disabled:cursor-not-allowed"
@@ -214,14 +204,6 @@ const Login = () => {
         </Button>
         {/* Labels */}
         {error && <div className="text-red-600">{error}</div>}
-        {mode === MODE.LOGIN && (
-          <div
-            className="text-sm underline cursor-pointer"
-            onClick={() => setMode(MODE.REGISTER)}
-          >
-            Nemáte učet?
-          </div>
-        )}
         {mode === MODE.REGISTER && (
           <div
             className="text-sm underline cursor-pointer"
