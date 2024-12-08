@@ -18,6 +18,12 @@ jobs:
       - name: Setup Node 
         uses: actions/setup-node@v3
 
+      - name: Show folder
+        uses: cat tree
+      
+      - name: Something else
+        uses: ls
+
       - name: Install dependencies
         run: npm i
 
