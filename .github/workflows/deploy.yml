@@ -23,12 +23,16 @@ jobs:
 
       - name: Install dependencies
         run: npm i
+        working-directory: ./frontend
 
       - name: Build project
         run: npm run build
+        working-directory: ./frontend
 
       - name: Delete existing build files
         run: rm -rf /www-pub/foster/dist
+        working-directory: ./frontend
 
       - name: Move production-ready build files
         run: mv ./dist /www-pub/foster
+        working-directory: ./frontend
