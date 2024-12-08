@@ -20,9 +20,6 @@ jobs:
 
       - name: Show folder
         uses: cat tree
-      
-      - name: Something else
-        uses: ls
 
       - name: Install dependencies
         run: npm i
