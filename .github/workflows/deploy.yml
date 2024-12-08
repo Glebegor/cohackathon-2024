@@ -19,9 +19,6 @@ jobs:
         uses: actions/setup-node@v3
 
       - name: Show folder
-        run: cat tree
-
-      - name: Show folder
         run: ls
 
       - name: Install dependencies
