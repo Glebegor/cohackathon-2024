@@ -83,8 +83,8 @@ const Life:React.FC<LifeProps> = () => {
                     )}
                     {currentAnswer !== undefined && (
                         <div className="flex justify-center gap-4">
-                            <Button onClick={handleNext} className="bg-yellow-500 text-black">Další<MoveRight/></Button>
-                            <Button onClick={() => globalContext.setLinkaOpen(true)} className="bg-orange-600 text-black">Pomoc<HeartHandshake/></Button>
+                            <Button onClick={handleNext} className="bg-yellow-500 hover:bg-yellow-500/80 text-black">Další<MoveRight/></Button>
+                            <Button onClick={() => globalContext.setLinkaOpen(true)} className="bg-orange-600 hover:bg-orange-600/80 text-black">Pomoc<HeartHandshake/></Button>
                         </div>
                     )}
                 </>}

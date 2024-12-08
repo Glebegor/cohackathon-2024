@@ -6,7 +6,7 @@ const pestounskaPece = [
       "category": "fosterCare",
       "question": "Víš, co znamená, že vyrůstáš v pěstounské péči?",
       "answers": {
-        "ano": "Fosterův tip: Jestli máš dost odvahy, přečti si zákon o sociálně-právní ochraně dětí. § 47 je věnovaný pěstounské péči.",
+        "ano": "",
         "ne": "To, že jseš v pěstounské péči, znamená, že o tebe pečuje někdo jiný než rodič. O svěření do péče pěstouna nebo pěstounů rozhodl soud. Pěstouni, podobně jako rodiče, jsou zodpovědní za tvoji výchovu. Fosterův tip: Jestli máš dost odvahy, přečti si zákon o sociálně-právní ochraně dětí. § 47 je věnovaný pěstounské péči."
       },
       "tip": "Jestli máš dost odvahy, přečti si zákon o sociálně-právní ochraně dětí. § 47 je věnovaný pěstounské péči.",
@@ -18,7 +18,7 @@ const pestounskaPece = [
       "category": "fosterCare",
       "question": "Víš, jak dlouho trvá pěstounská péče?",
       "answers": {
-        "ano": "Fosterův tip: Studuj, co nejdéle to jde, ať pěstounka běží.",
+        "ano": "",
         "ne": "Pěstounská péče automaticky trvá do tvých 18 let. Pokud budeš dále nezaopatřeným dítětem, tzn. budeš studovat, pak může pěstounská péče trvat až do 26 let. Fosterův tip: Studuj, co nejdéle to jde, ať pěstounka běží."
       },
       "tip": "Studuj, co nejdéle to jde, ať pěstounka běží.",
@@ -30,7 +30,7 @@ const pestounskaPece = [
       "category": "fosterCare",
       "question": "Víš, jaké jsou pravidelně vyplácené dávky pěstounské péče a jak se týkají zrovna tebe?",
       "answers": {
-        "ano": "Fosterův tip: Přesnou výši dávek najdeš v zákoně o sociálně-právní ochraně dětí nebo na stránkách úřadu práce a Ministerstva práce a sociálních věcí.",
+        "ano": "",
         "ne": "Každý měsíc jsou v rámci pěstounské péče vypláceny dávky sloužící v podstatě jako výplata pro pěstouna (příspěvek při pěstounské péči nebo odměna pěstouna) a dávka na úhradu potřeb dítěte, ze které by měli pěstouni hradit náklady spojené s péčí o tebe. Příspěvek na úhradu potřeb dítěte náleží od 18 let tobě, nebo si můžeš vybrat opakující se zaopatřovací příspěvek - v případě, že ještě studuješ a chceš se osamostatnit. Fosterův tip: Přesnou výši dávek najdeš v zákoně o sociálně-právní ochraně dětí nebo na stránkách úřadu práce a Ministerstva práce a sociálních věcí."
       },
       "tip": "Přesnou výši dávek najdeš v zákoně o sociálně-právní ochraně dětí nebo na stránkách úřadu práce a Ministerstva práce a sociálních věcí.",
@@ -42,7 +42,7 @@ const pestounskaPece = [
       "category": "fosterCare",
       "question": "Víš, jak bude vypadat pěstounská péče po tvých 18. narozeninách?",
       "answers": {
-        "ano": "Fosterův tip: Kvůli jednorázovému zaopatřovacímu příspěvku určitě pěstounskou péči neukončuj. Dostaneš ho i později. Je super ho využít například na kauci na byt.",
+        "ano": "",
         "ne": "Když nebudeš dále chodit do školy, v 18 letech pěstounská péče a s ní i dávky skončí. Jestli budeš dále studovat, pěstounská péče pokračuje. Buď může mít podobu jako doposud (dávky pro pěstouny a příspěvek na úhradu potřeb dítěte), nebo se můžeš osamostatnit a požádat o opakující se zaopatřovací příspěvek. Každý měsíc tak budeš dostávat peníze na živobytí. Při konci pěstounské péče máš nárok na jednorázový zaopatřovací příspěvek. Fosterův tip: Kvůli jednorázovému zaopatřovacímu příspěvku určitě pěstounskou péči neukončuj. Dostaneš ho i později. Je super ho využít například na kauci na byt."
       },
       "tip": "Kvůli jednorázovému zaopatřovacímu příspěvku určitě pěstounskou péči neukončuj. Dostaneš ho i později. Je super ho využít například na kauci na byt.",
@@ -69,7 +69,7 @@ const skolaAPrace = [
       "category": "school",
       "question": "Víš, co chceš jednou dělat za práci?",
       "answers": {
-        "ano": "Fosterův tip: Někteří kariéroví poradci poskytují své služby i zdarma. Zkus si ho vygooglit.",
+        "ano": "",
         "ne": "Pokud si nejsi jistý/á, co chceš v životě jednou dělat, můžeš využít služeb kariérového poradce, pracovníků úřadu práce nebo můžeš zkusit absolvovat třeba rekvalifikační kurz. Např. úřad práce nabízí rekvalifikační kurzy zdarma nebo za velmi příznivé ceny."
       },
       "tip": "Někteří kariéroví poradci poskytují své služby i zdarma. Zkus si ho vygooglit.",
@@ -81,7 +81,7 @@ const skolaAPrace = [
       "category": "school",
       "question": "Víš, jaké jsou ve škole nebo v práci tvoje silné stránky a na jaké povolání se hodíš?",
       "answers": {
-        "ano": "Fosterův tip: Každý je na něco šikovný, jen je potřeba to hledat a najít.",
+        "ano": "",
         "ne": "Je důležité zmapovat si své silné stránky a podle nich pak uvažovat o budoucí práci. Zaměř se na to, jaké předměty ti ve škole jdou a jaké tě baví. Zeptej se svého okolí – dospěláků, kamarádů, učitelů – v čem vnímají tvoje vlohy. Na internetu se dají najít i osobnostní testy, ale spoléhej se spíše na svůj vlastní názor."
       },
       "tip": "Každý je na něco šikovný, jen je potřeba to hledat a najít.",
@@ -93,7 +93,7 @@ const skolaAPrace = [
       "category": "school",
       "question": "Umíš napsat životopis a motivační dopis?",
       "answers": {
-        "ano": "Fosterův tip: V životopise a motivačním dopise buď upřímný/á. Nezapomeň na své dobré stránky.",
+        "ano": "",
         "ne": "Kvalitně zpracovaný životopis a motivační dopis jsou při oslovování budoucích zaměstnavatelů velmi důležité. Strukturu nemusíš vymýšlet, stačí, když si stáhneš vzor z internetu a doplníš tam své vlastní informace."
       },
       "tip": "V životopise a motivačním dopise buď upřímný/á. Nezapomeň na své dobré stránky.",
@@ -108,7 +108,7 @@ const penize = [
       "category": "money",
       "question": "Stačí ti tvoje peníze, například kapesné nebo příjem z brigády, na vše, co si z nich potřebuješ pořídit?",
       "answers": {
-        "ano": "Fosterův tip: Vždycky se dá někde ušetřit, i když se zdá, že je to nemožné.",
+        "ano": "",
         "ne": "Pokud s penězi nevystačíš, je potřeba se zamyslet, za co je utrácíš a kde se dá ušetřit. Nebo hledej cestu, jak si vydělat další peníze, například brigádu. A třeba je možné požádat dospěláky o zvýšení kapesného."
       },
       "tip": "Vždycky se dá někde ušetřit, i když se zdá, že je to nemožné.",
@@ -120,7 +120,7 @@ const penize = [
       "category": "money",
       "question": "Umíš si vytvořit svůj osobní rozpočet?",
       "answers": {
-        "ano": "Fosterův tip: Když se naučíš hospodařit s penězi teď, až budeš pracovat a žít samostatně, bude se ti ho hodit.",
+        "ano": "",
         "ne": "Osobní rozpočet zahrnuje příjmy, výdaje a jejich srovnání. Pokud máš příjmy vyšší než výdaje, je to v pohodě. Pokud jsou ale výdaje vyšší než příjmy, máš problém a ten je potřeba řešit."
       },
       "tip": "Když se naučíš hospodařit s penězi teď, až budeš pracovat a žít samostatně, bude se ti ho hodit.",
@@ -132,7 +132,7 @@ const penize = [
       "category": "money",
       "question": "Máš založený bankovní účet a využíváš bankovní služby?",
       "answers": {
-        "ano": "Fosterův tip: Stáhni si kartu do mobilu nebo chytrých hodinek a nemusíš ani vyndavat peněženku z batohu.",
+        "ano": "",
         "ne": "Mít svůj bankovní účet je fajn už před dospělostí. Jsou dětské a studentské bankovní účty. U některých bank je možné je založit i bez souhlasu dospěláků. K účtu zpravidla dostaneš platební kartu."
       },
       "tip": "Stáhni si kartu do mobilu nebo chytrých hodinek a nemusíš ani vyndavat peněženku z batohu.",
@@ -159,7 +159,7 @@ const bydleni = [
       "category": "housing",
       "question": "Víš, jak, s kým a kde chceš bydlet po tvých 18. narozeninách?",
       "answers": {
-        "ano": "Fosterův tip: Se samostatným bydlením nemusíš spěchat. Ideální je si ho zařídit, když vyděláváš dostatek peněz, abys zaplatil/a všechny potřebné výdaje.",
+        "ano": "",
         "ne": "Téma bydlení je důležité promýšlet už dopředu. Pokud bys chtěl/a bydlet samostatně, je potřeba vyřídit spoustu věcí a to zabere čas."
       },
       "tip": "Se samostatným bydlením nemusíš spěchat. Ideální je si ho zařídit, když vyděláváš dostatek peněz, abys zaplatil/a všechny potřebné výdaje.",
@@ -171,7 +171,7 @@ const bydleni = [
       "category": "housing",
       "question": "Chceš i poté, co ti bude osmnáct, bydlet ve společné domácnosti s pěstouny?",
       "answers": {
-        "ano": "Fosterův tip: Vše si dopředu pořádně promysli a připrav. Nikdo nechce skončit na ulici.",
+        "ano": "",
         "ne": "Jestli nechceš nebo nemůžeš zůstat v domácnosti pěstounů, až ti bude 18, je potřeba hledat samostatné bydlení. Můžeš si najít nájemní byt, spolubydlení, ubytovnu, azylový dům, dům na půli cesty. Jestli studuješ, využij internát nebo vysokoškolskou kolej."
       },
       "tip": "Vše si dopředu pořádně promysli a připrav. Nikdo nechce skončit na ulici.",
@@ -183,7 +183,7 @@ const bydleni = [
       "category": "housing",
       "question": "Znáš možnosti podporovaného bydlení?",
       "answers": {
-        "ano": "Fosterův tip: Krizový tip: Dům na půli cesty je určený přímo mladým lidem z dětských domovů nebo pěstounské péče.",
+        "ano": "",
         "ne": "Pokud by ses ocitl/a v krizové situaci, kdy nebudeš mít střechu nad hlavou, je možné využít nějakou formu podporovaného bydlení, např. dům na půli cesty, sociální a startovací byty, azylové domy apod. Informace najdeš na internetu nebo oslov sociálního pracovníka."
       },
       "tip": "Krizový tip: Dům na půli cesty je určený přímo mladým lidem z dětských domovů nebo pěstounské péče.",
@@ -195,7 +195,7 @@ const bydleni = [
       "category": "housing",
       "question": "Máš představu, kolik měsíčně stojí samostatné bydlení?",
       "answers": {
-        "ano": "Fosterův tip: Dobře zvaž, kolik bys do bydlení mohl/a každý měsíc investovat, aby ti také něco zbylo.",
+        "ano": "",
         "ne": "Ceny bydlení se velmi liší podle místa (město, městká část, obec), kde byty jsou, podle velikosti, vybavení apod. Přehled si uděláš, když na internetu projdeš nabídky pár realitních kanceláří. Všímej si, jestli jsou v ceně zahrnuté poplatky za energie, nebo se připočítávají zvlášť."
       },
       "tip": "Dobře zvaž, kolik bys do bydlení mohl/a každý měsíc investovat, aby ti také něco zbylo.",
@@ -234,7 +234,7 @@ const aboutMe = [
       "category": "aboutMe",
       "question": "Máš představu, jak by měl v budoucnosti vypadat tvůj život?",
       "answers": {
-        "ano": "Fosterův tip: Ani mladý Foster netušil, jak bude žít velký dospělý Foster.",
+        "ano": "",
         "ne": "To nevadí, málokdo přesně ví, jak by měl vypadat jeho život v budoucnosti. Ale můžeš o tom minimálně zkusit přemýšlet. Zajištěné bys měl/a mít praktické stránky života – bydlení, peníze, práce aj."
       },
       "tip": "Ani mladý Foster netušil, jak bude žít velký dospělý Foster.",
@@ -246,7 +246,7 @@ const aboutMe = [
       "category": "aboutMe",
       "question": "Je ti příjemné komunikovat s ostatními lidmi?",
       "answers": {
-        "ano": "Fosterův tip: Je potřeba umět mluvit s lidmi tváří v tvář (face to face). Všechno se nedá napsat přes mobil.",
+        "ano": "",
         "ne": "Bojíš se, nevíš co říct, je ti nepříjemné mluvit s ostatními lidmi? Tento pocit mívá poměrně dost mladých lidí. Komunikace se dá naučit, stejně jako pravidla společenského chování. Můžeš oslovit pracovníka/pracovnici doprovázející organizace, najít si kouče, terapeuta..."
       },
       "tip": "Je potřeba umět mluvit s lidmi tváří v tvář (face to face). Všechno se nedá napsat přes mobil.",
@@ -258,7 +258,7 @@ const aboutMe = [
       "category": "aboutMe",
       "question": "Dokážeš si říct o pomoc, když ji potřebuješ?",
       "answers": {
-        "ano": "Fosterův tip: Uleví se ti, už když o svém problému někomu řekneš.",
+        "ano": "",
         "ne": "Člověk se vnímá jako silný, když si řeší své problémy sám. Ne vždy to ale musí být pravda. Je v pořádku říct si o pomoc. A lidé ve tvém okolí ti určitě rádi pomohou. Obrať se na kamarády, dospěláky, doprovázejícího pracovníka / doprovázející pracovnici. Nebo požádej o pomoc při hledání odborné pomoci."
       },
       "tip": "Uleví se ti, už když o svém problému někomu řekneš.",

@@ -1,5 +1,5 @@
 import React from "react";
-import { ReactionInput } from "./reaction";
+import { ReactionInput } from "../explore/reaction";
 
 const Dashboard:React.FC<DashboardProps> = () => {
     return(

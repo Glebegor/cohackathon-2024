@@ -83,7 +83,6 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route element={<MainLayout/>}>
-              <Route path="home" element={<LazyLoader><Dashboard/></LazyLoader>} />
               <Route path="chat" element={<LazyLoader><Messages/></LazyLoader>} />
               <Route path="messages" element={<LazyLoader><Messages/></LazyLoader>} />
               <Route path="dashboard" element={<LazyLoader><Dashboard/></LazyLoader>} />

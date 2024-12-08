@@ -1,80 +1,86 @@
 import avatar from "../../../public/avatar.jpg"
 import Lottie from "lottie-react";
 import { emojis, EmojiType } from "@/components/emotions";
-import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { MessageCircle } from "lucide-react";
+import { ReactionInput } from "./reaction";
 
-// dummy data - avatar, name, text, emoji
-const data = [
+const users = [
     {
         avatar: avatar,
-        name: "John Doe",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.",
+        name: "Adam Hojer",
+        message: "hodně práce, málo času",
         emoji: "sad"
     },
     {
         avatar: avatar,
-        name: "John Doe",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.",
-        emoji: "lost"
-    },
-    {
-        avatar: avatar,
-        name: "John Doe",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.",
+        message: "prošlo mi maso ve večerce :/",
+        name: "Hoang Huy Phi",
         emoji: "angry"
     },
     {
         avatar: avatar,
-        name: "John Doe",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.",
-        emoji: "sad"
-    },
-    {
-        avatar: avatar,
-        name: "John Doe",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.",
+        name: "Robert Velebný",
         emoji: "smile"
     },
     {
         avatar: avatar,
-        name: "John Doe",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.",
-        emoji: "angry"
+        name: "Maxmilián Janda",
+        emoji: "lost"
     }
 ]
 
-const EmotionElement:React.FC<EmotionElementProps> = ({emoji, selectedEmoji, setSelectedEmoji}) => {
+const EmotionElement:React.FC<EmotionElementProps> = ({emoji}) => {
     return(
-        <div className={`${selectedEmoji && selectedEmoji !== emoji &&"opacity-50"}`} onClick={() => setSelectedEmoji(selectedEmoji === emoji ? undefined : emoji)}>
-            <Lottie autoplay={selectedEmoji === emoji} loop={selectedEmoji === emoji} animationData={emojis[emoji as keyof typeof emojis]}/>
+        <div>
+            <Lottie autoplay={true} loop={false} animationData={emojis[emoji as keyof typeof emojis]}/>
         </div>
     )
 }
 
+const User:React.FC<UserProps> = ({user}) => {
+    const [expanded, setExpanded] = useState<boolean>(false);
+
+    return (
+        <div className="flex flex-col items-center gap-6">
+            <div className="size-24 relative" onClick={() => setExpanded(prev => !prev)}>
+                {user.message && (
+                    <div className="absolute top-0 left-0 w-full select-none">{expanded ? (
+                        <div className="bg-white rounded shadow-lg p-2 text-sm leading-5">
+                            {user.message}
+                        </div>    
+                    ) : (
+                        <div>
+                            <MessageCircle className="size-8 fill-orange-500 stroke-black"/>
+                        </div>
+                    )}</div>
+                )}
+                <img src={user.avatar} className="size-24 rounded-full"/>
+                <div className="absolute -bottom-4 -right-4 size-14">
+                    <EmotionElement emoji={user.emoji as EmojiType} selectedEmoji={user.emoji as EmojiType} setSelectedEmoji={() => {}}/>
+                </div>
+            </div>
+            <p className="text-base font-sans font-semibold">{user.name}</p>
+        </div>
+    );
+}
+
 const Explore = () => {
   return (
-    <div className="flex flex-col gap-8 w-2/3 m-auto z-10 pt-14">
-        <h1 className="text-white">Explore</h1>
-        <div className="flex flex-col gap-4 p-6 bg-gray-200 rounded-3xl">
-            {/* Explore people */}
-            {data.map((item) => (
-                <div className="flex gap-4 items-center">
-                    <div className="relative">
-                        <img src={item.avatar} className="w-12 h-12 rounded-full"/>
-                        <div className="w-4 absolute top-0 right-0">
-                            <EmotionElement emoji={item.emoji as EmojiType} selectedEmoji={item.emoji as EmojiType} setSelectedEmoji={() => {}}/>
-                        </div>
-                    </div>
-                    <div className="flex flex-col max-w-[50%]">
-                        <p className="text-lg font-bold">{item.name}</p>
-                        <p className="truncate max-w-[90%]">{item.text}</p>
-                    </div>
-                    <div className="flex gap-4">
-                        <Button className="bg-fosterPurple hover:bg-fosterPurple/90">Zažádat</Button>
-                        <Button className="bg-fosterPink hover:bg-fosterPink/90">Profil</Button>
-                    </div>
+    <div className="relative">
+        <div className="flex flex-col gap-8 w-2/3 m-auto z-10 pt-14">
+            <div className="flex justify-between items-center gap-4">
+                <p className="text-4xl text-white font-sans font-semibold select-none">Objevy</p>
+            </div>
+            <div className="flex flex-col gap-8 p-6 bg-gray-200 rounded-3xl">
+                <p className="text-2xl font-sans font-semibold">Přátelé</p>
+                <div className="flex gap-14 items-center overflow-x-auto">
+                    {users.map((user, index) => (
+                        <User {...{user}}/>
+                    ))}
                 </div>
-            ))}
+            </div>
+            <ReactionInput/>
         </div>
     </div>
   )

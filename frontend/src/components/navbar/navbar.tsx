@@ -5,13 +5,6 @@ import React, { useContext } from "react";
 import { useLocation } from "react-router";
 
 const items = {
-    home: {
-        name: "Domů",
-        icon: <HomeIcon size={24} color="#000000"/>,
-        link: "/home",
-        hoverColor: "hover:stroke-red-600",
-        activeColor: "stroke-red-600"
-    },
     explore: {
         name: "Objevit",
         icon: <SparklesIcon size={24} color="#000000"/>,
@@ -112,7 +105,7 @@ const MobileNavbar: React.FC<MobileNavbarProps> = () => {
 }
 
 const DesktopNavbar: React.FC<DesktopNavbarProps> = () => {
-    const desktopMainItems = [items.home, items.explore, items.chats, items.diary, items.statistic, items.life, items.profile];
+    const desktopMainItems = [items.explore, items.chats, items.diary, items.statistic, items.life, items.profile];
 
     return(
         <div className="h-screen w-20 relative">

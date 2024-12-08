@@ -16,7 +16,7 @@ const Home = () => {
   const [password, setPassword] = useState<string>("");
 
   const login = () => {
-    window.location.href = "/dashboard";
+    window.location.href = "/explore";
   }
 
   return (<>
