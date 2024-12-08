@@ -10,7 +10,7 @@ import { User } from '../../types/user';
 import { GlobalContext } from './context/global'
 import { Dialog, DialogContent, DialogFooter } from './components/ui/dialog'
 import { Button } from './components/ui/button'
-import { CalendarHeart, Coins, EyeOff, Phone } from 'lucide-react'
+import { CalendarHeart, Coins, EyeOff, Phone, Users } from 'lucide-react'
 
 const Home = lazy(() => import('./pages/home/home'));
 const Dashboard = lazy(() => import('./pages/dashboard/dashboard'));
@@ -23,6 +23,10 @@ const Login = lazy(() => import('./pages/login/login'));
 const Statistics = lazy(() => import('./pages/statistic/statistic'));
 const Explore = lazy(() => import('./pages/explore/explore'));
 const Life = lazy(() => import('./pages/life/life'));
+
+import AdminUsers from './pages/admin/users/users';
+import AdminInformations from './pages/admin/informations/informations'
+import { AdminLayout } from "./pages/layouts/admin"
 
 const LazyLoader:React.FC<LazyLoderProps> = ({children}) => {
   return(
@@ -93,9 +97,16 @@ function App() {
               <Route path="statistic" element={<LazyLoader><Statistics/></LazyLoader>} />
               <Route path="life" element={<LazyLoader><Life/></LazyLoader>} />
               <Route path="explore" element={<LazyLoader><Explore/></LazyLoader>} />
-          </Route>
-          <Route path="login" element={<Login />} />
-          <Route path="/" element={<Home />} />
+            </Route>
+            <Route path="login" element={<Login />} />
+            <Route path="/" element={<Home />} />
+
+            <Route element={<AdminLayout/>}>
+              <Route path="admin">
+                <Route path="users" element={<AdminUsers />} />
+                <Route path="settings" element={<AdminInformations />} />
+              </Route>
+            </Route>
           </Routes>
         </BrowserRouter>
       </DesignContext.Provider>
