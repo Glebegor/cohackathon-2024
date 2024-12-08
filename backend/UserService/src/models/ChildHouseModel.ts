@@ -2,8 +2,12 @@ import { PrismaClient, ChildHouse } from "@prisma/client";
 import { BaseModel } from "./BaseModel";
 
 export class ChildHouseModel extends BaseModel {
-  constructor() {
+  public conRedCli: any;
+
+  constructor(connectedRedisClient: any) {
     super();
+    this.conRedCli = connectedRedisClient;
+
   }
 
   async createChildHouse(data: Omit<ChildHouse, "id">): Promise<ChildHouse> {
@@ -16,6 +20,13 @@ export class ChildHouseModel extends BaseModel {
 
   async getChildHouseById(id: number): Promise<ChildHouse | null> {
     try {
+      var childHouse = await this.conRedCli.get(id);
+      if (childHouse) {
+        return JSON.parse(childHouse);
+      } else {
+        childHouse = await this.prisma.childHouse.findUnique({ where: { id } });
+        await this.conRedCli.set(id, JSON.stringify(childHouse));
+      }
       return await this.prisma.childHouse.findUnique({ where: { id } });
     } catch (error) {
       throw new Error(`Error retrieving child house: ${error.message}`);

@@ -1,13 +1,12 @@
 import { User } from "../domain/common/user";
 var jwt = require('jsonwebtoken');
 
-
 function generateAccessToken(user: User, secret: string | undefined) {
-    return jwt.sign({id: user.id, role: user.role_id, username: user.name, email: user.email}, secret, { expiresIn: '60m' })
+    return jwt.sign({ id: user.id, role: user.role_id }, secret, { expiresIn: '15m' });
 }
 
 function generateRefreshToken(user: User, secret: string | undefined) {
-    return jwt.sign({id: user.id, role: user.role_id, username: user.name, email: user.email}, secret, { expiresIn: '3d' })
+    return jwt.sign({ id: user.id, role: user.role_id }, secret);
 }
 
 function verifyToken(token: string, secret: string | undefined) {

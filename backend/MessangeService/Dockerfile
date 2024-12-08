@@ -5,8 +5,6 @@ WORKDIR /app
 
 RUN apt-get update && apt-get install -y make curl iputils-ping postgresql-client && rm -rf /var/lib/apt/lists/*
 
-ARG NODE_ENV=prod
-ENV NODE_ENV=$NODE_ENV
 
 RUN curl -L https://github.com/golang-migrate/migrate/releases/download/v4.15.2/migrate.linux-amd64.tar.gz | tar xvz && \
     mv migrate /usr/local/bin/
@@ -21,10 +19,7 @@ RUN go mod download
 
 COPY . .
 
-RUN if [ "$NODE_ENV" = "prod" ]; then \
-    \
-    go build -o /main ./cmd/main.go || exit 1; \
-fi
+RUN go build -o /main ./cmd/main.go 
 
 
 

@@ -10,7 +10,6 @@ import (
 )
 
 func main() {
-	println("messageService!")
 	logrus.SetFormatter(&logrus.JSONFormatter{})
 	app := bootstrap.NewApplication()
 	config := app.Config

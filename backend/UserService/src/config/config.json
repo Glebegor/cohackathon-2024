@@ -1,6 +1,6 @@
 
 {   
-    "type": "dev",
+    "type": "prod",
     "server": {
         "port": "5002",
         "host": "localhost"
@@ -8,15 +8,24 @@
     "db": {
         "postgres": {
             "user": "root",
-            "host": "localhost",
+            "host": "hackathon-postgres",
             "database": "postgres",
-            "port": "5200"
+            "port": "5432"
         }, 
         "mongo": {
             "user": "root",
             "host": "localhost",
             "database": "hackathon-mongo",
             "port": "5100"
+        },
+        "redis": {
+            "user": "root",
+            "host": "hackathon-redis",
+            "port": "6379"
+        },
+        "rabbitmq": {
+            "host": "hackathon-rabbitmq",
+            "port": "5672"
         }
     },
     "services": {

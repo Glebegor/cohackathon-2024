@@ -6,14 +6,14 @@ db:
   mongo:
     username: root
     database: hackathon-mongo
-    host: 0.0.0.0
+    host: hackathon-mongo
     port: 5100
     name: hackathon-mongo
 
   postgres:
     username: root
     database: hackathon-postgres
-    host: 0.0.0.0
+    host: localhost
     port: 5200
     name: hackathon-postgres
 

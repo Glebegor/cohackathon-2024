@@ -11,7 +11,8 @@ import (
 )
 
 func connectDB(config Config) (*mongo.Database, error) {
-	mongoURL := "mongodb://" + config.Db_mongo_username + ":" + config.Db_post_password + "@" + config.Db_mongo_host + ":" + config.Db_mongo_port
+	println(config.Db_mongo_password)
+	mongoURL := "mongodb://" + config.Db_mongo_username + ":" + config.Db_post_password + "@" + config.Db_mongo_host + ":" + config.Db_mongo_port + "/" + config.Db_mongo_name + "?authSource=admin"
 
 	clientOptions := options.Client().ApplyURI(mongoURL)
 
