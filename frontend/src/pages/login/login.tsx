@@ -1,7 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Button } from "@/components/ui/button";
+import { Navbar } from "@/components/HomeNavbar"
+import background1 from "../../../public/mainBackground1.svg"
+import background2 from "../../../public/mainBackground2.svg"
+import { DesignContext } from "@/context/design";
+import { EMediaQuery } from "@/enums/design";
 
 enum MODE {
   LOGIN = "LOGIN",
@@ -11,6 +16,8 @@ enum MODE {
 }
 
 const Login = () => {
+
+  const mediaContext = useContext(DesignContext);
 
   const [mode, setMode] = useState(MODE.LOGIN);
 
@@ -40,96 +47,64 @@ const Login = () => {
       ? "Resetovat heslo"
       : "Ověřit email";
 
-//   const handleSubmit = async (e: React.FormEvent) => {
-//     e.preventDefault();
-//     setIsLoading(true);
-//     setError("");
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setError("");
 
-//     try {
-//       let response;
+    window.location.href = "/explore";
 
-//       switch (mode) {
-//         case MODE.LOGIN:
-//           response = await wixClient.auth.login({
-//             email,
-//             password,
-//           });
-//           break;
-//         case MODE.REGISTER:
-//           response = await wixClient.auth.register({
-//             email,
-//             password,
-//             profile: { nickname: username },
-//           });
-//           break;
-//         case MODE.RESET_PASSWORD:
-//           response = await wixClient.auth.sendPasswordResetEmail(
-//             email,
-//             window.location.href
-//           );
-//           setMessage("Resetovací email byl odeslán. Zkontrolujte email.");
-//           break;
-//         case MODE.EMAIL_VERIFICATION:
-//           response = await wixClient.auth.processVerification({
-//             verificationCode: emailCode,
-//           });
-//           break;
-//         default:
-//           break;
-//       }
+    try {
+      let response;
 
-//       // console.log(response);
+        switch (mode) {
+          case MODE.LOGIN:
+            //login
+            // response =
+            break;
+          case MODE.REGISTER:
+            //register
+            //resoponse =
+            break;
+          case MODE.RESET_PASSWORD:
+            //optional
+            setMessage("Resetovací email byl odeslán. Zkontrolujte email.");
+            break;
+          case MODE.EMAIL_VERIFICATION:
+            //optional - email verification
+            break;
+          default:
+            break;
+        }
 
-//       switch (response?.loginState) {
-//         case LoginState.SUCCESS:
-//           setMessage("Jste přihlášen");
-//           const tokens = await wixClient.auth.getMemberTokensForDirectLogin(
-//             response.data.sessionToken!
-//           );
+      } catch (err) {
+        console.log(err);
+        setError("Něco se pokazilo.");
+      } finally {
+        setIsLoading(false);
+      }
+  }
 
-//           // console.log(tokens);
-
-//           Cookies.set("refreshToken", JSON.stringify(tokens.refreshToken), {
-//             expires: 2,
-//           });
-//           wixClient.auth.setTokens(tokens);
-//           router.push("/");
-
-//           break;
-//         case LoginState.FAILURE:
-//           if (
-//             response.errorCode === "invalidEmail" ||
-//             response.errorCode === "invalidPassword"
-//           ) {
-//             setError("Špatný email nebo heslo.");
-//           } else if (response.errorCode === "emailAlreadyExists") {
-//             setError("Email už existuje.");
-//           } else if (response.errorCode === "resetPassword") {
-//             setError("Musíte resetovat heslo.");
-//           } else {
-//             setError("Něco se pokazilo.");
-//           }
-//           break;
-//         case LoginState.EMAIL_VERIFICATION_REQUIRED:
-//           setMode(MODE.EMAIL_VERIFICATION);
-//           break;
-//         case LoginState.OWNER_APPROVAL_REQUIRED:
-//           setMessage("Čekáme na schválení");
-//           break;
-//         default:
-//           break;
-//       }
-//     } catch (err) {
-//       console.log(err);
-//       setError("Něco se pokazilo.");
-//     } finally {
-//       setIsLoading(false);
-//     }
-//   };
 
   return (
-    <div className="h-[calc(100vh-80px)] w-screen px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 flex items-center justify-center">
-      <form className="flex flex-col gap-8 w-64" /*onSubmit={handleSubmit}*/>
+    <div className="h-screen w-screen px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 flex items-start justify-center">
+
+
+      {mediaContext.media === EMediaQuery.DESKTOP &&
+        <>
+          <Navbar/>
+          <img src={background1} alt="mainImage" className="absolute top-24 right-0 max-h-[80vh]"/>
+          <img src={background2} alt="mainImage2" className="absolute bottom-3 left-0 max-h-[80vh]"/>
+        </>
+      }
+      {mediaContext.media === EMediaQuery.MOBILE && 
+        <>
+          <Navbar/>
+          <img src={background1} alt="mainImage" className="absolute top-1/4 opacity-15 right-0 w-2/4"/>
+        </>
+      }
+
+      <form className="flex flex-col gap-8 w-64 my-auto z-10" onSubmit={handleSubmit}>
         <h1 className="text-3xl font-bold">{formTitle}</h1>
         {/* Reginster */}
         {mode === MODE.REGISTER && (
@@ -140,7 +115,7 @@ const Login = () => {
                     type="text"
                     name="username"
                     placeholder="Karel"
-                    className="ring-2 ring-gray-300 rounded-md p-4 bg-transparent"
+                    className="ring-1 ring-black rounded-md p-4 bg-transparent"
                     onChange={(e) => setUsername(e.target.value)}
                     />
                 </div>
@@ -150,7 +125,7 @@ const Login = () => {
                         type="email"
                         name="email"
                         placeholder="karel@email.cz"
-                        className="ring-2 ring-gray-300 rounded-md p-4 bg-transparent"
+                        className="ring-1 ring-black rounded-md p-4 bg-transparent"
                         onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
@@ -160,7 +135,7 @@ const Login = () => {
                     type="password"
                     name="password"
                     placeholder="Heslo"
-                    className="ring-2 ring-gray-300 rounded-md p-4 bg-transparent"
+                    className="ring-1 ring-black rounded-md p-4 bg-transparent"
                     onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
@@ -175,7 +150,7 @@ const Login = () => {
                         type="email"
                         name="email"
                         placeholder="karel@email.cz"
-                        className="ring-2 ring-gray-300 rounded-md p-4 bg-transparent"
+                        className="ring-1 ring-black rounded-md p-4 bg-transparent"
                         onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
@@ -185,7 +160,7 @@ const Login = () => {
                         type="password"
                         name="password"
                         placeholder="Heslo"
-                        className="ring-2 ring-gray-300 rounded-md p-4 bg-transparent"
+                        className="ring-1 ring-black rounded-md p-4 bg-transparent"
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
@@ -199,7 +174,7 @@ const Login = () => {
                 type="email"
                 name="email"
                 placeholder="Email"
-                className="ring-1 ring-gray-300 rounded-md p-4 bg-transparent"
+                className="ring-1 ring-black rounded-md p-4 bg-transparent"
                 onChange={(e) => setEmail(e.target.value)}
                 />
             </div>
@@ -212,7 +187,7 @@ const Login = () => {
               type="text"
               name="emailCode"
               placeholder="Kód"
-              className="ring-1 ring-gray-300 rounded-md p-4 bg-transparent"
+              className="ring-1 ring-black rounded-md p-4 bg-transparent"
               onChange={(e) => setEmailCode(e.target.value)}
             />
           </div>
@@ -234,7 +209,7 @@ const Login = () => {
         >
           {isLoading ? "Loading..." : buttonTitle}
         </button> */}
-        <Button disabled={isLoading}>
+        <Button disabled={isLoading} className="bg-gradient-to-b from-purple-600 to-pink-700">
             {isLoading ? "Loading..." : buttonTitle}
         </Button>
         {/* Labels */}
