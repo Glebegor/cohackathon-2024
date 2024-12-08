@@ -1,0 +1,38 @@
+# .github/workflows/deploy.yml
+
+name: Deploy into server
+
+on:
+    push:
+      branches: [master]
+
+jobs:
+    deploy:
+      runs-on: self-hosted
+      timeout-minutes: 5
+      name: "Deploy"
+      steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node 
+        uses: actions/setup-node@v3
+
+      - name: Show folder
+        run: ls
+
+      - name: Install dependencies
+        run: npm i
+        working-directory: ./frontend
+
+      - name: Build project
+        run: npm run build
+        working-directory: ./frontend
+
+      - name: Delete existing build files
+        run: rm -rf /www-pub/foster/dist
+        working-directory: ./frontend
+
+      - name: Move production-ready build files
+        run: mv ./dist /www-pub/foster
+        working-directory: ./frontend
