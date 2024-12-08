@@ -11,6 +11,9 @@ import { GlobalContext } from './context/global'
 import { Dialog, DialogContent, DialogFooter } from './components/ui/dialog'
 import { Button } from './components/ui/button'
 import { CalendarHeart, Coins, EyeOff, Phone } from 'lucide-react'
+import PocketBase from 'pocketbase'
+
+export const pb = new PocketBase("https://api.adamhojer.cz");
 
 const Home = lazy(() => import('./pages/home/home'));
 const Messages = lazy(() => import('./pages/messages/Messages'));

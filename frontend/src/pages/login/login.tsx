@@ -7,6 +7,7 @@ import background1 from "../../../public/mainBackground1.svg"
 import background2 from "../../../public/mainBackground2.svg"
 import { DesignContext } from "@/context/design";
 import { EMediaQuery } from "@/enums/design";
+import { pb } from "@/App";
 
 enum MODE {
   LOGIN = "LOGIN",
@@ -59,8 +60,7 @@ const Login = () => {
 
         switch (mode) {
           case MODE.LOGIN:
-            //login
-            // response =
+            pb.collection("users").authWithPassword(email, password).then(() => {window.location.href = "/explore"}).catch((err) => {setError("Něco se pokazilo.")});
             break;
           case MODE.REGISTER:
             //register
