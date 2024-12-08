@@ -2,7 +2,8 @@ import { BabyIcon, CoinsIcon, HouseIcon, SchoolIcon, UserIcon } from "lucide-rea
 
 const pestounskaPece = [
     {
-      "category": "Pěstounská péče",
+      id: 11,
+      "category": "fosterCare",
       "question": "Víš, co znamená, že vyrůstáš v pěstounské péči?",
       "answers": {
         "ano": "Fosterův tip: Jestli máš dost odvahy, přečti si zákon o sociálně-právní ochraně dětí. § 47 je věnovaný pěstounské péči.",
@@ -13,7 +14,8 @@ const pestounskaPece = [
       "plan": "Sepiš si všechno, co tě zajímá k pěstounské péči a vyptej se na to pracovníka/pracovnice doprovázející organizace. Je důležité, abys rozuměl/a tomu, co se kolem tebe děje."
     },
     {
-      "category": "Pěstounská péče",
+      id: 12,
+      "category": "fosterCare",
       "question": "Víš, jak dlouho trvá pěstounská péče?",
       "answers": {
         "ano": "Fosterův tip: Studuj, co nejdéle to jde, ať pěstounka běží.",
@@ -24,7 +26,8 @@ const pestounskaPece = [
       "plan": "Pokud dále studuješ, zajisti si vždy na začátku školního roku potvrzení o studiu. Dokládá se jím na úřadu práce trvání pěstounské péče."
     },
     {
-      "category": "Pěstounská péče",
+      id: 13,
+      "category": "fosterCare",
       "question": "Víš, jaké jsou pravidelně vyplácené dávky pěstounské péče a jak se týkají zrovna tebe?",
       "answers": {
         "ano": "Fosterův tip: Přesnou výši dávek najdeš v zákoně o sociálně-právní ochraně dětí nebo na stránkách úřadu práce a Ministerstva práce a sociálních věcí.",
@@ -35,7 +38,8 @@ const pestounskaPece = [
       "plan": "Zjisti si výši příspěvku na úhradu potřeb dítěte a podmínky pro získání opakujícího se zaopatřovacího příspěvku. Prober s doprovázející pracovnicí nebo pracovníkem výhody a rizika těchto dávek, aby ses mohl/a rozhodnout, kterou budeš pobírat."
     },
     {
-      "category": "Pěstounská péče",
+      id: 14,
+      "category": "fosterCare",
       "question": "Víš, jak bude vypadat pěstounská péče po tvých 18. narozeninách?",
       "answers": {
         "ano": "Fosterův tip: Kvůli jednorázovému zaopatřovacímu příspěvku určitě pěstounskou péči neukončuj. Dostaneš ho i později. Je super ho využít například na kauci na byt.",
@@ -49,7 +53,8 @@ const pestounskaPece = [
 
 const skolaAPrace = [
     {
-      "category": "Škola a práce (Učeníčko, makáníčko)",
+      id: 21,
+      "category": "school",
       "question": "Studuješ, chodíš někam do školy?",
       "answers": {
         "ano": "Nezapomeň, že středoškoláci by měli na začátku každého školního roku dodat své zdravotní pojišťovně potvrzení o studiu, aby za ně stát hradil zdravotní pojištění.",
@@ -60,7 +65,8 @@ const skolaAPrace = [
       "plan": "Zeptej se na své zdravotní pojišťovně, jestli máš hrazené zdravotní pojištění. Pokud ti vznikl dluh, začni ho splácet."
     },
     {
-      "category": "Škola a práce (Učeníčko, makáníčko)",
+      id: 22,
+      "category": "school",
       "question": "Víš, co chceš jednou dělat za práci?",
       "answers": {
         "ano": "Fosterův tip: Někteří kariéroví poradci poskytují své služby i zdarma. Zkus si ho vygooglit.",
@@ -71,7 +77,8 @@ const skolaAPrace = [
       "plan": "Zjisti si, jaká povolání můžeš dělat se vzděláním, které máš nebo budeš mít. Máš jiné sny a plány? Zjisti si, co pro ně musíš splnit."
     },
     {
-      "category": "Škola a práce (Učeníčko, makáníčko)",
+      id: 23,
+      "category": "school",
       "question": "Víš, jaké jsou ve škole nebo v práci tvoje silné stránky a na jaké povolání se hodíš?",
       "answers": {
         "ano": "Fosterův tip: Každý je na něco šikovný, jen je potřeba to hledat a najít.",
@@ -82,7 +89,8 @@ const skolaAPrace = [
       "plan": "Stáhni si soupis toho, v čem může být člověk dobrý, a zaškrtej svoje silné stránky. Co ti to prozradilo?"
     },
     {
-      "category": "Škola a práce (Učeníčko, makáníčko)",
+      id: 24,
+      "category": "school",
       "question": "Umíš napsat životopis a motivační dopis?",
       "answers": {
         "ano": "Fosterův tip: V životopise a motivačním dopise buď upřímný/á. Nezapomeň na své dobré stránky.",
@@ -96,7 +104,8 @@ const skolaAPrace = [
 
 const penize = [
     {
-      "category": "Peníze",
+      id: 31,
+      "category": "money",
       "question": "Stačí ti tvoje peníze, například kapesné nebo příjem z brigády, na vše, co si z nich potřebuješ pořídit?",
       "answers": {
         "ano": "Fosterův tip: Vždycky se dá někde ušetřit, i když se zdá, že je to nemožné.",
@@ -107,7 +116,8 @@ const penize = [
       "plan": "Zkus se podívat po nějaké brigádě. Koukni se na internet, zeptej se známých. Ale pozor - na brigádu musíš mít ukončenou základní školu."
     },
     {
-      "category": "Peníze",
+      id: 32,
+      "category": "money",
       "question": "Umíš si vytvořit svůj osobní rozpočet?",
       "answers": {
         "ano": "Fosterův tip: Když se naučíš hospodařit s penězi teď, až budeš pracovat a žít samostatně, bude se ti ho hodit.",
@@ -118,7 +128,8 @@ const penize = [
       "plan": "Vytvoř si svůj osobní rozpočet. Stáhni si vzor, doplň příjmy a výdaje a vzájemně je porovnej."
     },
     {
-      "category": "Peníze",
+      id: 33,
+      "category": "money",
       "question": "Máš založený bankovní účet a využíváš bankovní služby?",
       "answers": {
         "ano": "Fosterův tip: Stáhni si kartu do mobilu nebo chytrých hodinek a nemusíš ani vyndavat peněženku z batohu.",
@@ -129,7 +140,8 @@ const penize = [
       "plan": "Zjisti si podmínky založení bankovního účtu a zkus požádat dospěláky, zda by ti s tím nepomohli."
     },
     {
-      "category": "Peníze",
+      id: 34,
+      "category": "money",
       "question": "Spoříš si něco?",
       "answers": {
         "ano": "Pochvala za to, že myslíš na svoji budoucnost.",
@@ -143,7 +155,8 @@ const penize = [
 
 const bydleni = [
     {
-      "category": "Bydlení",
+      id: 41,
+      "category": "housing",
       "question": "Víš, jak, s kým a kde chceš bydlet po tvých 18. narozeninách?",
       "answers": {
         "ano": "Fosterův tip: Se samostatným bydlením nemusíš spěchat. Ideální je si ho zařídit, když vyděláváš dostatek peněz, abys zaplatil/a všechny potřebné výdaje.",
@@ -154,7 +167,8 @@ const bydleni = [
       "plan": "Sepiš si, jak si představuješ své bydlení v budoucnosti. Co potřebuješ pro jeho zajištění?"
     },
     {
-      "category": "Bydlení",
+      id: 42,
+      "category": "housing",
       "question": "Chceš i poté, co ti bude osmnáct, bydlet ve společné domácnosti s pěstouny?",
       "answers": {
         "ano": "Fosterův tip: Vše si dopředu pořádně promysli a připrav. Nikdo nechce skončit na ulici.",
@@ -165,7 +179,8 @@ const bydleni = [
       "plan": "Začni se aktivně zajímat o nabídku bydlení v lokalitě, kde chceš žít – procházej inzeráty, nabídky realitních kanceláří, srovnávej ceny, vybavení, velikost bytů. Sepiš si, co od bydlení očekáváš."
     },
     {
-      "category": "Bydlení",
+      id: 43,
+      "category": "housing",
       "question": "Znáš možnosti podporovaného bydlení?",
       "answers": {
         "ano": "Fosterův tip: Krizový tip: Dům na půli cesty je určený přímo mladým lidem z dětských domovů nebo pěstounské péče.",
@@ -176,7 +191,8 @@ const bydleni = [
       "plan": "Vyhledej si na internetu možnosti podporovaného bydlení ve tvé lokalitě. Je dobré mít krizový plán i v okamžiku, kdy se zdá, že nebude potřeba."
     },
     {
-      "category": "Bydlení",
+      id: 44,
+      "category": "housing",
       "question": "Máš představu, kolik měsíčně stojí samostatné bydlení?",
       "answers": {
         "ano": "Fosterův tip: Dobře zvaž, kolik bys do bydlení mohl/a každý měsíc investovat, aby ti také něco zbylo.",
@@ -190,7 +206,8 @@ const bydleni = [
 
 const aboutMe = [
     {
-      "category": "Kdo jsem já",
+      id: 51,
+      "category": "aboutMe",
       "question": "Máš kolem sebe lidi, kterým věříš?",
       "answers": {
         "ano": "Tak si je hýčkej a buď za ně rád/a.",
@@ -201,7 +218,8 @@ const aboutMe = [
       "plan": "Udělej si seznam lidí ze svého okolí a vytipuj ty, ke kterým máš nejblíže a na které by ses obrátil/a, kdybys potřeboval/a pomoc."
     },
     {
-      "category": "Kdo jsem já",
+      id: 52,
+      "category": "aboutMe",
       "question": "Znáš své silné a slabé stránky?",
       "answers": {
         "ano": "Super. Je dobré vědět, v čem jsou tvoje silné a slabé stránky.",
@@ -212,7 +230,8 @@ const aboutMe = [
       "plan": "Sepiš si na papír, do počítače nebo mobilu své silné a slabé stránky. Vyptej se svého okolí. Napiš si, v čem ti silné stránky pomáhají a jak se dá pracovat na slabších stránkách."
     },
     {
-      "category": "Kdo jsem já",
+      id: 53,
+      "category": "aboutMe",
       "question": "Máš představu, jak by měl v budoucnosti vypadat tvůj život?",
       "answers": {
         "ano": "Fosterův tip: Ani mladý Foster netušil, jak bude žít velký dospělý Foster.",
@@ -223,7 +242,8 @@ const aboutMe = [
       "plan": "Pro plánování budoucnosti může dobře sloužit 'nástěnka vizí'. Na internetu nebo v časopisech najdi obrázky, inspirační citáty ale i tvé texty, které bys rád/a, aby jednou vystihovaly tvůj život a to, čeho chceš dosáhnout. Můžou to být obrázky party přátel, sportu, míst, kam se chceš podívat, rodiny, kterou bys chtěl/a mít, domu, auta, umění... no zkátka cokoliv. Vše si buď vytiskni, nalep a pověs někam, kde na nástěnku pravidelně uvidíš, nebo si vytvoř třeba tapetu do počítače nebo telefonu. Tak budeš mít svůj vysněný život pořád na očích. A nezapomeň nástěnku pravidelně aktualizovat."
     },
     {
-      "category": "Kdo jsem já",
+      id: 54,
+      "category": "aboutMe",
       "question": "Je ti příjemné komunikovat s ostatními lidmi?",
       "answers": {
         "ano": "Fosterův tip: Je potřeba umět mluvit s lidmi tváří v tvář (face to face). Všechno se nedá napsat přes mobil.",
@@ -234,7 +254,8 @@ const aboutMe = [
       "plan": "Udělej si přehled situací, ve kterých se ti s ostatními špatně komunikuje. Zkus si je nacvičit třeba s dospělákem, kamarádem, sociální pracovnicí, koučem…"
     },
     {
-      "category": "Kdo jsem já",
+      id: 55,
+      "category": "aboutMe",
       "question": "Dokážeš si říct o pomoc, když ji potřebuješ?",
       "answers": {
         "ano": "Fosterův tip: Uleví se ti, už když o svém problému někomu řekneš.",
@@ -246,7 +267,8 @@ const aboutMe = [
     }
 ]
 
-export const completeTipsData = {...{...penize, ...bydleni, ...skolaAPrace, ...pestounskaPece, ...aboutMe}};
+//export const completeTipsData = {...{...penize}, ...{...bydleni}, ...{...skolaAPrace}, ...{...aboutMe}, ...{...pestounskaPece}};
+export const completeTipsData = [...penize, ...bydleni, ...skolaAPrace, ...aboutMe, ...pestounskaPece];
 
 export const tipsCategories = [
     {

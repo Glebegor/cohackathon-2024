@@ -9,5 +9,7 @@ type MediaContextProps = {
 
 type GlobalContextProps = {
     user: User,
-    setUser: React.Dispatch<React.SetStateAction<User>>
+    setUser: React.Dispatch<React.SetStateAction<User>>,
+    linkaOpen: boolean,
+    setLinkaOpen: React.Dispatch<React.SetStateAction<boolean>>
 }

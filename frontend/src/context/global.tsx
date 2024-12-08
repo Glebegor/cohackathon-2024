@@ -3,5 +3,7 @@ import { GlobalContextProps } from "./types";
 
 export const GlobalContext = createContext<GlobalContextProps>({
     user: {},
-    setUser: () => {}
+    setUser: () => {},
+    linkaOpen: false,
+    setLinkaOpen: () => {}
 })
